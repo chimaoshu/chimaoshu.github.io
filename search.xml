@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>基于frp与v2ray的几种校园网内网穿透的方案</title>
+    <url>/2020/03/12/%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p><a href="#1">设备</a></p>
+<p><a href="#1.1">方案一:简单的frp socks5/http代理</a></p>
+<p><a href="#1.2">方案二：用frp映射v2ray的inbound端口+校外设备http/socks5代理</a></p>
+<p><a href="#1.3">方案三：用frp映射v2ray的inbound端口+校外设备使用v2ray/ssr连接</a></p>
+<p><a href="#1.3">方案四：用v2ray自带的反向代理功能</a></p>
+<p><a href="#1.3">方案五：用路由器代替校内主机</a></p>
+<a id="more"></a>
+
+<h1 id= '0'> 设备 </h1>
+
+<h5 id="通讯过程的三台设备："><a href="#通讯过程的三台设备：" class="headerlink" title="通讯过程的三台设备："></a>通讯过程的三台设备：</h5><h6 id="A-校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。"><a href="#A-校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。" class="headerlink" title="A.校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。"></a>A.校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。</h6><h6 id="B-一台拥有公网ip的设备，一般是VPS云主机之类的"><a href="#B-一台拥有公网ip的设备，一般是VPS云主机之类的" class="headerlink" title="B.一台拥有公网ip的设备，一般是VPS云主机之类的"></a>B.一台拥有公网ip的设备，一般是VPS云主机之类的</h6><h6 id="C-任意想要在校外访问校园网的设备"><a href="#C-任意想要在校外访问校园网的设备" class="headerlink" title="C.任意想要在校外访问校园网的设备"></a>C.任意想要在校外访问校园网的设备</h6><p><img src="https://img-blog.csdnimg.cn/20200311224941794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="示意图"></p>
+<h1 id= '1'> 方案一:简单的frp socks5/http代理</h1>
+
+
+<p><a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener">frp在github的下载地址</a></p>
+<p>以Windows为例</p>
+<p>下载后解压<br>把frps.exe和frps.ini拷贝到你拥有公网ip的主机。<br>把frpc.exe和frpc.ini拷贝到校内的主机。<br>顾名思义，s就是server，c就是client。</p>
+<p>在云主机上进行frps.ini配置：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 12345(填写你要用来和校内主机建立连接的端口，注意检查防火墙）</span><br><span class="line">token = 8d283ya2-7sl5-4a8d-857e （相当于密码，要与frpc.ini中的token保持一致）</span><br></pre></td></tr></table></figure>
+<p>这是最简单配置，更多配置请戳<a href="https://github.com/fatedier/frp/blob/master/README_zh.md" target="_blank" rel="noopener"> frp官方中文文档</a></p>
+<p>运行frps：<br>打开cmd，切换到frps.exe所在的目录，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frps.exe -c frps.ini</span><br></pre></td></tr></table></figure>
+
+<p>出现以下文字则启动成功<br><img src="https://img-blog.csdnimg.cn/20200312111727240.png" alt="启动成功"><br>然后在校内跳板机配置frpc.ini：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 12.34.56.78（上面配置frps的主机的公网ip）</span><br><span class="line">server_port = 12345 （上面的bind_port填哪个这里就填哪个）</span><br><span class="line">token = 8d283ya2-7sl5-4a8d-857e（与上面token保持一致）</span><br><span class="line">pool_count = 5 （与服务端通信时预设的连接池数量，如果对连接速度有要求可以设大一些）</span><br><span class="line"></span><br><span class="line">[socks5_proxy]</span><br><span class="line"><span class="built_in">type</span> = tcp</span><br><span class="line">remote_port = 8080 （设置远程云主机的8080端口为监听端口，可供校外机器连接）</span><br><span class="line">plugin = socks5</span><br><span class="line">use_encryption = <span class="literal">true</span> （加  密  通  讯）</span><br><span class="line"><span class="comment">#如果不想设置用户名密码就把下面两行删掉，因为有的浏览器不支持身份认证</span></span><br><span class="line">plugin_http_user = xxx （用户名）</span><br><span class="line">plugin_http_passwd = xxxxxx （密码）</span><br></pre></td></tr></table></figure>
+<p>如果不想要socks5代理，也可以换成http代理</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 12.34.56.78（上面配置frps的主机的公网ip）</span><br><span class="line">server_port = 12345 （上面的bind_port填哪个这里就填哪个）</span><br><span class="line">token = 8d283ya2-7sl5-4a8d-857e（与上面token保持一致）</span><br><span class="line">pool_count = 5 （与服务端通信时预设的连接池数量，如果对连接速度有要求可以设大一些）</span><br><span class="line"></span><br><span class="line">[http_proxy]</span><br><span class="line"><span class="built_in">type</span> = tcp</span><br><span class="line">remote_port = 8080（设置远程云主机的8080端口为监听端口，可供校外机器连接）</span><br><span class="line">plugin = http_proxy</span><br><span class="line">use_encryption = <span class="literal">true</span> （加  密  通  讯）</span><br><span class="line"><span class="comment">#如果不想设置用户名密码就把下面两行删掉，因为有的浏览器不支持身份认证</span></span><br><span class="line">plugin_http_user = xxx</span><br><span class="line">plugin_http_passwd = xxxx</span><br></pre></td></tr></table></figure>
+<p>比较鸡肋的就是<br>frp的http_proxy好像只能访问http，不能访问https网站</p>
+<p>运行frpc:<br>打开cmd，切换到frpc.exe所在的目录，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frpc.exe -c frpc.ini</span><br></pre></td></tr></table></figure>
+<p>出现以下文字则连接成功：<br><img src="https://img-blog.csdnimg.cn/20200312114900133.png" alt="连接成功"><br>现在socks5代理/http代理已经搭建完成<br>只要在校外主机的浏览器设置代理就可以访问校内网络了：<br><img src="https://img-blog.csdnimg.cn/20200312115224804.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="设置代理"><br>通讯过程：校外设备向云主机发送网络请求，然后云主机把请求交给校内设备代理，校内设备进行代理，通过云主机返回校外设备请求的内容。</p>
+<h1 id= 2'>方案二：用frp映射v2ray的inbound端口+校外设备http/socks5代理</h1>
+
+
+<p>该方案适用于校外设备无法使用v2ray的情况</p>
+<p>值得一提的是，socks5的数据都是没有经过加密的明文数据，所以方案二与方案一并不被推荐</p>
+<p>思路：在校内设备搭建一个v2ray的代理，将v2ray的inbound设为socks5流量，然后把这个inbound端口通过frp映射到云主机上。校外设备则通过socks5或http代理访问校内外。</p>
+<p>仍然以Windows为例</p>
+<p>首先云主机配置frps.ini:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port = 12345(填写你要用来和校内主机建立连接的端口，注意检查防火墙）</span><br><span class="line">token = 8d283ya2-7sl5-4a8d-857e （相当于密码，要与frpc.ini中的token保持一致）</span><br></pre></td></tr></table></figure>
+<p>然后打开cmd，切换到frps.exe所在目录运行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frps.exe -c frps.ini</span><br></pre></td></tr></table></figure>
+<p>完成云主机的配置</p>
+<p>然后是校内设备搭建v2ray与frp：<br>&emsp;&emsp;首先是v2ray:<br>&emsp;&emsp;&emsp;&emsp;<a href="https://github.com/2dust/v2rayN/releases/download/3.7/v2rayN-Core.zip" target="_blank" rel="noopener">github的v2rayN下载地址</a><br>&emsp;&emsp;&emsp;&emsp;然后在随意位置新建一个123.json，进行编辑：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">"inbounds"</span>: [</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="string">"port"</span>: 10808, //填监听端口，自己决定</span><br><span class="line">     <span class="string">"protocol"</span>: <span class="string">"socks"</span>, </span><br><span class="line">     <span class="string">"sniffing"</span>: &#123;</span><br><span class="line">       <span class="string">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">       <span class="string">"destOverride"</span>: [<span class="string">"http"</span>, <span class="string">"tls"</span>]</span><br><span class="line">     &#125;,</span><br><span class="line">     <span class="string">"settings"</span>: &#123;</span><br><span class="line">       <span class="string">"auth"</span>: <span class="string">"noauth"</span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> ],</span><br><span class="line"> <span class="string">"outbounds"</span>: [</span><br><span class="line">   &#123;</span><br><span class="line">     <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">     <span class="string">"settings"</span>: &#123;&#125;</span><br><span class="line">   &#125;</span><br><span class="line"> ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;&emsp;&emsp;然后打开v2rayN.exe<br>&emsp;&emsp;&emsp;&emsp;左上角“服务器–添加自定义服务器”<br>   &emsp;&emsp;&emsp;&emsp;<img src="https://img-blog.csdnimg.cn/20200312132503537.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="添加服务器"><br>&emsp;&emsp;&emsp;&emsp;然后选择刚才编辑的123.config导入，就能在列表看到导入的配置了<br>&emsp;&emsp;&emsp;&emsp;然后在右下角任务栏选择启动刚才配置的服务器<br>&emsp;&emsp;&emsp;&emsp;<img src="https://img-blog.csdnimg.cn/20200312133221411.png" alt="选择服务器"><br>&emsp;&emsp;&emsp;&emsp;然后选择”Http代理”，开启全局模式<br>&emsp;&emsp;&emsp;&emsp;之后可以看到v2ray的UI最下边的一行代理地址：<br><img src="https://img-blog.csdnimg.cn/20200312133500287.png" alt="代理地址"><br>&emsp;&emsp;现在v2ray配置完成了，接下来配置frpc.ini:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[common] <span class="comment">#common和前面的一样，不再赘述</span></span><br><span class="line">server_addr = 12.34.56.78</span><br><span class="line">server_port = 12345</span><br><span class="line">token = 8d283ya2-6dba-4a8d</span><br><span class="line">pool_count = 5</span><br><span class="line"></span><br><span class="line">[v2ray_mapping]</span><br><span class="line"><span class="built_in">type</span> = tcp</span><br><span class="line">remote_port = 8083 <span class="comment">#你的云主机上可供校外设备挂代理的端口</span></span><br><span class="line">local_port = 10809 <span class="comment">#校内设备本地http的端口，参考上一张图</span></span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;&emsp;&emsp;然后一样是打开cmd切换到所在目录，输入：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">frpc.exe -c frpc.ini</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这样frpc也配置完成。</p>
+<p>在校内设备的配置完成,<br>接下来就是校外设备设置代理了：</p>
+<p>以win10为例，打开系统代理设置<br>填入云主机的ip和http的端口<br><img src="https://img-blog.csdnimg.cn/20200312134652434.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="win10设置"><br>就可以使用校内设备的代理了</p>
+<p>当然，这样是整个系统使用校内代理，比较麻烦。</p>
+<p>推荐用浏览器插件 <a href="https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif?hl=zh-CN" target="_blank" rel="noopener">SwitchyOmega</a><br>设置校园网专用的代理，如图：<br><img src="https://img-blog.csdnimg.cn/2020031213523693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>然后可以在auto switch中设置自动切换<br><img src="https://img-blog.csdnimg.cn/20200312135350737.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="自动切换"><br>在访问校园网时会自动切换为使用刚才配置的代理。</p>
+<h1 id= 3'>方案三：用frp映射v2ray的inbound端口+校外设备使用v2ray/ssr连接</h1>
+
+
+<p>该方案适用于校外设备可以使用v2ray的情况。<br>校内设备和云主机的配置过程和上述方案二大同小异。</p>
+<p>其中v2ray的123.json配置需要换为：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"inbounds"</span>: [</span><br><span class="line">  	//当然，v2ray也支持ssr。所以下面的这段配置也可以换成ssr配置</span><br><span class="line">  	//然后校外设备就可以用ssr连接</span><br><span class="line">  	//由于我不懂ssr配置，所以就不放出来了</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"port"</span>: 10809, // 本地监听端口</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,   </span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"id"</span>: <span class="string">"123456"</span>,  // 用户ID（相当于ssr中的密码），客户端与服务器只要保持相同即可</span><br><span class="line">            <span class="string">"alterId"</span>: 64 //客户端与服务端须保持相同</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,  // 传出协议</span><br><span class="line">      <span class="string">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其他的都一样</p>
+<p>最后是校外设备设置代理，以Windows为例：<br>打开v2rayN.exe，然后左上角”服务器–添加vmess服务器”，<br>填写参数：<br><img src="https://img-blog.csdnimg.cn/20200312142508878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="添加VMess"><br>点击确定即可。<br>然后是安卓，先<a href="https://github.com/2dust/v2rayNG/releases" target="_blank" rel="noopener">v2rayNG github下载</a>，然后也是一样的配置。</p>
+<h1 id= 4'>方案四：用v2ray自带的反向代理功能</h1>
+
+
+<p>我没有试过这种方案，所以只能放个<a href="https://toutyrater.github.io/app/reverse2.html" target="_blank" rel="noopener">文档链接</a></p>
+<p>该方案需要三方设备都使用v2ray</p>
+<h1 id= 5'>方案五：用路由器代替校内主机</h1>
+
+
+<p>众所周知，路由器可以刷各种固件。有些固件比如梅林或者老毛子之类的本身就自带v2ray和frp。<br>放假回家如果在校内没有跳板机，不妨试试路由器。<br>网上可以找到很多刷固件的教程。</p>
+<p>接下来以老毛子为例进行说明。</p>
+<p>首先校内的路由器必须要能上校外网络，很多学校是使用drcom的，对于drcom登录的，可以参考<a href="https://www.right.com.cn/forum/thread-215978-1-1.html" target="_blank" rel="noopener">这篇文章</a></p>
+<p>或者直接ssh路由器，然后运行某些登录脚本。</p>
+<p>frp设置和前面的没什么不同，路由器可以充当frpc或者frps，我们要让路由器充当frpc。</p>
+<p>frp设置：<br>勾选“启动frpc客户端”，后面配置和前面的一样<br><img src="https://img-blog.csdnimg.cn/20200312151058521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="frp"><br>v2ray配置：<br>开启透明代理，设置透明代理窗口1099<br>（如果你这个路由器不想用于平时上网，可以不用勾选）<br><img src="https://img-blog.csdnimg.cn/20200312151236279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="v2ray"><br>然后进行config.json的配置:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是透明代理的inbound，平时连路由器上网的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transparent"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 1099,</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"dokodemo-door"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"network"</span>: <span class="string">"tcp,udp"</span>,</span><br><span class="line">        <span class="string">"followRedirect"</span>: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"sniffing"</span>: &#123;</span><br><span class="line">        <span class="string">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"destOverride"</span>: [<span class="string">"http"</span>, <span class="string">"tls"</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="string">"sockopt"</span>: &#123;</span><br><span class="line">          <span class="string">"tproxy"</span>: <span class="string">"tproxy"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是校外跳进来的inbound，校外的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"vmess-mapping"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 10809, // 本地监听端口</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"id"</span>: <span class="string">"123456"</span>, // 用户ID（相当于ssr中的密码），客户端与服务器只要保持相同即可</span><br><span class="line">            <span class="string">"alterId"</span>: 64 //客户端与服务端须保持相同</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"direct"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //如果这个路由器还想用于平时上网，</span><br><span class="line">      //可以自行添加自己平时  上    网  的配置，</span><br><span class="line">      //然后在rules里面添加路由规则</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"routing"</span>: &#123;</span><br><span class="line">    <span class="string">"domainStrategy"</span>: <span class="string">"IPOnDemand"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果这个路由器还想用于平时上网，<br>可以自行添加自己平时上网的服务器配置，<br>然后在rules里面添加路由规则。</p>
+<h1 id="end"><a href="#end" class="headerlink" title="end"></a>end</h1>]]></content>
+      <tags>
+        <tag>v2ray</tag>
+        <tag>frp</tag>
+        <tag>内网穿透</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>myfirstpage</title>
     <url>/2020/03/11/myfirstpage/</url>
-    <content><![CDATA[<p>#你只看到了第二层<br>#而你把我想成了第一层<br>#实际上<br>#我<br>#是第五层</p>
+    <content><![CDATA[<p>这波<br>你只看到了第二层<br>而你把我想成了第一层<br>实际上<br>我<br>是第五层</p>
 ]]></content>
       <tags>
         <tag>WDNMD</tag>
