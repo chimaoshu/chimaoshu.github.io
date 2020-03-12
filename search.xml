@@ -13,7 +13,7 @@
 
 <h1 id= '0'> 设备 </h1>
 
-<h5 id="通讯过程的三台设备："><a href="#通讯过程的三台设备：" class="headerlink" title="通讯过程的三台设备："></a>通讯过程的三台设备：</h5><h6 id="A-校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。"><a href="#A-校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。" class="headerlink" title="A.校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。"></a>A.校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。</h6><h6 id="B-一台拥有公网ip的设备，一般是VPS云主机之类的"><a href="#B-一台拥有公网ip的设备，一般是VPS云主机之类的" class="headerlink" title="B.一台拥有公网ip的设备，一般是VPS云主机之类的"></a>B.一台拥有公网ip的设备，一般是VPS云主机之类的</h6><h6 id="C-任意想要在校外访问校园网的设备"><a href="#C-任意想要在校外访问校园网的设备" class="headerlink" title="C.任意想要在校外访问校园网的设备"></a>C.任意想要在校外访问校园网的设备</h6><p><img src="https://img-blog.csdnimg.cn/20200311224941794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="示意图"></p>
+<h2 id="通讯过程的三台设备："><a href="#通讯过程的三台设备：" class="headerlink" title="通讯过程的三台设备："></a>通讯过程的三台设备：</h2><h3 id="A-校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。"><a href="#A-校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。" class="headerlink" title="A.校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。"></a>A.校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。</h3><h3 id="B-一台拥有公网ip的设备，一般是VPS云主机之类的"><a href="#B-一台拥有公网ip的设备，一般是VPS云主机之类的" class="headerlink" title="B.一台拥有公网ip的设备，一般是VPS云主机之类的"></a>B.一台拥有公网ip的设备，一般是VPS云主机之类的</h3><h3 id="C-任意想要在校外访问校园网的设备"><a href="#C-任意想要在校外访问校园网的设备" class="headerlink" title="C.任意想要在校外访问校园网的设备"></a>C.任意想要在校外访问校园网的设备</h3><p><img src="https://img-blog.csdnimg.cn/20200311224941794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="示意图"></p>
 <h1 id= '1'> 方案一:简单的frp socks5/http代理</h1>
 
 
