@@ -143,7 +143,7 @@
 <p>其中v2ray的json配置需要换为：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"inbounds"</span>: [</span><br><span class="line">  	//v2ray也支持ssr 所以下面的这段配置也可以换成ssr配置</span><br><span class="line">  	//然后校外设备就可以用ssr连接</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"port"</span>: 10809, // 本地监听端口</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,   </span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"id"</span>: <span class="string">"123456"</span>,  // 用户ID（相当于ssr中的密码），客户端与服务器只要保持相同即可</span><br><span class="line">            <span class="string">"alterId"</span>: 64 //客户端与服务端须保持相同</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,  // 传出协议</span><br><span class="line">      <span class="string">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其他的都一样</p>
-<p>最后是校外设备设置代理，以Windows为例：<br>打开v2rayN.exe，然后左上角”服务器–添加vmess服务器”，<br>填写参数：<br><img src="/assets/uploads/files/1584007275043-fd392bbd-594f-40bc-be31-98358f8e0cd6-image.png" alt="fd392bbd-594f-40bc-be31-98358f8e0cd6-image.png"> </p>
+<p>最后是校外设备设置代理，以Windows为例：<br>打开v2rayN.exe，然后左上角”服务器–添加vmess服务器”，<br>填写参数：<br><img src="https://img-blog.csdnimg.cn/20200313105352884.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <h1 id='4'> 方案四：用v2ray自带的反代功能 </h1>
 
 
@@ -154,7 +154,7 @@
 <p>众所周知，路由器可以刷各种固件，有些固件本身就自带v2ray和frp<br>如果在校内没有跳板机，不妨试试路由器。<br>网上可以找到很多刷固件的教程。</p>
 <p>接下来以老毛子为例进行说明。</p>
 <p>首先校内的路由器必须要能上校外网络，很多学校是使用drcom的，对于drcom登录的，可以参考<a href="https://www.right.com.cn/forum/thread-215978-1-1.html" target="_blank" rel="noopener">这篇文章</a></p>
-<p>或者ssh进路由器然后<a href="https://forum.szu.moe/topic/35/%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%87%AA%E5%8A%A8%E6%8B%A8%E5%8F%B7" target="_blank" rel="noopener">https://forum.szu.moe/topic/35/%E6%A0%A1%E5%9B%AD%E7%BD%91%E8%87%AA%E5%8A%A8%E6%8B%A8%E5%8F%B7</a></p>
+<p>或者ssh进路由器然后运行一些自动登录的脚本</p>
 <p>frp设置和前面的没什么不同，路由器可以充当frpc或者frps，我们要让路由器充当frpc。</p>
 <p>frp设置：<br>勾选“启动frpc客户端”，后面配置和前面的一样</p>
 <p><img src="https://img-blog.csdnimg.cn/20200312151058521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="frp"></p>
