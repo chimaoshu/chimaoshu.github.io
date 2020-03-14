@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>（详细版）基于frp与v2ray的几种校园网内网穿透的方案</title>
-    <url>/2020/03/12/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
+    <url>/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>非零基础请移步<a href="\2020\03\12\（简略版）基于frp与v2ray的几种校园网内网穿透的方案\">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
 <p><a href="#0">设备</a></p>
 <p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
@@ -92,7 +92,7 @@
   </entry>
   <entry>
     <title>（简略版）基于frp与v2ray的几种校园网内网穿透的方案</title>
-    <url>/2020/03/12/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
+    <url>/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>如果是零基础，请移步<a href="\2020\03\12\（详细版）基于frp与v2ray的几种校园网内网穿透的方案\">（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
 <p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
 <p><a href="#2">方案二：用frp映射v2ray的inbound端口+校外设备http/socks5代理</a></p>
@@ -174,7 +174,7 @@
   </entry>
   <entry>
     <title>myfirstpage</title>
-    <url>/2020/03/11/myfirstpage/</url>
+    <url>/myfirstpage/</url>
     <content><![CDATA[<p>这波<br>你只看到了第二层<br>而你把我想成了第一层<br>实际上<br>我<br>是第五层</p>
 ]]></content>
       <tags>
@@ -183,7 +183,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/03/11/hello-world/</url>
+    <url>/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 

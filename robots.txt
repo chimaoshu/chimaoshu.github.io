@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.chimaoshu.top/sitemap.xml
+Sitemap: https://www.chimaoshu.top/baidusitemap.xml
+
