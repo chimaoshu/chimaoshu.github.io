@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ImportError cannot import name &#39;&#39;DerBitString&#39;&#39; from &#39;&#39;Crypto.Util.asn1&#39;&#39;</title>
+    <url>/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</url>
+    <content><![CDATA[<p>今天用到 PyCryptodome 模块的时候，当我用到了 </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br></pre></td></tr></table></figure>
+<p>的时候，出现了错误：<br>ImportError : cannot import name ‘’DerBitString’’ from ‘’Crypto.Util.asn1’’。<br>找到了<a href="http://program.dengshilong.org/2018/10/11/%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5DerBitString%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">这篇博客</a>和<a href="https://pycryptodome.readthedocs.io/en/latest/src/faq.html#why-do-i-get-the-error-no-module-named-crypto-on-windows" target="_blank" rel="noopener">官方文档</a>，都提到了Windows下同时安装PyCryptodome和PyCrypto会出现这个问题。<br>给出的解决方案是：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pip uninstall crypto</span><br><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
+<p>但我并没有安装crypto模块也出现了问题，后来发现只要</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
+<p>重新装一下pycryptodome问题就解决了。</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</a> </p>
+]]></content>
+      <tags>
+        <tag>DerBitString</tag>
+        <tag>PyCryptodome</tag>
+        <tag>importError</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>（详细版）基于frp与v2ray的几种校园网内网穿透的方案</title>
     <url>/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>非零基础请移步<a href="\（简略版）基于frp与v2ray的几种校园网内网穿透的方案\">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
