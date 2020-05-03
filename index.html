@@ -74,6 +74,82 @@ var _hmt = _hmt || [];
     
     
     
+    <article id="post-关于深信服sslvpn的客户端流量分流" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/"
+    >关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/" class="article-date">
+  <time datetime="2020-05-03T11:34:15.000Z" itemprop="datePublished">2020-05-03</time>
+</a>
+      
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>​    如果你的单位或学校使用了深信服的sslvpn，有时候会有需要流量分流的场景，比如访问internet不直连而是走了sslvpn，比如sslvpn设定的路由策略与其他连接冲突导致无法上公网之类的问题。</p>
+<p>踩了一下午坑，终于解决了问题。</p>
+<p>​    解决的方法是修改路由表。通过修改路由表可以实现对不同的ip段走不同的连接模式。</p>
+<p>​    如果你够细心的话，会发现用了深信服的vpn电脑会多了一个网络适配器<br><img src="https://pic.chimaoshu.top/imgs/2020/05/e83458ea7b3e6f93.png" alt="适配器"></p>
+<p>理论上这个方法不止可以用于深信服的vpn，只要是多个网卡/网络适配器的分流都适用。</p>
+<p>打开cmd，输入 ipconfig/all 查看你要分流的两个网卡/网络适配器的网关ip</p>
+<p><img src="https://pic.chimaoshu.top/imgs/2020/05/18cfa245bb84a06e.png" alt="这个2开头的ip地址是虚拟的ip地址"></p>
+<p>然后输入 route print -4 显示ipv4的路由规则</p>
+<p><img src="https://pic.chimaoshu.top/imgs/2020/05/0ba81623e8b3ae78.png" alt="路由表"><br>可以看到路由表规定了不同的目标ip（包括目标的子网掩码）会走不同的网关，所以我们可以用<br>route add 和 route delete 命令对路由表进行删改，至于具体命令用法，百度一大堆，不再赘述，而且我也忘了。</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/">https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/</a> </p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%B5%81/" rel="tag">分流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/" rel="tag">深信服</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+  
+
+</article>
+    
     <article id="post-filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
