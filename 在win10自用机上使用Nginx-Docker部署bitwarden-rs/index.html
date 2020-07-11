@@ -68,7 +68,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.3k字</span>
+            <span class="post-count">1.4k字</span>
         </span>
     </span>
 
@@ -135,7 +135,7 @@ var _hmt = _hmt || [];
 
 <p>然后win+r，输入shell:startup后回车，打开控制开机自启动的文件目录，然后把这个bat的快捷方式放进去文件夹，之后开机就会自启动了。</p>
 <h2 id="结束脚本"><a href="#结束脚本" class="headerlink" title="结束脚本"></a>结束脚本</h2><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.\nginx -s stop</span><br><span class="line">docker stop <span class="number">822</span>faa38fd55</span><br><span class="line">choice /t <span class="number">2</span> /d y /n &gt;<span class="built_in">nul</span></span><br></pre></td></tr></table></figure>
-<p>其中822faa38fd55指的是容器的ID<br>将脚本保存为xxx.bat</p>
+<p>其中822faa38fd55指的是容器的ID（可以通过docker ps -a来查看容器的ID）<br>将脚本保存为xxx.bat</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/">https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/</a> </p>
 
       
