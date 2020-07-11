@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     chimaoshu
+    在win10自用机上使用Nginx+Docker部署bitwarden_rs |  chimaoshu
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -39,53 +39,17 @@ var _hmt = _hmt || [];
 <body>
   <div id="app">
     <main class="content">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">chimaoshu</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-<div id="main">
-  <section class="outer">
-  <article class="articles">
-    
-    
-    
-    
-    <article id="post-在win10自用机上使用Nginx-Docker部署bitwarden-rs" class="article article-type-post" itemscope
+      <section class="outer">
+  <article id="post-在win10自用机上使用Nginx-Docker部署bitwarden-rs" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
     
     <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="article-title" href="/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/"
-    >在win10自用机上使用Nginx+Docker部署bitwarden_rs</a
-  >
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  在win10自用机上使用Nginx+Docker部署bitwarden_rs
+</h1>
   
 
     </header>
@@ -99,9 +63,36 @@ var _hmt = _hmt || [];
       
       
       
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.3k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5分钟</span>
+        </span>
+    </span>
+</div>
+
       
     </div>
     
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
 
     
 
@@ -164,532 +155,28 @@ var _hmt = _hmt || [];
   </div>
 
   
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</div>
+      </a>
+    
+  </nav>
+
 
   
 
   
 
-</article>
-    
-    <article id="post-关于深信服sslvpn的客户端流量分流" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/"
-    >关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</a
-  >
-</h2>
   
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/" class="article-date">
-  <time datetime="2020-05-03T11:34:15.000Z" itemprop="datePublished">2020-05-03</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>​    如果你的单位或学校使用了深信服的sslvpn，有时候会有需要流量分流的场景，比如访问internet不直连而是走了sslvpn，比如sslvpn设定的路由策略与其他连接冲突导致无法上公网之类的问题。</p>
-<p>踩了一下午坑，终于解决了问题。</p>
-<p>​    解决的方法是修改路由表。通过修改路由表可以实现对不同的ip段走不同的连接模式。</p>
-<p>​    如果你够细心的话，会发现用了深信服的vpn电脑会多了一个网络适配器<br><img src="https://pic.chimaoshu.top/imgs/2020/05/e83458ea7b3e6f93.png" alt="适配器"></p>
-<p>理论上这个方法不止可以用于深信服的vpn，只要是多个网卡/网络适配器的分流都适用。</p>
-<p>打开cmd，输入 ipconfig/all 查看你要分流的两个网卡/网络适配器的网关ip</p>
-<p><img src="https://pic.chimaoshu.top/imgs/2020/05/18cfa245bb84a06e.png" alt="这个2开头的ip地址是虚拟的ip地址"></p>
-<p>然后输入 route print -4 显示ipv4的路由规则</p>
-<p><img src="https://pic.chimaoshu.top/imgs/2020/05/0ba81623e8b3ae78.png" alt="路由表"><br>可以看到路由表规定了不同的目标ip（包括目标的子网掩码）会走不同的网关，所以我们可以用<br>route add 和 route delete 命令对路由表进行删改，至于具体命令用法，百度一大堆，不再赘述，而且我也忘了。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/">https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/</a> </p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%B5%81/" rel="tag">分流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/" rel="tag">深信服</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
   
-
-  
-
   
 
 </article>
-    
-    <article id="post-filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/"
-    >filezilla配置ssl证书过程中出现&#39;Failed to load SSL Libraries&#39;、&#39;Cannot create certificate.Failed to initialize SSL library&#39;、&#39;Could not load certificate file: error:02001003:system library:fopen:No such process (0)&#39;</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/" class="article-date">
-  <time datetime="2020-03-16T09:55:43.000Z" itemprop="datePublished">2020-03-16</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>‘Failed to load SSL Libraries’<br>‘Cannot create certificate.Failed to initialize SSL library’<br>以上两个问题的解决方法：<br>1.系统更新<br>2.卸载干净，然后从官网下载安装最新的版本<br>3.不要用中文版的filezilla server</p>
-<p>‘Could not load certificate file: error:02001003:system library:fopen:No such process (0)’<br>解决方法：<br>1.检查证书所在文件夹是否有赋予足够的用户权限<br>2.以管理员身份运行filezilla server<br>3.证书的存放路径不要有中文</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/</a> </p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/certificate/" rel="tag">certificate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/filezilla/" rel="tag">filezilla</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssl/" rel="tag">ssl</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-
-</article>
-    
-    <article id="post-ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/"
-    >ImportError cannot import name &#39;&#39;DerBitString&#39;&#39; from &#39;&#39;Crypto.Util.asn1&#39;&#39;</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/" class="article-date">
-  <time datetime="2020-03-14T10:50:32.000Z" itemprop="datePublished">2020-03-14</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>今天用到 PyCryptodome 模块的时候，当我用到了 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br></pre></td></tr></table></figure>
-<p>的时候，出现了错误：<br>ImportError : cannot import name ‘’DerBitString’’ from ‘’Crypto.Util.asn1’’。<br>找到了<a href="http://program.dengshilong.org/2018/10/11/%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5DerBitString%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">这篇博客</a>和<a href="https://pycryptodome.readthedocs.io/en/latest/src/faq.html#why-do-i-get-the-error-no-module-named-crypto-on-windows" target="_blank" rel="noopener">官方文档</a>，都提到了Windows下同时安装PyCryptodome和PyCrypto会出现这个问题。<br>给出的解决方案是：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall crypto</span><br><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
-<p>但我并没有安装crypto模块也出现了问题，后来发现只要</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
-<p>重新装一下pycryptodome问题就解决了。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</a> </p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DerBitString/" rel="tag">DerBitString</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyCryptodome/" rel="tag">PyCryptodome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/importError/" rel="tag">importError</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-
-</article>
-    
-    <article id="post-（详细版）基于frp与v2ray的几种校园网内网穿透的方案" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/"
-    >（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" class="article-date">
-  <time datetime="2020-03-12T08:12:01.000Z" itemprop="datePublished">2020-03-12</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>非零基础请移步<a href="\（简略版）基于frp与v2ray的几种校园网内网穿透的方案\">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
-<p><a href="#0">设备</a></p>
-<p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
-<p><a href="#2">方案二：用frp映射v2ray的inbound端口+校外设备http/socks5代理</a></p>
-<p><a href="#3">方案三：用frp映射v2ray的inbound端口+校外设备使用v2ray/ssr连接</a></p>
-<p><a href="#4">方案四：用v2ray自带的反向代理功能</a></p>
-<p><a href="#5">方案五：用路由器代替校内主机</a></p>
-      
-      <a class="article-more-link" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/frp/" rel="tag">frp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/v2ray/" rel="tag">v2ray</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-
-</article>
-    
-    <article id="post-（简略版）基于frp与v2ray的几种校园网内网穿透的方案" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/"
-    >（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" class="article-date">
-  <time datetime="2020-03-12T02:26:15.000Z" itemprop="datePublished">2020-03-12</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>如果是零基础，请移步<a href="\（详细版）基于frp与v2ray的几种校园网内网穿透的方案\">（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
-<p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
-<p><a href="#2">方案二：用frp映射v2ray的inbound端口+校外设备http/socks5代理</a></p>
-<p><a href="#3">方案三：用frp映射v2ray的inbound端口+校外设备使用v2ray/ssr连接</a></p>
-<p><a href="#4">方案四：用v2ray自带的反向代理功能</a></p>
-<p><a href="#5">方案五：用路由器代替校内主机</a></p>
-      
-      <a class="article-more-link" href="/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/">阅读更多...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/frp/" rel="tag">frp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/v2ray/" rel="tag">v2ray</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-
-</article>
-    
-    <article id="post-myfirstpage" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/myfirstpage/"
-    >myfirstpage</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/myfirstpage/" class="article-date">
-  <time datetime="2020-03-11T08:49:01.000Z" itemprop="datePublished">2020-03-11</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>这波<br>你只看到了第二层<br>而你把我想成了第一层<br>实际上<br>我<br>是第五层</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WDNMD/" rel="tag">WDNMD</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-
-</article>
-    
-    <article id="post-hello-world" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/hello-world/"
-    >Hello World</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/hello-world/" class="article-date">
-  <time datetime="2020-03-11T08:37:36.735Z" itemprop="datePublished">2020-03-11</time>
-</a>
-      
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-  
-
-</article>
-    
-  </article>
-  
-
-  
 </section>
-</div>
-
       <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
@@ -812,6 +299,30 @@ var _hmt = _hmt || [];
 </script>
 
 
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
 
 
 
