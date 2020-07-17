@@ -7,8 +7,10 @@
 <h3 id="首先从Minecraft服务器的设置出发"><a href="#首先从Minecraft服务器的设置出发" class="headerlink" title="首先从Minecraft服务器的设置出发"></a>首先从Minecraft服务器的设置出发</h3><p><a href="https://minecraft-zh.gamepedia.com/Server.properties" target="_blank" rel="noopener">Minecraft维基百科</a>上关于服务器的设置文件<strong>server.properties</strong>讲的非常清楚，其中有两处地方可以大大减少服务器的带宽，他们分别是：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200717083226118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20200717083357514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200717110712671.png" alt="在这里插入图片描述"></p>
 <p>其中<strong>network-compression-threshold</strong>与数据包的压缩有关，他的本质就是拿CPU资源去换带宽资源，我的设置是0，即压缩全部数据包。</p>
 <p>而<strong>view-distance</strong>是玩家的视野距离，我一直开着1（最低配置），不过玩家几乎是感觉不到它的存在的，可以放心调低。</p>
+<p>而第三个是Linux专用的，可以优化数据包的收发。</p>
 <p>通过这两个配置，我的Minecraft服务器已经基本够3人玩了，但是3人的时候还是会轮流变卡，一看阿里云后台的公网出口带宽，都是全满的。还是需要解决问题！</p>
 <h3 id="在本机运行Minecraft服务器，使用阿里云的服务器做中转？"><a href="#在本机运行Minecraft服务器，使用阿里云的服务器做中转？" class="headerlink" title="在本机运行Minecraft服务器，使用阿里云的服务器做中转？"></a>在本机运行Minecraft服务器，使用阿里云的服务器做中转？</h3><p>用frp进行端口映射，把本地的25565端口映射到云端上，这样用本机的CPU就会好一些，并且frp可以做压缩。</p>
 <p>最终效果：比直接开在云端还慢，因为公网下行数据实际上更多了，阿里云需要在我的电脑和朋友的电脑之间做数据中转。效果很差，放弃了，强烈不推荐。</p>
