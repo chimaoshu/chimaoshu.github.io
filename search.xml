@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>为1M小水管的Minecraft服务器加速的各种尝试</title>
+    <url>/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/</url>
+    <content><![CDATA[<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>阿里云的学生机，10块钱一个月的那种，只有1Mbps的带宽。1Mbps是什么概念呢？就是公网下行带宽最大是<strong>1×1024÷8 = 128 kb/s</strong>，每秒最多128kb的速度，开mc服务器基本顶不住。一个只有三人的私人服务器，差不多两人就能把带宽占满，三人就开始卡，如何解决呢？</p>
+<h3 id="首先从Minecraft服务器的设置出发"><a href="#首先从Minecraft服务器的设置出发" class="headerlink" title="首先从Minecraft服务器的设置出发"></a>首先从Minecraft服务器的设置出发</h3><p><a href="https://minecraft-zh.gamepedia.com/Server.properties" target="_blank" rel="noopener">Minecraft维基百科</a>上关于服务器的设置文件<strong>server.properties</strong>讲的非常清楚，其中有两处地方可以大大减少服务器的带宽，他们分别是：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200717083226118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200717083357514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>其中<strong>network-compression-threshold</strong>与数据包的压缩有关，他的本质就是拿CPU资源去换带宽资源，我的设置是0，即压缩全部数据包。</p>
+<p>而<strong>view-distance</strong>是玩家的视野距离，我一直开着1（最低配置），不过玩家几乎是感觉不到它的存在的，可以放心调低。</p>
+<p>通过这两个配置，我的Minecraft服务器已经基本够3人玩了，但是3人的时候还是会轮流变卡，一看阿里云后台的公网出口带宽，都是全满的。还是需要解决问题！</p>
+<h3 id="在本机运行Minecraft服务器，使用阿里云的服务器做中转？"><a href="#在本机运行Minecraft服务器，使用阿里云的服务器做中转？" class="headerlink" title="在本机运行Minecraft服务器，使用阿里云的服务器做中转？"></a>在本机运行Minecraft服务器，使用阿里云的服务器做中转？</h3><p>用frp进行端口映射，把本地的25565端口映射到云端上，这样用本机的CPU就会好一些，并且frp可以做压缩。</p>
+<p>最终效果：比直接开在云端还慢，因为公网下行数据实际上更多了，阿里云需要在我的电脑和朋友的电脑之间做数据中转。效果很差，放弃了，强烈不推荐。</p>
+<h3 id="P2P的Minecraft服务器？"><a href="#P2P的Minecraft服务器？" class="headerlink" title="P2P的Minecraft服务器？"></a>P2P的Minecraft服务器？</h3><p>既然做中转会受到阿里云的带宽限制，那如果我们使用P2P呢？直接在两台电脑直接建立对等连接，而云服务器只在一开始负责帮两台电脑建立连接，等到连接建立后，数据是不经过阿里云做中转的，直接在我的朋友的电脑直接流通。</p>
+<p>于是我开始着手寻找能够进行P2P打洞的软件，刚开始用了frp的一个P2P打洞功能，叫做XTCP，服务端配置是这样的：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">bind_udp_port</span> = <span class="number">7001</span></span><br></pre></td></tr></table></figure>
+
+<p>我的电脑客户端配置是这样的：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># frpc.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="comment"># 你的frp服务器的公网ip</span></span><br><span class="line"><span class="attr">server_addr</span> = xx.xx.xx.xxx</span><br><span class="line"><span class="comment"># 你的frp服务器的默认端口</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[mc]</span></span><br><span class="line"><span class="attr">type</span> = xtcp</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line"><span class="attr">sk</span> = oc7D!PgY&amp;guFBPwoEfKq</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="comment"># 远程桌面的本地端口号</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">25565</span></span><br></pre></td></tr></table></figure>
+
+<p>朋友的电脑客户端的配置是这样的：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># frpc.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="comment"># 你的frp服务器的公网ip</span></span><br><span class="line"><span class="attr">server_addr</span> = xx.xx.xx.xx</span><br><span class="line"><span class="comment"># 你的frp服务器的默认端口</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[mc_visitor]</span></span><br><span class="line"><span class="attr">type</span> = xtcp</span><br><span class="line"><span class="comment"># stcp 的访问者</span></span><br><span class="line"><span class="attr">role</span> = visitor</span><br><span class="line"><span class="comment"># 要访问的 stcp 代理的名字</span></span><br><span class="line"><span class="attr">server_name</span> = mc</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line"><span class="attr">sk</span> = oc7D!PgY&amp;guFBPwoEfKq</span><br><span class="line"><span class="comment"># 绑定本地端口用于访问 远程桌面 服务</span></span><br><span class="line"><span class="attr">bind_addr</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">6000</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，（理论上）只要朋友访问127.0.0.1:6000就能访问到我的电脑上的Minecraft服务器了。然而最终失败了，连接不能顺利地建立。本来frp的打洞功能也非常不成熟，受到NAT类型的影响。</p>
+<p><strong>然后我又开始寻找其他的P2P解决方案，最终找到了NPS</strong></p>
+<p>和frp一样，也是Github上开源的项目，也都是用Go语言写的。</p>
+<p><a href="https://github.com/ehang-io/nps" target="_blank" rel="noopener">https://github.com/ehang-io/nps</a></p>
+<p>于是开始了我的部署之路，安装过程只要照着(官方教程)[<a href="https://ehang-io.github.io/nps/#/install]来就行了。最终登陆管理面板是这样的：" target="_blank" rel="noopener">https://ehang-io.github.io/nps/#/install]来就行了。最终登陆管理面板是这样的：</a></p>
+<p><img src="https://img-blog.csdnimg.cn/20200717102417522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="管理面板"></p>
+<p>然后照着官方教程，创建一个客户端：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200717103015637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="新建客户端"></p>
+<p>参数可以随便填，然后复制最下面红色的那行命令：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200717103158542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="复制"></p>
+<p>然后下载nps的客户端到我运行Minecraft服务器的本机电脑，打开cmd切换到客户端exe所在的目录下，把命令复制进去运行。注意这里不能使用PowerShell，否则会连接不上。如果cmd显示无法运行，就把那行命令前面的./去掉。</p>
+<p>之后去创建一个P2P连接，客户端ID要和上面我们创建的客户端的ID一致。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200717103614392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="P2P连接"></p>
+<p>然后像前面一样，复制最下面的命令：</p>
+<p><img src="https://img-blog.csdnimg.cn/20200717103831997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="复制命令"></p>
+<p>其中那个“唯一表示密钥”是自动生成的。然后同理让朋友在他自己电脑上下载nps的客户端并cmd运行命令。之后朋友只要在mc服务器的地址填上”127.0.0.1:2000”（默认端口是2000，可以自己换），就能访问到我本机开在127.0.0.1:25565的Minecraft服务器了。</p>
+<p>现在带宽已经没问题了，但是朋友还是反馈很卡，也找不出原因，所以就暂时放弃了这个方案。</p>
+<h3 id="阿里云不同实例内网互联-另一台服务器流量转发？"><a href="#阿里云不同实例内网互联-另一台服务器流量转发？" class="headerlink" title="阿里云不同实例内网互联+另一台服务器流量转发？"></a>阿里云不同实例内网互联+另一台服务器流量转发？</h3><p>因为阿里云所谓的1Mbps的带宽限制，只是公网下行带宽的限制，对其他带宽（比如上行带宽、或者内网带宽）是没有限制的。我和同学在不同的阿里云账号下各拥有一台阿里云服务器，并且在同地域（这意味着内网互联是免费的）。于是我就有了另一个思路，依然把Minecraft服务器开在一台云服务器上，但是一部分玩家的流量直连云服务器，另一部分玩家通过连接另一台闲置的云服务器，然后由闲置的云服务器把流量转发到Minecraft服务器。这样带宽就变成两台服务器加起来2Mbps了。</p>
+<p>首先是探索了半天阿里云的内网互联，由于阿里云的业务一直变化，所以网上找到的教程全都过期了，只好去看阿里云官方的文档。</p>
+<p>首先你要在专有网络–快速链接–高速通道，找到云企业网，然后创建云企业网实例。</p>
+<p><img src="https://img-blog.csdnimg.cn/20200717105028243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="云企业网"></p>
+<p>先把你自己账号下的实例绑定进去，之后照着阿里云文档操作。</p>
+<p><a href="https://help.aliyun.com/document_detail/64648.html" target="_blank" rel="noopener">阿里云帮助文档</a></p>
+<p>然后登陆同学的账号，进行企业网授权，详情查看搜索阿里云文档关于授权部分内容。之后再登陆你的账户把同学的实例加入企业网，这样两个实例就可以通网了。</p>
+<p>之后，使用frp，把Minecraft服务器的25565端口映射到另一台服务器上（记得ip不要填公网ip，要填内网ip，这样才不会占用公网下行带宽），就可以了，具体不再赘述。你也可以配置服务器的防火墙规则或者使用Nginx做端口转发，也是可以的。</p>
+<p>用frp的优点是他可以进行数据压缩，进一步减少了带宽。</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/">https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/</a> </p>
+]]></content>
+      <tags>
+        <tag>Minecraft</tag>
+        <tag>阿里云</tag>
+        <tag>P2P</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在win10自用机上使用Nginx+Docker部署bitwarden_rs</title>
     <url>/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/</url>
     <content><![CDATA[<h2 id="最初的想法"><a href="#最初的想法" class="headerlink" title="最初的想法"></a>最初的想法</h2><p>从很久之前就一直想要找到1Password的替代品，当时自己用AES256 + RSA2048的加密方式，写一个服务端和客户端，只能在终端黑窗口里面运行，总归没有这些成熟的产品用得爽。后来了解到了Bitwarden，想部署到服务器上，想了想不如部署到本机上吧，不然服务器一到期就一直得续费。原版的Bitwarden服务端的服务对象是比较广的，资源消耗也比较大，总归不是办法。后来了解到Bitwarden_rs，是大佬用Rust重新写的一个不那么耗费资源的版本，就决定是它了。</p>
