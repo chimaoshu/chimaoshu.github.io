@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>非常简单的sqlite入门教程</title>
+    <url>/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h1 id="简单的sqlite入门教程"><a href="#简单的sqlite入门教程" class="headerlink" title="简单的sqlite入门教程"></a>简单的sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a><br>点击download：<br><img src="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="sqlite下载"><br><img src="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下载后解压。</p>
+<p>注：如果想要在任意文件目录都可以使用sqlite，请把解压的文件夹加入到环境变量path中。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sqlite3 students.db</span><br></pre></td></tr></table></figure>
+<p>表示使用sqlite3.exe来连接一个叫students的databse（db）。</p>
+<p>然后输入：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">create table <span class="title">class1</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	ID	  <span class="keyword">int</span>		primary key 	<span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="function"><span class="params">	name  <span class="built_in">text</span>						<span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="function"><span class="params">	score <span class="keyword">int</span> 						<span class="keyword">not</span> null</span></span></span><br><span class="line"><span class="function"><span class="params">	)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>这个过程发生了什么？</p>
+<p>你在刚才打开的数据库中创建了一张表，表的名字是class1，定义表中的每一行的数据（即每一个学生的信息）分别为：ID、name、score。</p>
+<p>其中ID的类型是int，而name的类型为text，socre的类型为int。后面的not null 表示不允许他们的值为空。而ID后面有个primary key，表示数据在存储时默认会以ID从小到大的顺序进行存储。</p>
+<p>现在你可以输入</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">.tables</span><br></pre></td></tr></table></figure>
+<p>来查看你刚刚建立的那张表，输入后你会看到你刚刚创建的这张表的名字。</p>
+<p>接下来我们尝试把这三个学生的数据录入存到表中：<br>姓名：张三      序号：1     分数：50<br>姓名：李四         序号：2     分数：80<br>姓名：王五      序号：3     分数：100</p>
+<p>输入这个指令：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">insert into class1 (ID, name, score) values(1, '张三', 50);</span><br></pre></td></tr></table></figure>
+<p>这行指令的意思是，把ID=1，name=’张三’,score=50的信息，插入到了class1这个表中。</p>
+<p>按下回车键，张三的信息就会被录入到数据库中了。如何查看此时的数据库中的数据呢？</p>
+<p>你只需要：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">select * from class1;</span><br></pre></td></tr></table></figure>
+<p>这行指令可以查看整个class1表的所有数据。</p>
+<p>类似的，你不妨试一试把李四和王五的数据也录入到数据库。</p>
+<p>我们知道了”select * from class1;”可以查看整个数据库的所有数据，那么如何只查看李四一人的数据呢？<br>你需要：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">select * from class1 where name='王五';</span><br></pre></td></tr></table></figure>
+<p>这时候你就可以从class1中取出name=’王五’的人的数据了。<br>那么前面这个星号*是什么意思呢？<br>他表示取出王五的所有数据（也就是ID、姓名、分数）。</p>
+<p>如果我只需要取出王五的分数，不需要其他数据，那么我可以：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">select score from class1 where name='王五';</span><br></pre></td></tr></table></figure>
+<p>如果我要取出王五的ID和分数，那么我可以：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">select ID,score from class1 where name='王五';</span><br></pre></td></tr></table></figure>
+<p>如果我要从class1这个表中删除王五的数据，那么我可以：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">delete from class1 where name='王五'</span><br></pre></td></tr></table></figure>
+<p>其实SQL语句的形式很接近自然语言，所以我们很容易看懂每句话的意思。至此，你已经学会了基本的创建、增删、查询的操作。</p>
+<p>进一步学习可以参考：<a href="https://www.runoob.com/sqlite/sqlite-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/sqlite/sqlite-tutorial.html</a></p>
+<p>本文地址： <a href="https://www.chimaoshu.top/非常简单的sqlite入门教程/">https://www.chimaoshu.top/非常简单的sqlite入门教程/</a> </p>
+]]></content>
+      <tags>
+        <tag>sqlite</tag>
+        <tag>sql</tag>
+        <tag>入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DS栈—波兰式，逆波兰式</title>
     <url>/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="DS栈—波兰式，逆波兰式"><a href="#DS栈—波兰式，逆波兰式" class="headerlink" title="DS栈—波兰式，逆波兰式"></a>DS栈—波兰式，逆波兰式</h1><h2 id="某校数据结构课一道OJ题"><a href="#某校数据结构课一道OJ题" class="headerlink" title="某校数据结构课一道OJ题"></a>某校数据结构课一道OJ题</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>表达式有三种表示方法，分别为：</p>
