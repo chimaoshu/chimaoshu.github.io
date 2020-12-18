@@ -6,7 +6,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    非常简单的sqlite入门教程 |  chimaoshu
+    使用DDNS脚本对阿里云提供的域名进行动态解析 |  chimaoshu
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -40,7 +40,7 @@ var _hmt = _hmt || [];
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-非常简单的sqlite入门教程" class="article article-type-post" itemscope
+  <article id="post-使用DDNS脚本对阿里云域名进行动态域名解析" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -48,7 +48,7 @@ var _hmt = _hmt || [];
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  非常简单的sqlite入门教程
+  使用DDNS脚本对阿里云提供的域名进行动态解析
 </h1>
   
 
@@ -57,8 +57,8 @@ var _hmt = _hmt || [];
 
     
     <div class="article-meta">
-      <a href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" class="article-date">
-  <time datetime="2020-10-24T10:24:18.000Z" itemprop="datePublished">2020-10-24</time>
+      <a href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="article-date">
+  <time datetime="2020-12-18T14:00:34.000Z" itemprop="datePublished">2020-12-18</time>
 </a>
       
       
@@ -68,7 +68,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">764字</span>
+            <span class="post-count">478字</span>
         </span>
     </span>
 
@@ -77,7 +77,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -104,40 +104,17 @@ var _hmt = _hmt || [];
       
 
       
-      <h1 id="简单的sqlite入门教程"><a href="#简单的sqlite入门教程" class="headerlink" title="简单的sqlite入门教程"></a>简单的sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a><br>点击download：<br><img src="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="sqlite下载"><br><img src="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下载后解压。</p>
-<p>注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3 students.db</span><br></pre></td></tr></table></figure>
-<p>表示使用sqlite3.exe来连接一个叫students的databse（db）。</p>
-<p>然后输入：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">create table <span class="title">class1</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	ID	  <span class="keyword">int</span>		primary key 	<span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="function"><span class="params">	name  <span class="built_in">text</span>						<span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="function"><span class="params">	score <span class="keyword">int</span> 						<span class="keyword">not</span> null</span></span></span><br><span class="line"><span class="function"><span class="params">	)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>这个过程发生了什么？</p>
-<p>你在刚才打开的数据库中创建了一张表，表的名字是class1，定义表中的每一行的数据（即每一个学生的信息）分别为：ID、name、score。</p>
-<p>其中ID的类型是int，而name的类型为text，socre的类型为int。后面的not null 表示不允许他们的值为空。而ID后面有个primary key，表示数据在存储时默认会以ID从小到大的顺序进行存储。</p>
-<p>现在你可以输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.tables</span><br></pre></td></tr></table></figure>
-<p>来查看你刚刚建立的那张表，输入后你会看到你刚刚创建的这张表的名字。</p>
-<p>接下来我们尝试把这三个学生的数据录入存到表中：<br>姓名：张三      序号：1     分数：50<br>姓名：李四         序号：2     分数：80<br>姓名：王五      序号：3     分数：100</p>
-<p>输入这个指令：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into class1 (ID, name, score) values(1, '张三', 50);</span><br></pre></td></tr></table></figure>
-<p>这行指令的意思是，把ID=1，name=’张三’,score=50的信息，插入到了class1这个表中。</p>
-<p>按下回车键，张三的信息就会被录入到数据库中了。如何查看此时的数据库中的数据呢？</p>
-<p>你只需要：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from class1;</span><br></pre></td></tr></table></figure>
-<p>这行指令可以查看整个class1表的所有数据。</p>
-<p>类似的，你不妨试一试把李四和王五的数据也录入到数据库。</p>
-<p>我们知道了”select * from class1;”可以查看整个数据库的所有数据，那么如何只查看李四一人的数据呢？<br>你需要：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from class1 where name='王五';</span><br></pre></td></tr></table></figure>
-<p>这时候你就可以从class1中取出name=’王五’的人的数据了。<br>那么前面这个星号*是什么意思呢？<br>他表示取出王五的所有数据（也就是ID、姓名、分数）。</p>
-<p>如果我只需要取出王五的分数，不需要其他数据，那么我可以：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select score from class1 where name='王五';</span><br></pre></td></tr></table></figure>
-<p>如果我要取出王五的ID和分数，那么我可以：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ID,score from class1 where name='王五';</span><br></pre></td></tr></table></figure>
-<p>如果我要从class1这个表中删除王五的数据，那么我可以：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from class1 where name='王五'</span><br></pre></td></tr></table></figure>
-<p>其实SQL语句的形式很接近自然语言，所以我们很容易看懂每句话的意思。至此，你已经学会了基本的创建、增删、查询的操作。</p>
-<p>进一步学习可以参考：<a href="https://www.runoob.com/sqlite/sqlite-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/sqlite/sqlite-tutorial.html</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/非常简单的sqlite入门教程/">https://www.chimaoshu.top/非常简单的sqlite入门教程/</a> </p>
+      <h1 id="使用DDNS脚本对阿里云提供的域名进行动态解析"><a href="#使用DDNS脚本对阿里云提供的域名进行动态解析" class="headerlink" title="使用DDNS脚本对阿里云提供的域名进行动态解析"></a>使用DDNS脚本对阿里云提供的域名进行动态解析</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前用bitwarden_rs的docker容器+Nginx反向代理，并设置了https，把bitwarden服务器部署到了自己的电脑上，在校园网中提供服务–只要我的手机连上学校的wifi，就可以访问到我电脑上的bitwarden服务、</p>
+<p><a href="https://zhuanlan.zhihu.com/p/158794535" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/158794535</a></p>
+<p>但是我遇到了一个麻烦的问题，就是电脑在校园网的ip偶尔会发生变化，每次变化就要手动登陆阿里云去修改DNS的解析ip地址，这很麻烦。所以我决定使用DDNS来完成解析ip的动态切换。</p>
+<p>推荐Github上这个项目：<br><a href="https://github.com/NewFuture/DDNS" target="_blank" rel="noopener">https://github.com/NewFuture/DDNS</a><br>支持许多服务商的API，功能也比较完善。<br><img src="https://img-blog.csdnimg.cn/20201218132341742.png" alt="支持的DNS服务商"><br>以阿里云为例，进行介绍。大概的思路就是创建一个RAM子账户，然后授予这个账户通过API解析DNS的权限，最后把账户的ACCESS_ID和ACCESS_KEY复制到配置文件中。</p>
+<p><a href="https://help.aliyun.com/document_detail/28637.html" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/28637.html</a><br>按照文档给出的方式，创建子账号，注意创建子账号的时候需要选择“编程访问”。<br><img src="https://img-blog.csdnimg.cn/20201215131413482.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201218213338242.png" alt="在这里插入图片描述"></p>
+<p>之后给RAM子账号授权，选择两个管理DNS的权限：<br><img src="https://img-blog.csdnimg.cn/20201218212451329.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201218212933821.png" alt="在这里插入图片描述"><br>之后来到Github项目的release页，选择exe或者python都可以，配置的参数可以看官方文档，需要注意的是，id填的是你的ACCESS_ID，token填的是你的ACCESS_TOKEN（以阿里云为例）。</p>
+<p>最后在bitwarden启动前，先调用脚本对DNS进行解析设定。这样每次启动bitwarden就不用一直手动修改域名解析设定了。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ProcessName</span> = <span class="string">"docker desktop"</span></span><br><span class="line"><span class="keyword">if</span>((<span class="built_in">get-process</span> <span class="variable">$ProcessName</span> <span class="literal">-ErrorAction</span> SilentlyContinue) <span class="operator">-eq</span> <span class="variable">$Null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Docker is not running,strating...."</span> </span><br><span class="line">    start <span class="string">"Docker Desktop"</span></span><br><span class="line">    sleep <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123; </span><br><span class="line">    echo <span class="string">"Dcoker is running."</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">docker start bitwarden</span><br><span class="line"></span><br><span class="line">echo <span class="string">"resolve DNS address...."</span></span><br><span class="line">.\DNS.lnk</span><br><span class="line"></span><br><span class="line">echo <span class="string">"start Nginx..."</span></span><br><span class="line">.\nginx</span><br><span class="line"></span><br><span class="line">echo <span class="string">"ok"</span></span><br></pre></td></tr></table></figure>
+
+
+<p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> </p>
 
       
       <!-- reward -->
@@ -161,7 +138,7 @@ var _hmt = _hmt || [];
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite/" rel="tag">sqlite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DDNS/" rel="tag">DDNS</a></li></ul>
 
 
     </footer>
@@ -172,19 +149,10 @@ var _hmt = _hmt || [];
   
   <nav class="article-nav">
     
-      <a href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            使用DDNS脚本对阿里云提供的域名进行动态解析
-          
-        </div>
-      </a>
     
-    
-      <a href="/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/" class="article-nav-link">
+      <a href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">DS栈—波兰式，逆波兰式</div>
+        <div class="article-nav-title">非常简单的sqlite入门教程</div>
       </a>
     
   </nav>
