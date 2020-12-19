@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    STL中红黑树的用法探究及使用红黑树进行多字段索引的方法 |  chimaoshu
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?c6ea480bca72a4ee55f464b5c301d982";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-STL中红黑树的用法探究" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  STL中红黑树的用法探究及使用红黑树进行多字段索引的方法
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/" class="article-date">
+  <time datetime="2020-12-19T07:58:14.000Z" itemprop="datePublished">2020-12-19</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.9k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">11分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"><a href="#STL中红黑树的用法探究及使用红黑树进行多字段索引的方法" class="headerlink" title="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"></a>STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在造轮子，需要造分析型数据库。在关于热数据的设计中，对于到来的每一条热数据，我需要使用红黑树来维持热数据在内存中的有序索引。后来使用了STL中的红黑树，这个过程遇到了一大堆坑，网上能找到的资料又很少，所以记录了一下。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>我需要维护多个字段的索引，比如这么一张图，我需要在红黑树上维护对于b、c、d三个字段的索引：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
+<p>上图出自知乎问题<a href="https://www.zhihu.com/question/304037770/answer/1287557228" target="_blank" rel="noopener">mysql联合索引的B+树到底张什么样子啊？</a>下@<a href="https://www.zhihu.com/people/dawn-90-70" target="_blank" rel="noopener">Limit</a>的一个回答，这是innodb引擎下使用B+树的解决方法。但由于我现在维护的是热数据，并不需要进行磁盘IO，且只需要支持查询和插入的操作，所以我需要用红黑树来解决此问题。</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>我看了一些项目中的红黑树，比如Nginx、Redis、Linux中的红黑树，这些红黑树都是使用c语言写的，和c++代码风格迥异，后来我就想到了STL中的红黑树。STL中的map、set、multiset等容器的底层实现都是红黑树嘛，所以STL内当然也是有红黑树的代码了。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/87469768" target="_blank" rel="noopener">C++ STL源码剖析之红黑树</a>和<a href="https://zhuanlan.zhihu.com/p/87487629" target="_blank" rel="noopener">C++ STL源码剖析之set与multiset那些事</a>这两篇文章帮了我很多，在第一篇文章的最后，作者提到了STL中红黑树的使用方法：</p>
+<blockquote>
+<p>引入头文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;#include&lt;map&gt;或者&lt;set&gt;</span><br></pre></td></tr></table></figure>
+
+<p>类定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;_Rb_tree&lt;int, int, _Identity&lt;int&gt;, less&lt;int&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
+
+<p>然后调用相应函数即可。</p>
+</blockquote>
+<p>其中有一些很关键的方法，比如插入操作：<br><img src="https://pic2.zhimg.com/80/v2-4964fbebff48fc531c5b8d71baca589c_720w.png" alt="插入操作"></p>
+<p>其中与equal相关的方法，适用于红黑树中允许出现相同key值的情况，比如STL中的multiset；而unique相关方法适用于红黑树中不允许出现相同键值的情况，比如map或者set。</p>
+<p>而带有下划线的方法，很容易让人联想到类中私有函数的命名规则。他们是函数内部实现用到的，因此我们不需要调用带有末尾下划线的方法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br><span class="line"></span><br><span class="line">itree._M_insert_equal(<span class="number">3</span>);</span><br><span class="line">itree._M_insert_equal(<span class="number">4</span>);</span><br><span class="line">itree._M_insert_equal(<span class="number">1</span>);</span><br><span class="line">itree._M_insert_equal(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> it = itree.begin(); it != itree.end(); it++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>使用迭代器对map遍历的过程、或者说对红黑树遍历的过程，实际上是对红黑树做中序遍历，输出的顺序自然是从小到大的排列顺序。</p>
+<p>剩下的还有一些方法，比如find、erase之类的，都和其他STL容器的用法差不多，不再赘述。</p>
+<p><strong>上面只是最基本的红黑树用法，但实际上我们完全不知道_Rb_tree实例化时那一大堆模板参数的含义，就直接拿来用了，下面分析这些模板参数的含义。</strong></p>
+<p>首先看STL源代码中的：<strong>stl_tree.h</strong></p>
+<p>其中红黑树的模板参数定义如下，一共有5个模板参数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Key, <span class="keyword">typename</span> _Val, <span class="keyword">typename</span> _KeyOfValue,</span><br><span class="line">         <span class="keyword">typename</span> _Compare, <span class="keyword">typename</span> _Alloc = allocator&lt;_Val&gt; &gt;</span><br><span class="line">  class _Rb_tree</span><br><span class="line">  &#123;</span><br><span class="line">  ........</span><br></pre></td></tr></table></figure>
+
+<p>在类的public定义中的typedef告诉了我们，前两个参数的含义其实是key和value：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-c7ad8d05687b09a4c41f17f10580e553_720w.png" alt="key和value"></p>
+<p>第三个参数<strong>_KeyOfValue</strong>的含义花了我一整个上午和下午的时间才弄懂。其实<strong>_KeyOfValue</strong>通过重载函数调用运算符，即()，规定了通过value取得key的方式。</p>
+<p>注意这里的key和value和map中的key和value很类似，但是稍微有些不同。我一开始就用map中的key-value的方式理解红黑树的key和value，导致代码一直编译不过。</p>
+<p>这里红黑树的key其实是包含在value里面的，而map中的key和value是分开的。这么说可能有点抽象，举个例子，如果我们定义了一个map实例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">char</span>&gt; m;</span><br></pre></td></tr></table></figure>
+
+<p>那么在map中key就是int类型的，而value是char类型的，而在这个map底层的红黑树，它的key和value（也就是红黑树的前两个模板参数<strong>_Key</strong>和<strong>_Val</strong>）将会是<strong>int</strong>和<strong>pair&lt;int,  char&gt;</strong>。</p>
+<p>这点我们可以通过阅读map的源代码（stl_map.h）发现：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-0adb789a8ff439d83f9fd978fd31d8d4_720w.png" alt="map中的模板参数"></p>
+<p><strong>std::map&lt;int, char&gt;</strong>的参数就会如上图所示，然后接下来我们再观察map实例化红黑树所用的模板参数。</p>
+<p>首先注意这里对value_type的定义，<strong>std::map&lt;int, char&gt;</strong>的<strong>value_type</strong>将会是<strong>std::pair&lt;int, char&gt;</strong></p>
+<p><img src="https://pic2.zhimg.com/80/v2-fb433f411a189eb609aba3345b5962fe_720w.png" alt="value_type"></p>
+<p>然后在下面就是map中对红黑树的定义：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-8609862b32723ee3da74878dac4ff1e5_720w.png" alt="map对红黑树的定义"></p>
+<p>注意这里传入的是pair，而不是char本身。所以说红黑树的key是包含在value中的。我在这个地方被坑了好久，一直以为这里的key-value定义和map中一样，导致代码一直编译不过。</p>
+<p>既然我们知道key是包含在value中的了，那么第三个参数<strong>_KeyOfValue</strong>其实就规定如何从value中取得key的过程。我们看回最初的那个红黑树的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
+
+<p>这里第三个参数使用了<strong>_Identity</strong>，是什么意思呢？其实<strong>_Identity</strong>是“<strong>stl_function.h</strong>”中定义的一个结构体：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-63014f2c4682cabbbbddd816eb31adc3_720w.png" alt="_Identity"></p>
+<p>其中的unary_function是一个结构体，它定义了一个二元运算的输入类与输出类：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  This is one of the @link functors functor base classes@endlink.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Arg, <span class="keyword">typename</span> _Result&gt;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">unary_function</span></span></span><br><span class="line"><span class="class">  &#123;</span></span><br><span class="line">    <span class="comment">/// @c argument_type is the type of the argument</span></span><br><span class="line">    <span class="keyword">typedef</span> _Arg 	argument_type;   </span><br><span class="line"></span><br><span class="line">    <span class="comment">/// @c result_type is the return type</span></span><br><span class="line">    <span class="keyword">typedef</span> _Result 	result_type;  </span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>但其实这里可以不去管unary_function，因为它的出现与否和红黑树没啥关系。我们要的其实是<strong>_Identity</strong>中的重载函数调用运算符（即对()的重载）。_Identity中对()进行了重载，最终的结果就是，返回了传入的参数本身。那么</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
+
+<p>中的<strong>_Identity<int></strong>的含义其实就很明显了，他的意思就是，当我们插入1：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">itree._M_insert_equal(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>那么实际上1本身既是key也是value（map中的value含义）。注意红黑树中的key用于对节点进行排序，而value则是我们要存储的值。</p>
+<p>我们回到map中对第三个模板参数的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> _Rb_tree&lt;key_type, value_type, _Select1st&lt;value_type&gt;,</span><br><span class="line">	key_compare, _Pair_alloc_type&gt; _Rep_type;</span><br></pre></td></tr></table></figure>
+
+<p>这里第三个模板参数用的是： <strong>_Select1st<value_type></strong>，我们不妨看一下它的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Pair&gt;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">Select1st</span></span></span><br><span class="line"><span class="class">    :</span> <span class="keyword">public</span> unary_function&lt;_Pair, <span class="keyword">typename</span> _Pair::first_type&gt;</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">typename</span> _Pair::first_type&amp;</span><br><span class="line">      <span class="keyword">operator</span>()(_Pair&amp; __x) <span class="keyword">const</span></span><br><span class="line">      &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">typename</span> _Pair::first_type&amp;</span><br><span class="line">      <span class="keyword">operator</span>()(<span class="keyword">const</span> _Pair&amp; __x) <span class="keyword">const</span></span><br><span class="line">      &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line">      <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Pair2&gt;</span><br><span class="line">        <span class="keyword">typename</span> _Pair2::first_type&amp;</span><br><span class="line">        <span class="keyword">operator</span>()(_Pair2&amp; __x) <span class="keyword">const</span></span><br><span class="line">        &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Pair2&gt;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">typename</span> _Pair2::first_type&amp;</span><br><span class="line">        <span class="keyword">operator</span>()(<span class="keyword">const</span> _Pair2&amp; __x) <span class="keyword">const</span></span><br><span class="line">        &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面的unary_function与红黑树无关，可以不管，只看对运算符的重载。仔细一看会发现，其实他就是传入一个pair，然后return pair.first，仅此而已。我们前面说到第三个模板参数其实是规定了从value中取出key的过程，当我们使用map&lt;int,char&gt;时，获得key的过程其实就是从pair&lt;int,char&gt;中取出第一个数的过程。</p>
+<p>有<strong>_Select1st</strong>，自然也就有<strong>_Select2nd</strong>，_Select2nd的操作当然就是取出第二个元素。这样一来第三个模板参数<strong>_KeyOfValue</strong>就很清晰了，他其实就是一个结构体，然后对()运算符进行了重载，规定了从value中取出key的方法。当你在STL的源代码中看到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_KeyOfValue()(value)</span><br></pre></td></tr></table></figure>
+
+<p>其实就是通过value获取key的过程了。注意，如果要自己写第三个模板元参数，那么在重载()符号时，记得返回值必须是const类型的引用，比如const int&amp;，关于这点可以参考：<a href="https://www.cnblogs.com/sandychn/p/12334194.html" target="_blank" rel="noopener">https://www.cnblogs.com/sandychn/p/12334194.html</a> ，这篇文章也帮了我很多。</p>
+<p>最后是第四个参数：_Compare</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Key, <span class="keyword">typename</span> _Val, <span class="keyword">typename</span> _KeyOfValue,</span><br><span class="line">         <span class="keyword">typename</span> _Compare, <span class="keyword">typename</span> _Alloc = allocator&lt;_Val&gt; &gt;</span><br></pre></td></tr></table></figure>
+
+<p>顾名思义，这个参数自然和大小比较有关：当我们使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
+
+<p>其实这里的 less<int>就是类似前面说的那些结构体，重载了()运算符，传入两个参数a、b，返回 a &lt; b的布尔值。</p>
+<p>回头再看看map的源代码，可以看到map的默认大小比较方法其实也是less：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-e9235583ba36c4e3ec12780360d0eeef_720w.png" alt="less"></p>
+<p>附上less的代码，参考前面所说的，这里应该不难看懂：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// One of the @link comparison_functors comparison functors@endlink.</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">less</span> :</span> <span class="keyword">public</span> binary_function&lt;_Tp, _Tp, <span class="keyword">bool</span>&gt;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">bool</span></span><br><span class="line">    <span class="keyword">operator</span>()(<span class="keyword">const</span> _Tp&amp; __x, <span class="keyword">const</span> _Tp&amp; __y) <span class="keyword">const</span></span><br><span class="line">    &#123; <span class="keyword">return</span> __x &lt; __y; &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>当然这里我们也可以自己写一套大小比较逻辑。</p>
+<p>红黑树的最后一个参数<strong>_Alloc</strong>和内存分配有关，一般我们保持其默认值就可以了。</p>
+<p>至此，我们分析了红黑树实例化时不同模板元参数的含义，现在我们可以试试解决文章最开头提出的问题：</p>
+<p>怎么在红黑树上构建图中所示b、c、d字段的索引：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
+<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>根据我们分析的内容，我们首先需要一个结构体来存储上述所示的三个索引值：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">keys</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line"></span><br><span class="line">    keys(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span><br><span class="line">        : a(a), b(b), c(c)&#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后自定义一套比较规则：优先比较a、其次比较b、最后比较c，所以我简单地写了一大堆很笨的嵌套if：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">my_less</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">bool</span></span><br><span class="line">    <span class="keyword">operator</span>()(<span class="keyword">const</span> keys &amp;x, <span class="keyword">const</span> keys &amp;y) <span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (x.a &lt; y.a)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (x.a &gt; y.a)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (x.b &lt; y.b)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (x.b &gt; y.b)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (x.c &lt; y.c)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以实例化一个类了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">const</span> keys, </span><br><span class="line">    pair&lt;<span class="keyword">const</span> keys, <span class="built_in">std</span>::<span class="built_in">string</span>&gt;, </span><br><span class="line">    _Select1st&lt;pair&lt;<span class="keyword">const</span> keys, <span class="keyword">char</span>&gt; &gt;, </span><br><span class="line">    my_less &gt; itree;</span><br></pre></td></tr></table></figure>
+
+<p>然后把我们前面的参数插入进去：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">13</span>,<span class="number">12</span>,<span class="number">4</span>),<span class="string">"dll"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">1</span>,<span class="number">5</span>,<span class="number">4</span>),<span class="string">"doc"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">13</span>,<span class="number">16</span>,<span class="number">5</span>),<span class="string">"img"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">12</span>,<span class="number">14</span>,<span class="number">3</span>),<span class="string">"xml"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">12</span>,<span class="number">14</span>,<span class="number">3</span>),<span class="string">"txt"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">13</span>,<span class="number">16</span>,<span class="number">1</span>),<span class="string">"txt"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>),<span class="string">"pdf"</span>));</span><br></pre></td></tr></table></figure>
+
+<p>最后使用迭代器遍历输出：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> it = itree.begin(); it != itree.end(); it++)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; (*it).first.a &lt;&lt; <span class="string">' '</span> &lt;&lt; (*it).first.b &lt;&lt; <span class="string">' '</span></span><br><span class="line">                  &lt;&lt; (*it).first.c &lt;&lt; <span class="string">' '</span> &lt;&lt; (*it).second &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 5 4 doc</span><br><span class="line">5 3 6 pdf</span><br><span class="line">12 14 3 xml</span><br><span class="line">13 12 4 dll</span><br><span class="line">13 16 1 txt</span><br><span class="line">13 16 5 img</span><br></pre></td></tr></table></figure>
+
+<p>最后的结果完全我想要的顺序：优先按第一个索引排列，相同值看第二个索引，以此类推。</p>
+<p>这部分内容坑了我好久，在网上能找到的资料也不多，所以我把这个过程记录下来了，感谢给我提供思路的那些文章和回答。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://zhuanlan.zhihu.com/p/87469768" target="_blank" rel="noopener">C++ STL源码剖析之红黑树 - Francis的文章 - 知乎</a> </p>
+<p><a href="https://zhuanlan.zhihu.com/p/87487629" target="_blank" rel="noopener">C++ STL源码剖析之set与multiset那些事 - Francis的文章 - 知乎</a></p>
+<p><a href="https://www.zhihu.com/question/304037770/answer/1287557228" target="_blank" rel="noopener">mysql联合索引的B+树到底张什么样子啊？ - Limit的回答 - 知乎</a></p>
+<p><a href="https://www.cnblogs.com/sandychn/p/12334194.html" target="_blank" rel="noopener">STL中_Rb_tree的探索</a></p>
+<p>本文地址： <a href="https://www.chimaoshu.top/STL中红黑树的用法探究/">https://www.chimaoshu.top/STL中红黑树的用法探究/</a> </p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RBTree/" rel="tag">RBTree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cpp/" rel="tag">cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag">红黑树</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+    
+      <a href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">使用DDNS脚本对阿里云提供的域名进行动态解析</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        Jt10n
+      </li>
+      <li>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="chimaoshu"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['This is chimaoshu&#39;s blog.', 'Nothing is true.', 'Everything is permitted.'],
+      startDelay: 1,
+      typeSpeed: 100,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/js/ayer.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+
+    
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+
+</html>
