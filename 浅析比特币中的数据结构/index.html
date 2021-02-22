@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.chimaoshu.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="浅析比特币中的数据结构block chain​        从整体上看，block chain是由哈希指针连成的链表。如图所示，除了创世纪块以外，每一个区块都有指向上一个区块的哈希指针，同时最新产生的区块也会有一个哈希指针指向他，只是还未被记录到下一个区块中。   ​        值得一提的是，指向一个区块的哈希值由在此之前的所有区块共同作用。之所以说是“在此之前的所有区块共同作用”，是因为每">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析比特币中的数据结构">
+<meta property="og:url" content="https://www.chimaoshu.top/%E6%B5%85%E6%9E%90%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="chimaoshu&#39;s blog">
+<meta property="og:description" content="浅析比特币中的数据结构block chain​        从整体上看，block chain是由哈希指针连成的链表。如图所示，除了创世纪块以外，每一个区块都有指向上一个区块的哈希指针，同时最新产生的区块也会有一个哈希指针指向他，只是还未被记录到下一个区块中。   ​        值得一提的是，指向一个区块的哈希值由在此之前的所有区块共同作用。之所以说是“在此之前的所有区块共同作用”，是因为每">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-953960b5d02f6a43663efaa570e68504_1440w.jpeg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-f09851b71b080fcacdbddceac1ae272c_1440w.jpeg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-c1a62bf0251fb905cf44ead20d9337a5_1440w.png">
+<meta property="article:published_time" content="2021-02-22T14:47:15.000Z">
+<meta property="article:modified_time" content="2021-02-22T14:48:20.767Z">
+<meta property="article:author" content="Jch4n">
+<meta property="article:tag" content="block chain">
+<meta property="article:tag" content="bitcoin">
+<meta property="article:tag" content="data structure">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-953960b5d02f6a43663efaa570e68504_1440w.jpeg">
+
+<link rel="canonical" href="https://www.chimaoshu.top/%E6%B5%85%E6%9E%90%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>浅析比特币中的数据结构 | chimaoshu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">chimaoshu's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">coding 4 fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-friend-links">
+
+    <a href="/friend-links/" rel="section"><i class="fa fa-fw fa-users"></i>friend links</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E6%B5%85%E6%9E%90%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浅析比特币中的数据结构
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-22 22:47:15 / Modified: 22:48:20" itemprop="dateCreated datePublished" datetime="2021-02-22T22:47:15+08:00">2021-02-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="浅析比特币中的数据结构"><a href="#浅析比特币中的数据结构" class="headerlink" title="浅析比特币中的数据结构"></a>浅析比特币中的数据结构</h1><h3 id="block-chain"><a href="#block-chain" class="headerlink" title="block chain"></a>block chain</h3><p>​        从整体上看，block chain是由哈希指针连成的链表。如图所示，除了创世纪块以外，每一个区块都有指向上一个区块的哈希指针，同时最新产生的区块也会有一个哈希指针指向他，只是还未被记录到下一个区块中。</p>
+<img src="https://pic4.zhimg.com/80/v2-953960b5d02f6a43663efaa570e68504_1440w.jpeg" style="zoom:100%;" />
+
+<p>​        值得一提的是，指向一个区块的哈希值由在此之前的所有区块共同作用。之所以说是“在此之前的所有区块共同作用”，是因为每个区块的block header都会存储上一个区块的哈希值，而计算区块的哈希值又需要整个block header的参与，上一个区块的哈希值自然包含在里面。</p>
+<p>​        因此，只要某一个区块发生了篡改，后续的所有区块的哈希值都需要进行相应的修改，才能使得哈希指针能够对上。这个数据结构的好处是，只要存储最后一个哈希指针，就能检测前面所有的区块是否被篡改过，这是区块链不可篡改性的基石。</p>
+<h3 id="block-body"><a href="#block-body" class="headerlink" title="block body"></a>block body</h3><p>​        顾名思义，block body是每一个区块的身体部分，它存储了由矿工打包的一些交易。整体上看，block body是由一课Merkle Tree构成的。</p>
+<p>​        Merkle Tree，构成block body的数据结构。类似二叉树，但是这里的指针是哈希指针而非普通的指针。block body需要存储每一笔交易的具体内容，这些交易的具体内容都存储在Merkle Tree的叶子节点中。而每一个叶子节点都会生成哈希，兄弟节点之间的哈希会再进行一次哈希，生成父节点的值，以此类推，最终生成一个根哈希值（root hash），存储在block header中。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-f09851b71b080fcacdbddceac1ae272c_1440w.jpeg" alt=""></p>
+<p>​        这种数据结构有什么好处呢？首先，我们只要存储一个root hash就能判断每一笔交易（即叶子节点）是否被篡改，这并不难理解。</p>
+<p>​        其次，我们可以进行所谓的Merkle Proof，即证明某一笔交易是否被写到区块链中。在比特币这个去中心化的世界中，每个设备都是一个节点。挖矿的矿工属于全节点，他们的设备上存储了从创世纪块到现在的所有区块的block header与block body。而比特币钱包属于轻节点，与全节点不同的是，轻节点只存储block header，而不存储block body。前面说到，root hash会存储在block header里面，因此轻节点拥有root hash的内容。当你使用比特币钱包做了一次转账，轻节点（比特币钱包）需要检查转账是否被写在区块链里面，那么钱包会向全节点发起一次请求，由全节点返回对应路径上的哈希（如上图所示，如果想要检查a交易是否被写到区块里面，那么全节点会返回H(b)与H(H(c), H(d))），这样轻节点就可以在O(logN)的时间复杂度内算出root hash，检查其与本地存储的block header里面存储的信息是否一致，如果一致，则证明交易已经被存储到区块中。</p>
+<h3 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a>block header</h3><p>block header里面并没有亮眼的数据结构，但它存储的信息仍然十分重要，我们不妨看看：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-c1a62bf0251fb905cf44ead20d9337a5_1440w.png" alt=""></p>
+<p>这是来自<a href="https://www.blockchain.com/btc/block的区块链信息，是7分钟前刚被矿工挖到的一个区块。可以看到里面存储了很多信息，比如我们前面提到的，整个区块链的哈希，以及Merkle" target="_blank" rel="noopener">https://www.blockchain.com/btc/block的区块链信息，是7分钟前刚被矿工挖到的一个区块。可以看到里面存储了很多信息，比如我们前面提到的，整个区块链的哈希，以及Merkle</a> root的哈希，还有出块的时间、挖矿得到的比特币奖励、矿工小费、协议版本等信息。</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/浅析比特币中的数据结构/">https://www.chimaoshu.top/浅析比特币中的数据结构/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/block-chain/" rel="tag"># block chain</a>
+              <a href="/tags/bitcoin/" rel="tag"># bitcoin</a>
+              <a href="/tags/data-structure/" rel="tag"># data structure</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/VirtualXposed-Burp%E5%AF%B9%E5%BE%AE%E4%BF%A1%E6%8A%93%E5%8C%85%E6%80%9D%E8%B7%AF/" rel="prev" title="VirtualXposed + Burp对微信抓包思路">
+      <i class="fa fa-chevron-left"></i> VirtualXposed + Burp对微信抓包思路
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/CentOS%E4%B8%8B%E6%97%A0sudo%E5%AE%89%E8%A3%85protobuf%E7%9A%84%E8%BF%87%E7%A8%8B/" rel="next" title="CentOS下无sudo安装protobuf的过程">
+      CentOS下无sudo安装protobuf的过程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#浅析比特币中的数据结构"><span class="nav-number">1.</span> <span class="nav-text">浅析比特币中的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#block-chain"><span class="nav-number">1.0.1.</span> <span class="nav-text">block chain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block-body"><span class="nav-number">1.0.2.</span> <span class="nav-text">block body</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block-header"><span class="nav-number">1.0.3.</span> <span class="nav-text">block header</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jch4n"
+      src="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+  <p class="site-author-name" itemprop="name">Jch4n</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chimaoshu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chimaoshu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/chi-mao-shu-53/" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;chi-mao-shu-53&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-edge"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Jt10n@foxmail.com" title="E-Mail → mailto:Jt10n@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jch4n</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>

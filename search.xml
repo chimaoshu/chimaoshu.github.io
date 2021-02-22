@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CentOS下无sudo安装protobuf的过程</title>
+    <url>/CentOS%E4%B8%8B%E6%97%A0sudo%E5%AE%89%E8%A3%85protobuf%E7%9A%84%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<p>首先到release页面下载cpp的release：</p>
+<p><a href="https://github.com/protocolbuffers/protobuf/releasesgithub.com" target="_blank" rel="noopener">https://github.com/protocolbuffers/protobuf/releasesgithub.com</a></p>
+<p>比如这种：</p>
+<p><img src="https://pic2.zhimg.com/v2-205daf8233a455e774515aa2665f07b9_b.png" alt="img"></p>
+<p>你可以手动下载后解压，或者：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;protocolbuffers&#x2F;protobuf&#x2F;releases&#x2F;download&#x2F;v3.14.0&#x2F;protobuf-cpp-3.14.0.tar.gz</span><br><span class="line">tar -zxvf protobuf-cpp-3.14.0.tar.gz</span><br><span class="line">cd protobuf-cpp-3.14.0</span><br></pre></td></tr></table></figure>
+
+<p>检查依赖文件是否齐全：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">autoreconf -f -i</span><br></pre></td></tr></table></figure>
+
+<p>否则后续make可能会出现这样的问题：</p>
+<p><img src="https://pic3.zhimg.com/v2-beecf2dd6dac87f8c82e1ceabdb7bd52_b.jpeg" alt="img"></p>
+<p>正常的流程是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>但是由于我们没有sudo权限，一方面不能使用bash运行configure，一方面无法写/usr/local/，所以这两个地方都需要做修改：</p>
+<p>在./configure前面加上sh，后面的路径换成自己有权限的路径：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sh .&#x2F;configure --prefix&#x3D;替换成一个你拥有权限的目录</span><br></pre></td></tr></table></figure>
+
+<p>然后是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">make check</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>即可等待安装完成，其中make和make check耗时较长，如果不愿意等，可以跳过make check 过程。</p>
+<p>考虑到我们是在自己指定的目录下安装的，可能该目录没有被添加到本用户的环境变量下，因此可以：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim ~&#x2F;.bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>然后把目录路径添加到PATH的最后面：</p>
+<p><img src="https://pic3.zhimg.com/v2-65401cbda4bb23fd7b4817401c0151e2_b.png" alt="img"></p>
+<p>当初我弄到这里以为大功告成了，其实后面还有一大堆坑等着我，如果你写了一个protobuf的测试程序用原生g++进行编译，还会遇到大量的问题。</p>
+<p>简单的说，你最好把protobuf手动添加到g++寻找头文件的路径、寻找动态、静态链接库的路径，否则后续编译可能会出很多奇怪的问题。当然你也可以在编译时使用-I、-L的命令，也许可以不用设置这些东西：</p>
+<p>（这些也是在~/.bash_profile文件中设置的）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 环境变量，中间用冒号隔开</span><br><span class="line">PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;bin:&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;sbin:$HOME&#x2F;protobuf_lib&#x2F;bin</span><br><span class="line">export PATH</span><br><span class="line"></span><br><span class="line"># g++找头文件的路径</span><br><span class="line">CPLUS_INCLUDE_PATH&#x3D;$HOME&#x2F;protobuf_lib&#x2F;include</span><br><span class="line">export CPLUS_INCLUDE_PATH</span><br><span class="line"></span><br><span class="line"># 找动态链接库的路径</span><br><span class="line">LD_LIBRARY_PATH&#x3D;$HOME&#x2F;protobuf_lib&#x2F;lib:&#x2F;usr&#x2F;local&#x2F;lib:$HOME&#x2F;workspace&#x2F;MouseDB&#x2F;lib&#x2F;protobuf&#x2F;lib</span><br><span class="line">export LD_LIBRARY_PATH</span><br><span class="line"></span><br><span class="line"># 找静态链接库的路径</span><br><span class="line">LIBRARY_PATH&#x3D;$HOME&#x2F;protobuf_lib&#x2F;lib:&#x2F;usr&#x2F;local&#x2F;lib:$HOME&#x2F;workspace&#x2F;MouseDB&#x2F;lib&#x2F;protobuf&#x2F;lib</span><br><span class="line">export LIBRARY_PATH</span><br><span class="line"></span><br><span class="line"># 找pkg_config的路径</span><br><span class="line">export PKG_CONFIG_PATH&#x3D;$HOME&#x2F;protobuf_lib&#x2F;lib&#x2F;pkgconfig</span><br></pre></td></tr></table></figure>
+
+<p>最后再重新生效一下即可：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">source ~&#x2F;.bash_profile</span><br></pre></td></tr></table></figure>
+
+<p>BTW，如果后续编译出现google::protobuf::之类undefined的问题，请务必再编译时添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-lprotobuf -lpthread</span><br></pre></td></tr></table></figure>
+
+<p>两个参数，比如我的Makefile是这样的：</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># proto测试</span></span><br><span class="line">proto_test : test/test_proto/proto_test.cc</span><br><span class="line">	g++ -wall <span class="variable">$^</span> -g -o test/test_proto/<span class="variable">$@</span> -std=c++11 -lprotobuf -lpthread</span><br></pre></td></tr></table></figure>
+
+<p>本文地址： <a href="https://www.chimaoshu.top/CentOS下无sudo安装protobuf的过程/">https://www.chimaoshu.top/CentOS下无sudo安装protobuf的过程/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
+]]></content>
+      <tags>
+        <tag>c++</tag>
+        <tag>protobuf</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅析比特币中的数据结构</title>
+    <url>/%E6%B5%85%E6%9E%90%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
+    <content><![CDATA[<h1 id="浅析比特币中的数据结构"><a href="#浅析比特币中的数据结构" class="headerlink" title="浅析比特币中的数据结构"></a>浅析比特币中的数据结构</h1><h3 id="block-chain"><a href="#block-chain" class="headerlink" title="block chain"></a>block chain</h3><p>​        从整体上看，block chain是由哈希指针连成的链表。如图所示，除了创世纪块以外，每一个区块都有指向上一个区块的哈希指针，同时最新产生的区块也会有一个哈希指针指向他，只是还未被记录到下一个区块中。</p>
+<img src="https://pic4.zhimg.com/80/v2-953960b5d02f6a43663efaa570e68504_1440w.jpeg" style="zoom:100%;" />
+
+<p>​        值得一提的是，指向一个区块的哈希值由在此之前的所有区块共同作用。之所以说是“在此之前的所有区块共同作用”，是因为每个区块的block header都会存储上一个区块的哈希值，而计算区块的哈希值又需要整个block header的参与，上一个区块的哈希值自然包含在里面。</p>
+<p>​        因此，只要某一个区块发生了篡改，后续的所有区块的哈希值都需要进行相应的修改，才能使得哈希指针能够对上。这个数据结构的好处是，只要存储最后一个哈希指针，就能检测前面所有的区块是否被篡改过，这是区块链不可篡改性的基石。</p>
+<h3 id="block-body"><a href="#block-body" class="headerlink" title="block body"></a>block body</h3><p>​        顾名思义，block body是每一个区块的身体部分，它存储了由矿工打包的一些交易。整体上看，block body是由一课Merkle Tree构成的。</p>
+<p>​        Merkle Tree，构成block body的数据结构。类似二叉树，但是这里的指针是哈希指针而非普通的指针。block body需要存储每一笔交易的具体内容，这些交易的具体内容都存储在Merkle Tree的叶子节点中。而每一个叶子节点都会生成哈希，兄弟节点之间的哈希会再进行一次哈希，生成父节点的值，以此类推，最终生成一个根哈希值（root hash），存储在block header中。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-f09851b71b080fcacdbddceac1ae272c_1440w.jpeg" alt=""></p>
+<p>​        这种数据结构有什么好处呢？首先，我们只要存储一个root hash就能判断每一笔交易（即叶子节点）是否被篡改，这并不难理解。</p>
+<p>​        其次，我们可以进行所谓的Merkle Proof，即证明某一笔交易是否被写到区块链中。在比特币这个去中心化的世界中，每个设备都是一个节点。挖矿的矿工属于全节点，他们的设备上存储了从创世纪块到现在的所有区块的block header与block body。而比特币钱包属于轻节点，与全节点不同的是，轻节点只存储block header，而不存储block body。前面说到，root hash会存储在block header里面，因此轻节点拥有root hash的内容。当你使用比特币钱包做了一次转账，轻节点（比特币钱包）需要检查转账是否被写在区块链里面，那么钱包会向全节点发起一次请求，由全节点返回对应路径上的哈希（如上图所示，如果想要检查a交易是否被写到区块里面，那么全节点会返回H(b)与H(H(c), H(d))），这样轻节点就可以在O(logN)的时间复杂度内算出root hash，检查其与本地存储的block header里面存储的信息是否一致，如果一致，则证明交易已经被存储到区块中。</p>
+<h3 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a>block header</h3><p>block header里面并没有亮眼的数据结构，但它存储的信息仍然十分重要，我们不妨看看：</p>
+<p><img src="https://pic1.zhimg.com/80/v2-c1a62bf0251fb905cf44ead20d9337a5_1440w.png" alt=""></p>
+<p>这是来自<a href="https://www.blockchain.com/btc/block的区块链信息，是7分钟前刚被矿工挖到的一个区块。可以看到里面存储了很多信息，比如我们前面提到的，整个区块链的哈希，以及Merkle" target="_blank" rel="noopener">https://www.blockchain.com/btc/block的区块链信息，是7分钟前刚被矿工挖到的一个区块。可以看到里面存储了很多信息，比如我们前面提到的，整个区块链的哈希，以及Merkle</a> root的哈希，还有出块的时间、挖矿得到的比特币奖励、矿工小费、协议版本等信息。</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/浅析比特币中的数据结构/">https://www.chimaoshu.top/浅析比特币中的数据结构/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
+]]></content>
+      <tags>
+        <tag>block chain</tag>
+        <tag>bitcoin</tag>
+        <tag>data structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VirtualXposed + Burp对微信抓包思路</title>
+    <url>/VirtualXposed-Burp%E5%AF%B9%E5%BE%AE%E4%BF%A1%E6%8A%93%E5%8C%85%E6%80%9D%E8%B7%AF/</url>
+    <content><![CDATA[<h2 id="绕过微信证书检验"><a href="#绕过微信证书检验" class="headerlink" title="绕过微信证书检验"></a>绕过微信证书检验</h2><p>微信APP内置了对自家证书的校检，因此抓包时，微信会因为检测到自签名证书而拒绝联网。而Xposed能使用hook的方式来绕过它。</p>
+<p>其中VirtualXposed是一个免root的不错选择：</p>
+<p><a href="https://github.com/android-hacker/VirtualXposed" target="_blank" rel="noopener">https://github.com/android-hacker/VirtualXposedgithub.com</a></p>
+<p>在项目的release页面可找到APK。</p>
+<p>再使用VirtualXposed安装JustTrustMe插件：</p>
+<p><a href="https://github.com/Fuzion24/JustTrustMe" target="_blank" rel="noopener">https://github.com/Fuzion24/JustTrustMegithub.com</a></p>
+<p>在项目的release页面可找到APK，在安装APK时需选择“在VirtualXposed中安装”。</p>
+<p>需要注意的时，VirtualXposed中的插件只会对VirtualXposed中的软件起作用，因此需要在VirtualXposed中也安装微信APP，建议到微信官网寻找32位的微信APP，不要使用64位APP或者使用应用商城的APK进行安装，否则很可能安装失败。</p>
+<p>同样的，下载微信的APK后，选择“在VIrtualXposed中安装”即可。</p>
+<h2 id="使用Burp进行抓包"><a href="#使用Burp进行抓包" class="headerlink" title="使用Burp进行抓包"></a>使用Burp进行抓包</h2><p>需要从电脑中把burp的证书导出并安装到手机里面：</p>
+<p>在burp里面选择导出证书(export certificate)，然后修改后缀为.cer，传给手机后，选择证书，点击安装，随便勾选用途即可。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-00fd3f745bd1679fbbcce0e0abd0a45b_1440w.jpg" alt="img"></p>
+<p>再次之后，打开手机的wifi–更多设置–开启代理，填你电脑的内网ip（要求手机和电脑在同一局域网）以及burp的监听端口就可以了。</p>
+<img src="https://pic1.zhimg.com/80/v2-58e9fe93badfa2cfef1f42c7fd191514_1440w.jpg" alt="img" style="zoom: 25%;" />
+
+<p>先开启burp的监听，然后开启VitualXposed中的微信即可开始对微信进行抓包。</p>
+<p>无论是获取微信内置浏览器的cookies，或者对微信小程序进行测试，都可以采用此方法。</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/VirtualXposed-Burp对微信抓包思路/">https://www.chimaoshu.top/VirtualXposed-Burp对微信抓包思路/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
+]]></content>
+      <tags>
+        <tag>抓包</tag>
+        <tag>hook</tag>
+        <tag>Xposed</tag>
+        <tag>burp</tag>
+        <tag>网络安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</title>
     <url>/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/</url>
     <content><![CDATA[<h1 id="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"><a href="#STL中红黑树的用法探究及使用红黑树进行多字段索引的方法" class="headerlink" title="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"></a>STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在造轮子，需要造分析型数据库。在关于热数据的设计中，对于到来的每一条热数据，我需要使用红黑树来维持热数据在内存中的有序索引。后来使用了STL中的红黑树，这个过程遇到了一大堆坑，网上能找到的资料又很少，所以记录了一下。</p>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.chimaoshu.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="绕过微信证书检验微信APP内置了对自家证书的校检，因此抓包时，微信会因为检测到自签名证书而拒绝联网。而Xposed能使用hook的方式来绕过它。 其中VirtualXposed是一个免root的不错选择： https:&#x2F;&#x2F;github.com&#x2F;android-hacker&#x2F;VirtualXposedgithub.com 在项目的release页面可找到APK。 再使用VirtualXposed安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VirtualXposed + Burp对微信抓包思路">
+<meta property="og:url" content="https://www.chimaoshu.top/VirtualXposed-Burp%E5%AF%B9%E5%BE%AE%E4%BF%A1%E6%8A%93%E5%8C%85%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="chimaoshu&#39;s blog">
+<meta property="og:description" content="绕过微信证书检验微信APP内置了对自家证书的校检，因此抓包时，微信会因为检测到自签名证书而拒绝联网。而Xposed能使用hook的方式来绕过它。 其中VirtualXposed是一个免root的不错选择： https:&#x2F;&#x2F;github.com&#x2F;android-hacker&#x2F;VirtualXposedgithub.com 在项目的release页面可找到APK。 再使用VirtualXposed安装">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-00fd3f745bd1679fbbcce0e0abd0a45b_1440w.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-58e9fe93badfa2cfef1f42c7fd191514_1440w.jpg">
+<meta property="article:published_time" content="2021-02-22T14:44:09.000Z">
+<meta property="article:modified_time" content="2021-02-22T14:45:38.912Z">
+<meta property="article:author" content="Jch4n">
+<meta property="article:tag" content="抓包">
+<meta property="article:tag" content="hook">
+<meta property="article:tag" content="Xposed">
+<meta property="article:tag" content="burp">
+<meta property="article:tag" content="网络安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-00fd3f745bd1679fbbcce0e0abd0a45b_1440w.jpg">
+
+<link rel="canonical" href="https://www.chimaoshu.top/VirtualXposed-Burp%E5%AF%B9%E5%BE%AE%E4%BF%A1%E6%8A%93%E5%8C%85%E6%80%9D%E8%B7%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>VirtualXposed + Burp对微信抓包思路 | chimaoshu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">chimaoshu's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">coding 4 fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-friend-links">
+
+    <a href="/friend-links/" rel="section"><i class="fa fa-fw fa-users"></i>friend links</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/VirtualXposed-Burp%E5%AF%B9%E5%BE%AE%E4%BF%A1%E6%8A%93%E5%8C%85%E6%80%9D%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VirtualXposed + Burp对微信抓包思路
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-02-22 22:44:09 / Modified: 22:45:38" itemprop="dateCreated datePublished" datetime="2021-02-22T22:44:09+08:00">2021-02-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="绕过微信证书检验"><a href="#绕过微信证书检验" class="headerlink" title="绕过微信证书检验"></a>绕过微信证书检验</h2><p>微信APP内置了对自家证书的校检，因此抓包时，微信会因为检测到自签名证书而拒绝联网。而Xposed能使用hook的方式来绕过它。</p>
+<p>其中VirtualXposed是一个免root的不错选择：</p>
+<p><a href="https://github.com/android-hacker/VirtualXposed" target="_blank" rel="noopener">https://github.com/android-hacker/VirtualXposedgithub.com</a></p>
+<p>在项目的release页面可找到APK。</p>
+<p>再使用VirtualXposed安装JustTrustMe插件：</p>
+<p><a href="https://github.com/Fuzion24/JustTrustMe" target="_blank" rel="noopener">https://github.com/Fuzion24/JustTrustMegithub.com</a></p>
+<p>在项目的release页面可找到APK，在安装APK时需选择“在VirtualXposed中安装”。</p>
+<p>需要注意的时，VirtualXposed中的插件只会对VirtualXposed中的软件起作用，因此需要在VirtualXposed中也安装微信APP，建议到微信官网寻找32位的微信APP，不要使用64位APP或者使用应用商城的APK进行安装，否则很可能安装失败。</p>
+<p>同样的，下载微信的APK后，选择“在VIrtualXposed中安装”即可。</p>
+<h2 id="使用Burp进行抓包"><a href="#使用Burp进行抓包" class="headerlink" title="使用Burp进行抓包"></a>使用Burp进行抓包</h2><p>需要从电脑中把burp的证书导出并安装到手机里面：</p>
+<p>在burp里面选择导出证书(export certificate)，然后修改后缀为.cer，传给手机后，选择证书，点击安装，随便勾选用途即可。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-00fd3f745bd1679fbbcce0e0abd0a45b_1440w.jpg" alt="img"></p>
+<p>再次之后，打开手机的wifi–更多设置–开启代理，填你电脑的内网ip（要求手机和电脑在同一局域网）以及burp的监听端口就可以了。</p>
+<img src="https://pic1.zhimg.com/80/v2-58e9fe93badfa2cfef1f42c7fd191514_1440w.jpg" alt="img" style="zoom: 25%;" />
+
+<p>先开启burp的监听，然后开启VitualXposed中的微信即可开始对微信进行抓包。</p>
+<p>无论是获取微信内置浏览器的cookies，或者对微信小程序进行测试，都可以采用此方法。</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/VirtualXposed-Burp对微信抓包思路/">https://www.chimaoshu.top/VirtualXposed-Burp对微信抓包思路/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8A%93%E5%8C%85/" rel="tag"># 抓包</a>
+              <a href="/tags/hook/" rel="tag"># hook</a>
+              <a href="/tags/Xposed/" rel="tag"># Xposed</a>
+              <a href="/tags/burp/" rel="tag"># burp</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag"># 网络安全</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/" rel="prev" title="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法">
+      <i class="fa fa-chevron-left"></i> STL中红黑树的用法探究及使用红黑树进行多字段索引的方法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E6%B5%85%E6%9E%90%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="next" title="浅析比特币中的数据结构">
+      浅析比特币中的数据结构 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绕过微信证书检验"><span class="nav-number">1.</span> <span class="nav-text">绕过微信证书检验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Burp进行抓包"><span class="nav-number">2.</span> <span class="nav-text">使用Burp进行抓包</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jch4n"
+      src="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+  <p class="site-author-name" itemprop="name">Jch4n</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chimaoshu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chimaoshu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/chi-mao-shu-53/" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;chi-mao-shu-53&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-edge"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Jt10n@foxmail.com" title="E-Mail → mailto:Jt10n@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jch4n</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
