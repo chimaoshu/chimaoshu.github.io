@@ -1,119 +1,311 @@
 <!DOCTYPE html>
-<html lang="en">
 
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-  <meta charset="utf-8" />
-    
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-     chimaoshu
-  </title>
-  <meta name="generator" content="hexo-theme-yilia-plus">
-  
-  <link rel="shortcut icon" href="/favicon.ico" />
-  
-  
-<link rel="stylesheet" href="/css/main.css">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
-  
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-  
-  
 
-  
-<script>
-var _hmt = _hmt || [];
-(function() {
-	var hm = document.createElement("script");
-	hm.src = "https://hm.baidu.com/hm.js?c6ea480bca72a4ee55f464b5c301d982";
-	var s = document.getElementsByTagName("script")[0]; 
-	s.parentNode.insertBefore(hm, s);
-})();
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sqlite,sql,入门," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简单的sqlite入门教程安装进入sqlite的官网：https:&#x2F;&#x2F;www.sqlite.org&#x2F;index.html点击download：下载后解压。 注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。 使用解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令： 1sqlite3 student">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非常简单的sqlite入门教程">
+<meta property="og:url" content="https://www.chimaoshu.top/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="chimaoshu">
+<meta property="og:description" content="简单的sqlite入门教程安装进入sqlite的官网：https:&#x2F;&#x2F;www.sqlite.org&#x2F;index.html点击download：下载后解压。 注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。 使用解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令： 1sqlite3 student">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-10-24T10:24:18.000Z">
+<meta property="article:modified_time" content="2020-10-24T11:33:21.017Z">
+<meta property="article:author" content="Jt10n">
+<meta property="article:tag" content="sqlite">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="入门">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
 </script>
 
 
-</head>
 
-</html>
-
-<body>
-  <div id="app">
-    <main class="content">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">chimaoshu</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
+  <link rel="canonical" href="https://www.chimaoshu.top/非常简单的sqlite入门教程/"/>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
 
-<div id="main">
-  <section class="outer">
-  <article class="articles">
-    
-    
-    
-    
-    <article id="post-STL中红黑树的用法探究" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
 
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/"
-    >STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</a
-  >
-</h2>
+  <title>chimaoshu</title>
   
 
-    </header>
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
     
 
-    
-    <div class="article-meta">
-      <a href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/" class="article-date">
-  <time datetime="2020-12-19T07:58:14.000Z" itemprop="datePublished">2020-12-19</time>
-</a>
-      
-      
-      
-      
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">chimaoshu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/" itemprop="url">STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-19T15:58:14+08:00">2020-12-19</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-
     
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      <h1 id="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"><a href="#STL中红黑树的用法探究及使用红黑树进行多字段索引的方法" class="headerlink" title="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"></a>STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在造轮子，需要造分析型数据库。在关于热数据的设计中，对于到来的每一条热数据，我需要使用红黑树来维持热数据在内存中的有序索引。后来使用了STL中的红黑树，这个过程遇到了一大堆坑，网上能找到的资料又很少，所以记录了一下。</p>
+      
+
+      
+        
+          
+            <h1 id="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"><a href="#STL中红黑树的用法探究及使用红黑树进行多字段索引的方法" class="headerlink" title="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"></a>STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在造轮子，需要造分析型数据库。在关于热数据的设计中，对于到来的每一条热数据，我需要使用红黑树来维持热数据在内存中的有序索引。后来使用了STL中的红黑树，这个过程遇到了一大堆坑，网上能找到的资料又很少，所以记录了一下。</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>我需要维护多个字段的索引，比如这么一张图，我需要在红黑树上维护对于b、c、d三个字段的索引：</p>
 <p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
 <p>上图出自知乎问题<a href="https://www.zhihu.com/question/304037770/answer/1287557228" target="_blank" rel="noopener">mysql联合索引的B+树到底张什么样子啊？</a>下@<a href="https://www.zhihu.com/people/dawn-90-70" target="_blank" rel="noopener">Limit</a>的一个回答，这是innodb引擎下使用B+树的解决方法。但由于我现在维护的是热数据，并不需要进行磁盘IO，且只需要支持查询和插入的操作，所以我需要用红黑树来解决此问题。</p>
@@ -229,72 +421,123 @@ var _hmt = _hmt || [];
 <p><a href="https://www.cnblogs.com/sandychn/p/12334194.html" target="_blank" rel="noopener">STL中_Rb_tree的探索</a></p>
 <p>本文地址： <a href="https://www.chimaoshu.top/STL中红黑树的用法探究/">https://www.chimaoshu.top/STL中红黑树的用法探究/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RBTree/" rel="tag">RBTree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/STL/" rel="tag">STL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cpp/" rel="tag">cpp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%A2%E9%BB%91%E6%A0%91/" rel="tag">红黑树</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-使用DDNS脚本对阿里云域名进行动态域名解析" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/"
-    >使用DDNS脚本对阿里云提供的域名进行动态解析</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" itemprop="url">使用DDNS脚本对阿里云提供的域名进行动态解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-18T22:00:34+08:00">2020-12-18</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="article-date">
-  <time datetime="2020-12-18T14:00:34.000Z" itemprop="datePublished">2020-12-18</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <h1 id="使用DDNS脚本对阿里云提供的域名进行动态解析"><a href="#使用DDNS脚本对阿里云提供的域名进行动态解析" class="headerlink" title="使用DDNS脚本对阿里云提供的域名进行动态解析"></a>使用DDNS脚本对阿里云提供的域名进行动态解析</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前用bitwarden_rs的docker容器+Nginx反向代理，并设置了https，把bitwarden服务器部署到了自己的电脑上，在校园网中提供服务–只要我的手机连上学校的wifi，就可以访问到我电脑上的bitwarden服务、</p>
+        
+          
+            <h1 id="使用DDNS脚本对阿里云提供的域名进行动态解析"><a href="#使用DDNS脚本对阿里云提供的域名进行动态解析" class="headerlink" title="使用DDNS脚本对阿里云提供的域名进行动态解析"></a>使用DDNS脚本对阿里云提供的域名进行动态解析</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前用bitwarden_rs的docker容器+Nginx反向代理，并设置了https，把bitwarden服务器部署到了自己的电脑上，在校园网中提供服务–只要我的手机连上学校的wifi，就可以访问到我电脑上的bitwarden服务、</p>
 <p><a href="https://zhuanlan.zhihu.com/p/158794535" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/158794535</a></p>
 <p>但是我遇到了一个麻烦的问题，就是电脑在校园网的ip偶尔会发生变化，每次变化就要手动登陆阿里云去修改DNS的解析ip地址，这很麻烦。所以我决定使用DDNS来完成解析ip的动态切换。</p>
 <p>推荐Github上这个项目：<br><a href="https://github.com/NewFuture/DDNS" target="_blank" rel="noopener">https://github.com/NewFuture/DDNS</a><br>支持许多服务商的API，功能也比较完善。<br><img src="https://img-blog.csdnimg.cn/20201218132341742.png" alt="支持的DNS服务商"><br>以阿里云为例，进行介绍。大概的思路就是创建一个RAM子账户，然后授予这个账户通过API解析DNS的权限，最后把账户的ACCESS_ID和ACCESS_KEY复制到配置文件中。</p>
@@ -306,72 +549,123 @@ var _hmt = _hmt || [];
 
 <p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DDNS/" rel="tag">DDNS</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-非常简单的sqlite入门教程" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"
-    >非常简单的sqlite入门教程</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" itemprop="url">非常简单的sqlite入门教程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-24T18:24:18+08:00">2020-10-24</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" class="article-date">
-  <time datetime="2020-10-24T10:24:18.000Z" itemprop="datePublished">2020-10-24</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <h1 id="简单的sqlite入门教程"><a href="#简单的sqlite入门教程" class="headerlink" title="简单的sqlite入门教程"></a>简单的sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a><br>点击download：<br><img src="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="sqlite下载"><br><img src="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下载后解压。</p>
+        
+          
+            <h1 id="简单的sqlite入门教程"><a href="#简单的sqlite入门教程" class="headerlink" title="简单的sqlite入门教程"></a>简单的sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a><br>点击download：<br><img src="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="sqlite下载"><br><img src="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下载后解压。</p>
 <p>注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。</p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3 students.db</span><br></pre></td></tr></table></figure>
@@ -406,72 +700,123 @@ var _hmt = _hmt || [];
 <p>进一步学习可以参考：<a href="https://www.runoob.com/sqlite/sqlite-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/sqlite/sqlite-tutorial.html</a></p>
 <p>本文地址： <a href="https://www.chimaoshu.top/非常简单的sqlite入门教程/">https://www.chimaoshu.top/非常简单的sqlite入门教程/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sqlite/" rel="tag">sqlite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-DS栈—波兰式，逆波兰式" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/"
-    >DS栈—波兰式，逆波兰式</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/" itemprop="url">DS栈—波兰式，逆波兰式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-06T00:21:17+08:00">2020-10-06</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/" class="article-date">
-  <time datetime="2020-10-05T16:21:17.000Z" itemprop="datePublished">2020-10-06</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <h1 id="DS栈—波兰式，逆波兰式"><a href="#DS栈—波兰式，逆波兰式" class="headerlink" title="DS栈—波兰式，逆波兰式"></a>DS栈—波兰式，逆波兰式</h1><h2 id="某校数据结构课一道OJ题"><a href="#某校数据结构课一道OJ题" class="headerlink" title="某校数据结构课一道OJ题"></a>某校数据结构课一道OJ题</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>表达式有三种表示方法，分别为：</p>
+        
+          
+            <h1 id="DS栈—波兰式，逆波兰式"><a href="#DS栈—波兰式，逆波兰式" class="headerlink" title="DS栈—波兰式，逆波兰式"></a>DS栈—波兰式，逆波兰式</h1><h2 id="某校数据结构课一道OJ题"><a href="#某校数据结构课一道OJ题" class="headerlink" title="某校数据结构课一道OJ题"></a>某校数据结构课一道OJ题</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>表达式有三种表示方法，分别为：</p>
 <p>前缀表示(波兰式)：运算符+操作数1+操作数2</p>
 <p>中缀表示：操作数1+运算符+操作数2</p>
 <p>后缀表示(逆波兰式)：操作数1+操作数2+运算符</p>
@@ -503,72 +848,123 @@ var _hmt = _hmt || [];
 <p><a href="https://zhuanlan.zhihu.com/p/141207867" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/141207867</a></p>
 <p>本文地址： <a href="https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/">https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OJ/" rel="tag">OJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B3%A2%E5%85%B0%E5%BC%8F/" rel="tag">波兰式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/" rel="tag">逆波兰式</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-为1M小水管的Minecraft服务器加速" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/"
-    >为1M小水管的Minecraft服务器加速的各种尝试</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/" itemprop="url">为1M小水管的Minecraft服务器加速的各种尝试</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T08:20:00+08:00">2020-07-17</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/" class="article-date">
-  <time datetime="2020-07-17T00:20:00.000Z" itemprop="datePublished">2020-07-17</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>阿里云的学生机，10块钱一个月的那种，只有1Mbps的带宽。1Mbps是什么概念呢？就是公网下行带宽最大是<strong>1×1024÷8 = 128 kb/s</strong>，每秒最多128kb的速度，开mc服务器基本顶不住。一个只有三人的私人服务器，差不多两人就能把带宽占满，三人就开始卡，如何解决呢？</p>
+        
+          
+            <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>阿里云的学生机，10块钱一个月的那种，只有1Mbps的带宽。1Mbps是什么概念呢？就是公网下行带宽最大是<strong>1×1024÷8 = 128 kb/s</strong>，每秒最多128kb的速度，开mc服务器基本顶不住。一个只有三人的私人服务器，差不多两人就能把带宽占满，三人就开始卡，如何解决呢？</p>
 <h3 id="首先从Minecraft服务器的设置出发"><a href="#首先从Minecraft服务器的设置出发" class="headerlink" title="首先从Minecraft服务器的设置出发"></a>首先从Minecraft服务器的设置出发</h3><p><a href="https://minecraft-zh.gamepedia.com/Server.properties" target="_blank" rel="noopener">Minecraft维基百科</a>上关于服务器的设置文件<strong>server.properties</strong>讲的非常清楚，其中有两处地方可以大大减少服务器的带宽，他们分别是：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200717083226118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20200717083357514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -618,72 +1014,123 @@ var _hmt = _hmt || [];
 <p>总的来说，这个方案的效果还不错。</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/">https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Minecraft/" rel="tag">Minecraft</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/P2P/" rel="tag">P2P</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" rel="tag">阿里云</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-在win10自用机上使用Nginx-Docker部署bitwarden-rs" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/"
-    >在win10自用机上使用Nginx+Docker部署bitwarden_rs</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/" itemprop="url">在win10自用机上使用Nginx+Docker部署bitwarden_rs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-11T09:26:29+08:00">2020-07-11</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/" class="article-date">
-  <time datetime="2020-07-11T01:26:29.000Z" itemprop="datePublished">2020-07-11</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <h2 id="最初的想法"><a href="#最初的想法" class="headerlink" title="最初的想法"></a>最初的想法</h2><p>从很久之前就一直想要找到1Password的替代品，当时自己用AES256 + RSA2048的加密方式，写一个服务端和客户端，只能在终端黑窗口里面运行，总归没有这些成熟的产品用得爽。后来了解到了Bitwarden，想部署到服务器上，想了想不如部署到本机上吧，不然服务器一到期就一直得续费。原版的Bitwarden服务端的服务对象是比较广的，资源消耗也比较大，总归不是办法。后来了解到Bitwarden_rs，是大佬用Rust重新写的一个不那么耗费资源的版本，就决定是它了。</p>
+        
+          
+            <h2 id="最初的想法"><a href="#最初的想法" class="headerlink" title="最初的想法"></a>最初的想法</h2><p>从很久之前就一直想要找到1Password的替代品，当时自己用AES256 + RSA2048的加密方式，写一个服务端和客户端，只能在终端黑窗口里面运行，总归没有这些成熟的产品用得爽。后来了解到了Bitwarden，想部署到服务器上，想了想不如部署到本机上吧，不然服务器一到期就一直得续费。原版的Bitwarden服务端的服务对象是比较广的，资源消耗也比较大，总归不是办法。后来了解到Bitwarden_rs，是大佬用Rust重新写的一个不那么耗费资源的版本，就决定是它了。</p>
 <h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><h3 id="首先是Bitwarden的部署"><a href="#首先是Bitwarden的部署" class="headerlink" title="首先是Bitwarden的部署"></a>首先是Bitwarden的部署</h3><p>首先需要在win10上安装Docker，不再赘述。<br>然后根据 <a href="https://github.com/dani-garcia/bitwarden_rs" target="_blank" rel="noopener">Github上官方给出的说明</a> ，只要打开命令行，输入下面命令就可以安装完成并部署到localhost中。</p>
 <p>首先拉取镜像：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull bitwardenrs/server:latest</span><br></pre></td></tr></table></figure>
@@ -717,70 +1164,123 @@ var _hmt = _hmt || [];
 <p>其中822faa38fd55指的是容器的ID（可以通过docker ps -a来查看容器的ID）<br>将脚本保存为xxx.bat</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/">https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
 
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-关于深信服sslvpn的客户端流量分流" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/"
-    >关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/" itemprop="url">关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-03T19:34:15+08:00">2020-05-03</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/" class="article-date">
-  <time datetime="2020-05-03T11:34:15.000Z" itemprop="datePublished">2020-05-03</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <p>​    如果你的单位或学校使用了深信服的sslvpn，有时候会有需要流量分流的场景，比如访问internet不直连而是走了sslvpn，比如sslvpn设定的路由策略与其他连接冲突导致无法上公网之类的问题。</p>
+        
+          
+            <p>​    如果你的单位或学校使用了深信服的sslvpn，有时候会有需要流量分流的场景，比如访问internet不直连而是走了sslvpn，比如sslvpn设定的路由策略与其他连接冲突导致无法上公网之类的问题。</p>
 <p>踩了一下午坑，终于解决了问题。</p>
 <p>​    解决的方法是修改路由表。通过修改路由表可以实现对不同的ip段走不同的连接模式。</p>
 <p>​    如果你够细心的话，会发现用了深信服的vpn电脑会多了一个网络适配器<br><img src="https://pic.chimaoshu.top/imgs/2020/05/e83458ea7b3e6f93.png" alt="适配器"></p>
@@ -791,141 +1291,243 @@ var _hmt = _hmt || [];
 <p><img src="https://pic.chimaoshu.top/imgs/2020/05/0ba81623e8b3ae78.png" alt="路由表"><br>可以看到路由表规定了不同的目标ip（包括目标的子网掩码）会走不同的网关，所以我们可以用<br>route add 和 route delete 命令对路由表进行删改，至于具体命令用法，百度一大堆，不再赘述，而且我也忘了。</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/">https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%B5%81/" rel="tag">分流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E4%BF%A1%E6%9C%8D/" rel="tag">深信服</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/"
-    >filezilla配置ssl证书过程中出现&#39;Failed to load SSL Libraries&#39;、&#39;Cannot create certificate.Failed to initialize SSL library&#39;、&#39;Could not load certificate file: error:02001003:system library:fopen:No such process (0)&#39;</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/" itemprop="url">filezilla配置ssl证书过程中出现'Failed to load SSL Libraries'、'Cannot create certificate.Failed to initialize SSL library'、'Could not load certificate file: error:02001003:system library:fopen:No such process (0)'</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-16T17:55:43+08:00">2020-03-16</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/" class="article-date">
-  <time datetime="2020-03-16T09:55:43.000Z" itemprop="datePublished">2020-03-16</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <p>‘Failed to load SSL Libraries’<br>‘Cannot create certificate.Failed to initialize SSL library’<br>以上两个问题的解决方法：<br>1.系统更新<br>2.卸载干净，然后从官网下载安装最新的版本<br>3.不要用中文版的filezilla server</p>
+        
+          
+            <p>‘Failed to load SSL Libraries’<br>‘Cannot create certificate.Failed to initialize SSL library’<br>以上两个问题的解决方法：<br>1.系统更新<br>2.卸载干净，然后从官网下载安装最新的版本<br>3.不要用中文版的filezilla server</p>
 <p>‘Could not load certificate file: error:02001003:system library:fopen:No such process (0)’<br>解决方法：<br>1.检查证书所在文件夹是否有赋予足够的用户权限<br>2.以管理员身份运行filezilla server<br>3.证书的存放路径不要有中文</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/certificate/" rel="tag">certificate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/filezilla/" rel="tag">filezilla</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssl/" rel="tag">ssl</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/"
-    >ImportError cannot import name &#39;&#39;DerBitString&#39;&#39; from &#39;&#39;Crypto.Util.asn1&#39;&#39;</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/" itemprop="url">ImportError cannot import name ''DerBitString'' from ''Crypto.Util.asn1''</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T18:50:32+08:00">2020-03-14</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/" class="article-date">
-  <time datetime="2020-03-14T10:50:32.000Z" itemprop="datePublished">2020-03-14</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <p>今天用到 PyCryptodome 模块的时候，当我用到了 </p>
+        
+          
+            <p>今天用到 PyCryptodome 模块的时候，当我用到了 </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br></pre></td></tr></table></figure>
 <p>的时候，出现了错误：<br>ImportError : cannot import name ‘’DerBitString’’ from ‘’Crypto.Util.asn1’’。<br>找到了<a href="http://program.dengshilong.org/2018/10/11/%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5DerBitString%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">这篇博客</a>和<a href="https://pycryptodome.readthedocs.io/en/latest/src/faq.html#why-do-i-get-the-error-no-module-named-crypto-on-windows" target="_blank" rel="noopener">官方文档</a>，都提到了Windows下同时安装PyCryptodome和PyCrypto会出现这个问题。<br>给出的解决方案是：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall crypto</span><br><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
@@ -934,384 +1536,437 @@ var _hmt = _hmt || [];
 <p>重新装一下pycryptodome问题就解决了。</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</a> </p>
 
-      
-      <!-- reward -->
+          
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DerBitString/" rel="tag">DerBitString</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyCryptodome/" rel="tag">PyCryptodome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/importError/" rel="tag">importError</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
   
-
+  
   
 
-</article>
-    
-    <article id="post-（详细版）基于frp与v2ray的几种校园网内网穿透的方案" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/"
-    >（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a
-  >
-</h2>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/">
 
-    </header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" itemprop="url">（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T16:12:01+08:00">2020-03-12</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
 
     
-    <div class="article-meta">
-      <a href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" class="article-date">
-  <time datetime="2020-03-12T08:12:01.000Z" itemprop="datePublished">2020-03-12</time>
-</a>
-      
-      
-      
-      
-    </div>
     
-
     
+    <div class="post-body" itemprop="articleBody">
 
-    
-    <div class="article-entry" itemprop="articleBody">
       
-
-
       
 
       
-      <p>非零基础请移步<a href="\（简略版）基于frp与v2ray的几种校园网内网穿透的方案\">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
+        
+          <p>非零基础请移步<a href="\（简略版）基于frp与v2ray的几种校园网内网穿透的方案\">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
 <p><a href="#0">设备</a></p>
 <p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
 <p><a href="#2">方案二：用frp映射v2ray的inbound端口+校外设备http/socks5代理</a></p>
 <p><a href="#3">方案三：用frp映射v2ray的inbound端口+校外设备使用v2ray/ssr连接</a></p>
 <p><a href="#4">方案四：用v2ray自带的反向代理功能</a></p>
 <p><a href="#5">方案五：用路由器代替校内主机</a></p>
-      
-      <a class="article-more-link" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/">阅读更多...</a>
-      
-      
-      <!-- reward -->
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
     
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/frp/" rel="tag">frp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/v2ray/" rel="tag">v2ray</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a></li></ul>
+    
 
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-
   </div>
-
   
-
   
-
   
-
-</article>
-    
   </article>
-  
 
-  
-  <nav class="page-nav">
+
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-  </nav>
-  
-</section>
-</div>
+  </section>
 
-      <footer class="footer">
-  <div class="outer">
-    <ul class="list-inline">
-      <li>
-        &copy;
-        2020
-        Jt10n
-      </li>
-      <li>
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
         
-      </li>
-    </ul>
-    <ul class="list-inline">
-      <li>
-        
-        
-        <span>
-  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
-  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
-</span>
-        
-      </li>
-      
-      <li>
-        <!-- cnzz统计 -->
-        
-      </li>
-    </ul>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
-</footer>
-      <div class="to_top">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jt10n</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
       </div>
     </main>
-    <aside class="sidebar">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jt10n</span>
+
   
-  <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="chimaoshu"></a>
-  </div>
+
   
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="Search">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/true" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
 </div>
-</div>
-    </aside>
-    <div id="mask"></div>
 
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
+
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
+
   </div>
-</div>
-    
-<script src="/js/jquery-2.0.3.min.js"></script>
 
+  
 
-<script src="/js/share.js"></script>
-
-
-<script src="/js/lazyload.min.js"></script>
-
-
-<script>
-  try {
-    var typed = new Typed("#subtitle", {
-      strings: ['This is chimaoshu&#39;s blog.', '', ''],
-      startDelay: 1,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 100,
-      showCursor: true
-    });
-  } catch (err) {
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
   }
-
 </script>
 
 
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
-
-<script src="/js/ayer.js"></script>
-
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
-        })
-    }
-    viewer_init()
-</script>
 
 
 
 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
 
-<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
 
 
-    
-  </div>
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
-
 </html>

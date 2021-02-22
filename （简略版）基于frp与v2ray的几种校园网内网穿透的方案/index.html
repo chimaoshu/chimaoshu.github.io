@@ -1,110 +1,306 @@
 <!DOCTYPE html>
-<html lang="en">
 
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-  <meta charset="utf-8" />
-    
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-    （简略版）基于frp与v2ray的几种校园网内网穿透的方案 |  chimaoshu
-  </title>
-  <meta name="generator" content="hexo-theme-yilia-plus">
-  
-  <link rel="shortcut icon" href="/favicon.ico" />
-  
-  
-<link rel="stylesheet" href="/css/main.css">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
 
-  
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-  
-  
 
-  
-<script>
-var _hmt = _hmt || [];
-(function() {
-	var hm = document.createElement("script");
-	hm.src = "https://hm.baidu.com/hm.js?c6ea480bca72a4ee55f464b5c301d982";
-	var s = document.getElementsByTagName("script")[0]; 
-	s.parentNode.insertBefore(hm, s);
-})();
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sqlite,sql,入门," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简单的sqlite入门教程安装进入sqlite的官网：https:&#x2F;&#x2F;www.sqlite.org&#x2F;index.html点击download：下载后解压。 注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。 使用解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令： 1sqlite3 student">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非常简单的sqlite入门教程">
+<meta property="og:url" content="https://www.chimaoshu.top/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="chimaoshu">
+<meta property="og:description" content="简单的sqlite入门教程安装进入sqlite的官网：https:&#x2F;&#x2F;www.sqlite.org&#x2F;index.html点击download：下载后解压。 注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。 使用解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令： 1sqlite3 student">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-10-24T10:24:18.000Z">
+<meta property="article:modified_time" content="2020-10-24T11:33:21.017Z">
+<meta property="article:author" content="Jt10n">
+<meta property="article:tag" content="sqlite">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="入门">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
 </script>
 
 
-</head>
 
-</html>
+  <link rel="canonical" href="https://www.chimaoshu.top/非常简单的sqlite入门教程/"/>
 
-<body>
-  <div id="app">
-    <main class="content">
-      <section class="outer">
-  <article id="post-（简略版）基于frp与v2ray的几种校园网内网穿透的方案" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
 
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  （简略版）基于frp与v2ray的几种校园网内网穿透的方案
-</h1>
+
+
+
+  <title>（简略版）基于frp与v2ray的几种校园网内网穿透的方案 | chimaoshu</title>
   
 
-    </header>
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
     
 
-    
-    <div class="article-meta">
-      <a href="/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" class="article-date">
-  <time datetime="2020-03-12T02:26:15.000Z" itemprop="datePublished">2020-03-12</time>
-</a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">chimaoshu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
       
+        <p class="site-subtitle"></p>
       
-      
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.7k字</span>
-        </span>
-    </span>
+  </div>
 
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">6分钟</span>
-        </span>
-    </span>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    
-
-    
-    
-    <div class="tocbot"></div>
-
-
-
-
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
       
 
+      
+    </ul>
+  
 
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T10:26:15+08:00">2020-03-12</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
       
-      <p>如果是零基础，请移步<a href="\（详细版）基于frp与v2ray的几种校园网内网穿透的方案\">（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
+        <p>如果是零基础，请移步<a href="\（详细版）基于frp与v2ray的几种校园网内网穿透的方案\">（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
 <p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
 <p><a href="#2">方案二：用frp映射v2ray的inbound端口+校外设备http/socks5代理</a></p>
 <p><a href="#3">方案三：用frp映射v2ray的inbound端口+校外设备使用v2ray/ssr连接</a></p>
@@ -178,355 +374,366 @@ var _hmt = _hmt || [];
 <p>本文地址： <a href="https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/">https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/</a> </p>
 
       
-      <!-- reward -->
-      
     </div>
     
     
-      <!-- copyright -->
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
-        <div class="declare">
-          <ul class="post-copyright">
-            <li>
-              <i class="ri-copyright-line"></i>
-              <strong>版权声明： </strong s>
-              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
-                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
-            </li>
-          </ul>
+        <div class="post-tags">
+          
+            <a href="/tags/v2ray/" rel="tag"># v2ray</a>
+          
+            <a href="/tags/frp/" rel="tag"># frp</a>
+          
+            <a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag"># 内网穿透</a>
+          
         </div>
-        
-    <footer class="article-footer">
+      
+
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/frp/" rel="tag">frp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/v2ray/" rel="tag">v2ray</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" rel="tag">内网穿透</a></li></ul>
+      
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/myfirstpage/" rel="next" title="myfirstpage">
+                <i class="fa fa-chevron-left"></i> myfirstpage
+              </a>
+            
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" rel="prev" title="（详细版）基于frp与v2ray的几种校园网内网穿透的方案">
+                （详细版）基于frp与v2ray的几种校园网内网穿透的方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
-
   </div>
-
   
   
-  <nav class="article-nav">
-    
-      <a href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            （详细版）基于frp与v2ray的几种校园网内网穿透的方案
-          
-        </div>
-      </a>
-    
-    
-      <a href="/myfirstpage/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">myfirstpage</div>
-      </a>
-    
-  </nav>
+  
+  </article>
 
 
-  
 
-  
-
-  
-  
-  
-
-</article>
-</section>
-      <footer class="footer">
-  <div class="outer">
-    <ul class="list-inline">
-      <li>
-        &copy;
-        2020
-        Jt10n
-      </li>
-      <li>
-        
-      </li>
-    </ul>
-    <ul class="list-inline">
-      <li>
-        
-        
-        <span>
-  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
-  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
-</span>
-        
-      </li>
+    <div class="post-spread">
       
-      <li>
-        <!-- cnzz统计 -->
-        
-      </li>
-    </ul>
+    </div>
   </div>
-</footer>
-      <div class="to_top">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jt10n</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#通讯过程的三台设备："><span class="nav-number">1.</span> <span class="nav-text">通讯过程的三台设备：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。"><span class="nav-number">1.1.</span> <span class="nav-text">A.校内跳板机，电脑路由器之类的设备，前提是能够访问校外网络。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-一台拥有公网ip的设备，一般是VPS云主机之类的"><span class="nav-number">1.2.</span> <span class="nav-text">B.一台拥有公网ip的设备，一般是VPS云主机之类的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-任意想要在校外访问校园网的设备"><span class="nav-number">1.3.</span> <span class="nav-text">C.任意想要在校外访问校园网的设备</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1"><span class="nav-number"></span> <span class="nav-text"> 方案一:简单的frp socks5&#x2F;http代理 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2"><span class="nav-number"></span> <span class="nav-text"> 方案二：用frp映射v2ray的inbound端口+校外设备http&#x2F;socks5代理 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3"><span class="nav-number"></span> <span class="nav-text"> 方案三：用frp映射v2ray的inbound端口+校外设备使用v2ray&#x2F;ssr连接 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4"><span class="nav-number"></span> <span class="nav-text"> 方案四：用v2ray自带的反代功能 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5"><span class="nav-number"></span> <span class="nav-text"> 方案五：用路由器代替校内主机 </span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
       </div>
     </main>
-    <aside class="sidebar">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jt10n</span>
+
   
-  <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="chimaoshu"></a>
-  </div>
+
   
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="Search">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/true" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
 </div>
-</div>
-    </aside>
-    <div id="mask"></div>
 
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
-  <div class="reward-box">
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
+
     
-    <div class="reward-item">
-      <img class="reward-img" src="/images/wechat.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
+
   </div>
-</div>
-    
-<script src="/js/jquery-2.0.3.min.js"></script>
 
+  
 
-<script src="/js/share.js"></script>
-
-
-<script src="/js/lazyload.min.js"></script>
-
-
-<script>
-  try {
-    var typed = new Typed("#subtitle", {
-      strings: ['This is chimaoshu&#39;s blog.', '', ''],
-      startDelay: 1,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 100,
-      showCursor: true
-    });
-  } catch (err) {
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
   }
-
 </script>
 
 
 
 
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
-  tocbot.init({
-    tocSelector: '.tocbot',
-    contentSelector: '.article-entry',
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: 'main',
-    positionFixedSelector: '.tocbot',
-    positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto',
-    onClick: (e) => {
-      $('.toc-link').removeClass('is-active-link');
-      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
-      $(e.target.hash).scrollIntoView();
-      return false;
-    }
-  });
-</script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
-
-<script src="/js/ayer.js"></script>
-
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
-        })
-    }
-    viewer_init()
-</script>
 
 
 
 
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
 
-<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
 
 
 
-    
-  </div>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
-
 </html>
