@@ -7,6 +7,8 @@
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>我需要维护多个字段的索引，比如这么一张图，我需要在红黑树上维护对于b、c、d三个字段的索引：</p>
 <p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
 <p>上图出自知乎问题<a href="https://www.zhihu.com/question/304037770/answer/1287557228" target="_blank" rel="noopener">mysql联合索引的B+树到底张什么样子啊？</a>下@<a href="https://www.zhihu.com/people/dawn-90-70" target="_blank" rel="noopener">Limit</a>的一个回答，这是innodb引擎下使用B+树的解决方法。但由于我现在维护的是热数据，并不需要进行磁盘IO，且只需要支持查询和插入的操作，所以我需要用红黑树来解决此问题。</p>
+<a id="more"></a>
+
 <h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>我看了一些项目中的红黑树，比如Nginx、Redis、Linux中的红黑树，这些红黑树都是使用c语言写的，和c++代码风格迥异，后来我就想到了STL中的红黑树。STL中的map、set、multiset等容器的底层实现都是红黑树嘛，所以STL内当然也是有红黑树的代码了。</p>
 <p><a href="https://zhuanlan.zhihu.com/p/87469768" target="_blank" rel="noopener">C++ STL源码剖析之红黑树</a>和<a href="https://zhuanlan.zhihu.com/p/87487629" target="_blank" rel="noopener">C++ STL源码剖析之set与multiset那些事</a>这两篇文章帮了我很多，在第一篇文章的最后，作者提到了STL中红黑树的使用方法：</p>
 <blockquote>
@@ -119,19 +121,25 @@
 <p><a href="https://www.cnblogs.com/sandychn/p/12334194.html" target="_blank" rel="noopener">STL中_Rb_tree的探索</a></p>
 <p>本文地址： <a href="https://www.chimaoshu.top/STL中红黑树的用法探究/">https://www.chimaoshu.top/STL中红黑树的用法探究/</a> </p>
 ]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
       <tags>
         <tag>STL</tag>
         <tag>红黑树</tag>
         <tag>RBTree</tag>
-        <tag>cpp</tag>
+        <tag>c++</tag>
+        <tag>索引</tag>
       </tags>
   </entry>
   <entry>
     <title>使用DDNS脚本对阿里云提供的域名进行动态解析</title>
     <url>/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/</url>
-    <content><![CDATA[<h1 id="使用DDNS脚本对阿里云提供的域名进行动态解析"><a href="#使用DDNS脚本对阿里云提供的域名进行动态解析" class="headerlink" title="使用DDNS脚本对阿里云提供的域名进行动态解析"></a>使用DDNS脚本对阿里云提供的域名进行动态解析</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前用bitwarden_rs的docker容器+Nginx反向代理，并设置了https，把bitwarden服务器部署到了自己的电脑上，在校园网中提供服务–只要我的手机连上学校的wifi，就可以访问到我电脑上的bitwarden服务、</p>
+    <content><![CDATA[<h1 id="使用DDNS解析脚本对阿里云提供的域名进行动态解析"><a href="#使用DDNS解析脚本对阿里云提供的域名进行动态解析" class="headerlink" title="使用DDNS解析脚本对阿里云提供的域名进行动态解析"></a>使用DDNS解析脚本对阿里云提供的域名进行动态解析</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前用bitwarden_rs的docker容器+Nginx反向代理，并设置了https，把bitwarden服务器部署到了自己的电脑上，在校园网中提供服务–只要我的手机连上学校的wifi，就可以访问到我电脑上的bitwarden服务、</p>
 <p><a href="https://zhuanlan.zhihu.com/p/158794535" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/158794535</a></p>
 <p>但是我遇到了一个麻烦的问题，就是电脑在校园网的ip偶尔会发生变化，每次变化就要手动登陆阿里云去修改DNS的解析ip地址，这很麻烦。所以我决定使用DDNS来完成解析ip的动态切换。</p>
+<a id="more"></a>
+
 <p>推荐Github上这个项目：<br><a href="https://github.com/NewFuture/DDNS" target="_blank" rel="noopener">https://github.com/NewFuture/DDNS</a><br>支持许多服务商的API，功能也比较完善。<br><img src="https://img-blog.csdnimg.cn/20201218132341742.png" alt="支持的DNS服务商"><br>以阿里云为例，进行介绍。大概的思路就是创建一个RAM子账户，然后授予这个账户通过API解析DNS的权限，最后把账户的ACCESS_ID和ACCESS_KEY复制到配置文件中。</p>
 <p><a href="https://help.aliyun.com/document_detail/28637.html" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/28637.html</a><br>按照文档给出的方式，创建子账号，注意创建子账号的时候需要选择“编程访问”。<br><img src="https://img-blog.csdnimg.cn/20201215131413482.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201218213338242.png" alt="在这里插入图片描述"></p>
 <p>之后给RAM子账号授权，选择两个管理DNS的权限：<br><img src="https://img-blog.csdnimg.cn/20201218212451329.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201218212933821.png" alt="在这里插入图片描述"><br>之后来到Github项目的release页，选择exe或者python都可以，配置的参数可以看官方文档，需要注意的是，id填的是你的ACCESS_ID，token填的是你的ACCESS_TOKEN（以阿里云为例）。</p>
@@ -141,14 +149,21 @@
 
 <p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> </p>
 ]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
       <tags>
+        <tag>阿里云</tag>
         <tag>DDNS</tag>
       </tags>
   </entry>
   <entry>
     <title>非常简单的sqlite入门教程</title>
     <url>/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h1 id="简单的sqlite入门教程"><a href="#简单的sqlite入门教程" class="headerlink" title="简单的sqlite入门教程"></a>简单的sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a><br>点击download：<br><img src="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="sqlite下载"><br><img src="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下载后解压。</p>
+    <content><![CDATA[<h1 id="写给新人的简单sqlite入门教程"><a href="#写给新人的简单sqlite入门教程" class="headerlink" title="写给新人的简单sqlite入门教程"></a>写给新人的简单sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a></p>
+<a id="more"></a>
+
+<p>点击download：<br><img src="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="sqlite下载"><br><img src="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下载后解压。</p>
 <p>注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。</p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令：</p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sqlite3 students.db</span><br></pre></td></tr></table></figure>
@@ -181,8 +196,11 @@
 <figure class="highlight"><table><tr><td class="code"><pre><span class="line">delete from class1 where name='王五'</span><br></pre></td></tr></table></figure>
 <p>其实SQL语句的形式很接近自然语言，所以我们很容易看懂每句话的意思。至此，你已经学会了基本的创建、增删、查询的操作。</p>
 <p>进一步学习可以参考：<a href="https://www.runoob.com/sqlite/sqlite-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/sqlite/sqlite-tutorial.html</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/非常简单的sqlite入门教程/">https://www.chimaoshu.top/非常简单的sqlite入门教程/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/非常简单的sqlite入门教程/">https://www.chimaoshu.top/非常简单的sqlite入门教程/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
       <tags>
         <tag>sqlite</tag>
         <tag>sql</tag>
@@ -192,9 +210,11 @@
   <entry>
     <title>DS栈—波兰式，逆波兰式</title>
     <url>/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="DS栈—波兰式，逆波兰式"><a href="#DS栈—波兰式，逆波兰式" class="headerlink" title="DS栈—波兰式，逆波兰式"></a>DS栈—波兰式，逆波兰式</h1><h2 id="某校数据结构课一道OJ题"><a href="#某校数据结构课一道OJ题" class="headerlink" title="某校数据结构课一道OJ题"></a>某校数据结构课一道OJ题</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>表达式有三种表示方法，分别为：</p>
+    <content><![CDATA[<h1 id="波兰式，逆波兰式"><a href="#波兰式，逆波兰式" class="headerlink" title="波兰式，逆波兰式"></a>波兰式，逆波兰式</h1><h2 id="某校数据结构课一道OJ题"><a href="#某校数据结构课一道OJ题" class="headerlink" title="某校数据结构课一道OJ题"></a>某校数据结构课一道OJ题</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>表达式有三种表示方法，分别为：</p>
 <p>前缀表示(波兰式)：运算符+操作数1+操作数2</p>
 <p>中缀表示：操作数1+运算符+操作数2</p>
+<a id="more"></a>
+
 <p>后缀表示(逆波兰式)：操作数1+操作数2+运算符</p>
 <p>例如：a +b * (c -d ) - e/f</p>
 <p>波兰式：-+a*b-cd/ef   （运算符在操作数的前面，用递归计算波兰式）</p>
@@ -224,6 +244,9 @@
 <p><a href="https://zhuanlan.zhihu.com/p/141207867" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/141207867</a></p>
 <p>本文地址： <a href="https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/">https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/</a> </p>
 ]]></content>
+      <categories>
+        <category>OJ</category>
+      </categories>
       <tags>
         <tag>算法</tag>
         <tag>波兰式</tag>
@@ -235,6 +258,8 @@
     <title>为1M小水管的Minecraft服务器加速的各种尝试</title>
     <url>/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/</url>
     <content><![CDATA[<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>阿里云的学生机，10块钱一个月的那种，只有1Mbps的带宽。1Mbps是什么概念呢？就是公网下行带宽最大是<strong>1×1024÷8 = 128 kb/s</strong>，每秒最多128kb的速度，开mc服务器基本顶不住。一个只有三人的私人服务器，差不多两人就能把带宽占满，三人就开始卡，如何解决呢？</p>
+<a id="more"></a>
+
 <h3 id="首先从Minecraft服务器的设置出发"><a href="#首先从Minecraft服务器的设置出发" class="headerlink" title="首先从Minecraft服务器的设置出发"></a>首先从Minecraft服务器的设置出发</h3><p><a href="https://minecraft-zh.gamepedia.com/Server.properties" target="_blank" rel="noopener">Minecraft维基百科</a>上关于服务器的设置文件<strong>server.properties</strong>讲的非常清楚，其中有两处地方可以大大减少服务器的带宽，他们分别是：</p>
 <p><img src="https://img-blog.csdnimg.cn/20200717083226118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p><img src="https://img-blog.csdnimg.cn/20200717083357514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -284,16 +309,23 @@
 <p>总的来说，这个方案的效果还不错。</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/">https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/</a> </p>
 ]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
       <tags>
         <tag>Minecraft</tag>
         <tag>阿里云</tag>
         <tag>P2P</tag>
+        <tag>frp</tag>
+        <tag>nps</tag>
       </tags>
   </entry>
   <entry>
     <title>在win10自用机上使用Nginx+Docker部署bitwarden_rs</title>
     <url>/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/</url>
     <content><![CDATA[<h2 id="最初的想法"><a href="#最初的想法" class="headerlink" title="最初的想法"></a>最初的想法</h2><p>从很久之前就一直想要找到1Password的替代品，当时自己用AES256 + RSA2048的加密方式，写一个服务端和客户端，只能在终端黑窗口里面运行，总归没有这些成熟的产品用得爽。后来了解到了Bitwarden，想部署到服务器上，想了想不如部署到本机上吧，不然服务器一到期就一直得续费。原版的Bitwarden服务端的服务对象是比较广的，资源消耗也比较大，总归不是办法。后来了解到Bitwarden_rs，是大佬用Rust重新写的一个不那么耗费资源的版本，就决定是它了。</p>
+<a id="more"></a>
+
 <h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><h3 id="首先是Bitwarden的部署"><a href="#首先是Bitwarden的部署" class="headerlink" title="首先是Bitwarden的部署"></a>首先是Bitwarden的部署</h3><p>首先需要在win10上安装Docker，不再赘述。<br>然后根据 <a href="https://github.com/dani-garcia/bitwarden_rs" target="_blank" rel="noopener">Github上官方给出的说明</a> ，只要打开命令行，输入下面命令就可以安装完成并部署到localhost中。</p>
 <p>首先拉取镜像：</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">docker pull bitwardenrs/server:latest</span><br></pre></td></tr></table></figure>
@@ -327,6 +359,14 @@
 <p>其中822faa38fd55指的是容器的ID（可以通过docker ps -a来查看容器的ID）<br>将脚本保存为xxx.bat</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/">https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/</a> </p>
 ]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>bitwarden</tag>
+        <tag>Nginx</tag>
+        <tag>reverse proxy</tag>
+      </tags>
   </entry>
   <entry>
     <title>关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</title>
@@ -334,6 +374,8 @@
     <content><![CDATA[<p>​    如果你的单位或学校使用了深信服的sslvpn，有时候会有需要流量分流的场景，比如访问internet不直连而是走了sslvpn，比如sslvpn设定的路由策略与其他连接冲突导致无法上公网之类的问题。</p>
 <p>踩了一下午坑，终于解决了问题。</p>
 <p>​    解决的方法是修改路由表。通过修改路由表可以实现对不同的ip段走不同的连接模式。</p>
+<a id="more"></a>
+
 <p>​    如果你够细心的话，会发现用了深信服的vpn电脑会多了一个网络适配器<br><img src="https://pic.chimaoshu.top/imgs/2020/05/e83458ea7b3e6f93.png" alt="适配器"></p>
 <p>理论上这个方法不止可以用于深信服的vpn，只要是多个网卡/网络适配器的分流都适用。</p>
 <p>打开cmd，输入 ipconfig/all 查看你要分流的两个网卡/网络适配器的网关ip</p>
@@ -342,6 +384,9 @@
 <p><img src="https://pic.chimaoshu.top/imgs/2020/05/0ba81623e8b3ae78.png" alt="路由表"><br>可以看到路由表规定了不同的目标ip（包括目标的子网掩码）会走不同的网关，所以我们可以用<br>route add 和 route delete 命令对路由表进行删改，至于具体命令用法，百度一大堆，不再赘述，而且我也忘了。</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/">https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/</a> </p>
 ]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
       <tags>
         <tag>深信服</tag>
         <tag>vpn</tag>
@@ -349,12 +394,18 @@
       </tags>
   </entry>
   <entry>
-    <title>filezilla配置ssl证书过程中出现&#39;Failed to load SSL Libraries&#39;、&#39;Cannot create certificate.Failed to initialize SSL library&#39;、&#39;Could not load certificate file: error:02001003:system library:fopen:No such process (0)&#39;</title>
+    <title>filezilla配置ssl证书过程中出现&#39;Failed to load SSL Libraries&#39;、&#39;Cannot create certificate.Failed to initialize SSL library&#39;、&#39;Could not load certificate file: error:02001003:system library:fopen:No such process&#39;</title>
     <url>/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/</url>
-    <content><![CDATA[<p>‘Failed to load SSL Libraries’<br>‘Cannot create certificate.Failed to initialize SSL library’<br>以上两个问题的解决方法：<br>1.系统更新<br>2.卸载干净，然后从官网下载安装最新的版本<br>3.不要用中文版的filezilla server</p>
+    <content><![CDATA[<p>‘Failed to load SSL Libraries’<br>‘Cannot create certificate.Failed to initialize SSL library’</p>
+<a id="more"></a>
+
+<p>以上两个问题的解决方法：<br>1.系统更新<br>2.卸载干净，然后从官网下载安装最新的版本<br>3.不要用中文版的filezilla server</p>
 <p>‘Could not load certificate file: error:02001003:system library:fopen:No such process (0)’<br>解决方法：<br>1.检查证书所在文件夹是否有赋予足够的用户权限<br>2.以管理员身份运行filezilla server<br>3.证书的存放路径不要有中文</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/</a> </p>
 ]]></content>
+      <categories>
+        <category>坑</category>
+      </categories>
       <tags>
         <tag>filezilla</tag>
         <tag>ssl</tag>
@@ -366,13 +417,19 @@
     <url>/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</url>
     <content><![CDATA[<p>今天用到 PyCryptodome 模块的时候，当我用到了 </p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br></pre></td></tr></table></figure>
-<p>的时候，出现了错误：<br>ImportError : cannot import name ‘’DerBitString’’ from ‘’Crypto.Util.asn1’’。<br>找到了<a href="http://program.dengshilong.org/2018/10/11/%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5DerBitString%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">这篇博客</a>和<a href="https://pycryptodome.readthedocs.io/en/latest/src/faq.html#why-do-i-get-the-error-no-module-named-crypto-on-windows" target="_blank" rel="noopener">官方文档</a>，都提到了Windows下同时安装PyCryptodome和PyCrypto会出现这个问题。<br>给出的解决方案是：</p>
+<p>的时候，出现了错误：<br>ImportError : cannot import name ‘’DerBitString’’ from ‘’Crypto.Util.asn1’’。<br>找到了<a href="http://program.dengshilong.org/2018/10/11/%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5DerBitString%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">这篇博客</a>和<a href="https://pycryptodome.readthedocs.io/en/latest/src/faq.html#why-do-i-get-the-error-no-module-named-crypto-on-windows" target="_blank" rel="noopener">官方文档</a>，都提到了Windows下同时安装PyCryptodome和PyCrypto会出现这个问题。</p>
+<a id="more"></a>
+
+<p>给出的解决方案是：</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pip uninstall crypto</span><br><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
 <p>但我并没有安装crypto模块也出现了问题，后来发现只要</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
 <p>重新装一下pycryptodome问题就解决了。</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</a> </p>
 ]]></content>
+      <categories>
+        <category>坑</category>
+      </categories>
       <tags>
         <tag>DerBitString</tag>
         <tag>PyCryptodome</tag>
@@ -380,7 +437,7 @@
       </tags>
   </entry>
   <entry>
-    <title>（详细版）基于frp与v2ray的几种校园网内网穿透的方案</title>
+    <title>（详细）基于frp与v2ray的几种校园网内网穿透的方案</title>
     <url>/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>非零基础请移步<a href="\（简略版）基于frp与v2ray的几种校园网内网穿透的方案\">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
 <p><a href="#0">设备</a></p>
@@ -463,6 +520,9 @@
 <p>如果这个路由器还想用于平时上网，<br>可以自行添加自己平时上网的服务器配置，<br>然后在rules里面添加路由规则。</p>
 <h1 id="end"><a href="#end" class="headerlink" title="end"></a>end</h1><p>本文地址： <a href="https://www.chimaoshu.top/（详细版）基于frp与v2ray的几种校园网内网穿透的方案/">https://www.chimaoshu.top/（详细版）基于frp与v2ray的几种校园网内网穿透的方案/</a> </p>
 ]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
       <tags>
         <tag>v2ray</tag>
         <tag>frp</tag>
@@ -470,7 +530,7 @@
       </tags>
   </entry>
   <entry>
-    <title>（简略版）基于frp与v2ray的几种校园网内网穿透的方案</title>
+    <title>（简略）基于frp与v2ray的几种校园网内网穿透的方案</title>
     <url>/%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>如果是零基础，请移步<a href="\（详细版）基于frp与v2ray的几种校园网内网穿透的方案\">（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
 <p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
@@ -542,9 +602,11 @@
 <p>（如果这个路由器不想用于平时上网，可以不用勾选）<br><img src="https://img-blog.csdnimg.cn/20200312151236279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="v2ray"><br>然后进行config.json的配置:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是透明代理的inbound，平时连路由器上网的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transparent"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 1099,</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"dokodemo-door"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"network"</span>: <span class="string">"tcp,udp"</span>,</span><br><span class="line">        <span class="string">"followRedirect"</span>: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"sniffing"</span>: &#123;</span><br><span class="line">        <span class="string">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"destOverride"</span>: [<span class="string">"http"</span>, <span class="string">"tls"</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="string">"sockopt"</span>: &#123;</span><br><span class="line">          <span class="string">"tproxy"</span>: <span class="string">"tproxy"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是校外跳进来的inbound，校外的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"vmess-mapping"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 10809, // 本地监听端口</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"id"</span>: <span class="string">"123456"</span>, // 用户ID（相当于ssr中的密码），客户端与服务器只要保持相同即可</span><br><span class="line">            <span class="string">"alterId"</span>: 64 //客户端与服务端须保持相同</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"direct"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //如果这个路由器还想用于平时上网，</span><br><span class="line">      //可以自行添加自己平时kx上网的配置，</span><br><span class="line">      //然后在rules里面添加路由规则</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"routing"</span>: &#123;</span><br><span class="line">    <span class="string">"domainStrategy"</span>: <span class="string">"IPOnDemand"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果这个路由器还想用于平时上网，<br>可以自行添加自己平时上网的服务器配置，<br>然后在rules里面添加路由规则。</p>
-<p>更多细节请戳<a href="\2020\03\12\（详细版）基于frp与v2ray的几种校园网内网穿透的方案\">很详细的版本</a></p>
 <p>本文地址： <a href="https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/">https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/</a> </p>
 ]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
       <tags>
         <tag>v2ray</tag>
         <tag>frp</tag>
@@ -554,10 +616,11 @@
   <entry>
     <title>myfirstpage</title>
     <url>/myfirstpage/</url>
-    <content><![CDATA[<p>这波<br>你只看到了第二层<br>而你把我想成了第一层<br>实际上<br>我<br>是第五层</p>
+    <content><![CDATA[<p>my first page</p>
+<p>本文地址： <a href="https://www.chimaoshu.top/myfirstpage/">https://www.chimaoshu.top/myfirstpage/</a> </p>
 ]]></content>
       <tags>
-        <tag>WDNMD</tag>
+        <tag>test</tag>
       </tags>
   </entry>
   <entry>
@@ -576,6 +639,7 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>本文地址： <a href="https://www.chimaoshu.top/hello-world/">https://www.chimaoshu.top/hello-world/</a> </p>
 ]]></content>
   </entry>
 </search>

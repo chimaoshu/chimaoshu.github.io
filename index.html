@@ -1,134 +1,46 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.chimaoshu.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="sqlite,sql,入门," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="简单的sqlite入门教程安装进入sqlite的官网：https:&#x2F;&#x2F;www.sqlite.org&#x2F;index.html点击download：下载后解压。 注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。 使用解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令： 1sqlite3 student">
-<meta property="og:type" content="article">
-<meta property="og:title" content="非常简单的sqlite入门教程">
-<meta property="og:url" content="https://www.chimaoshu.top/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/index.html">
-<meta property="og:site_name" content="chimaoshu">
-<meta property="og:description" content="简单的sqlite入门教程安装进入sqlite的官网：https:&#x2F;&#x2F;www.sqlite.org&#x2F;index.html点击download：下载后解压。 注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。 使用解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令： 1sqlite3 student">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2020-10-24T10:24:18.000Z">
-<meta property="article:modified_time" content="2020-10-24T11:33:21.017Z">
-<meta property="article:author" content="Jt10n">
-<meta property="article:tag" content="sqlite">
-<meta property="article:tag" content="sql">
-<meta property="article:tag" content="入门">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="chimaoshu&#39;s blog">
+<meta property="og:url" content="https://www.chimaoshu.top/index.html">
+<meta property="og:site_name" content="chimaoshu&#39;s blog">
+<meta property="article:author" content="Jch4n">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center">
+
+<link rel="canonical" href="https://www.chimaoshu.top/">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '6.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-Hans'
   };
 </script>
 
-
-
-  <link rel="canonical" href="https://www.chimaoshu.top/非常简单的sqlite入门教程/"/>
-
-
-
-
-
-  <title>chimaoshu</title>
+  <title>chimaoshu's blog</title>
   
 
 
@@ -136,163 +48,170 @@
 
 
 
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
 
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+</head>
 
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"> <div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">chimaoshu</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">chimaoshu's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">coding 4 fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
+
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
+  <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
 
-      
-    </ul>
-  
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
-  
+  </li>
+        <li class="menu-item menu-item-friend-links">
+
+    <a href="/friend-links/" rel="section"><i class="fa fa-fw fa-users"></i>friend links</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
 </nav>
 
 
 
- </div>
+
+</div>
     </header>
 
-    <main id="main" class="main">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          <div id="content" class="content">
+          
+
+          <div class="content index posts-expand">
             
-  <section id="posts" class="posts-expand">
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/" itemprop="url">STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/" class="post-title-link" itemprop="url">STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-19T15:58:14+08:00">2020-12-19</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-12-19 15:58:14" itemprop="dateCreated datePublished" datetime="2020-12-19T15:58:14+08:00">2020-12-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:02:23" itemprop="dateModified" datetime="2021-02-22T21:02:23+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -300,231 +219,83 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h1 id="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"><a href="#STL中红黑树的用法探究及使用红黑树进行多字段索引的方法" class="headerlink" title="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"></a>STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在造轮子，需要造分析型数据库。在关于热数据的设计中，对于到来的每一条热数据，我需要使用红黑树来维持热数据在内存中的有序索引。后来使用了STL中的红黑树，这个过程遇到了一大堆坑，网上能找到的资料又很少，所以记录了一下。</p>
+          <h1 id="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"><a href="#STL中红黑树的用法探究及使用红黑树进行多字段索引的方法" class="headerlink" title="STL中红黑树的用法探究及使用红黑树进行多字段索引的方法"></a>STL中红黑树的用法探究及使用红黑树进行多字段索引的方法</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近在造轮子，需要造分析型数据库。在关于热数据的设计中，对于到来的每一条热数据，我需要使用红黑树来维持热数据在内存中的有序索引。后来使用了STL中的红黑树，这个过程遇到了一大堆坑，网上能找到的资料又很少，所以记录了一下。</p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>我需要维护多个字段的索引，比如这么一张图，我需要在红黑树上维护对于b、c、d三个字段的索引：</p>
 <p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
 <p>上图出自知乎问题<a href="https://www.zhihu.com/question/304037770/answer/1287557228" target="_blank" rel="noopener">mysql联合索引的B+树到底张什么样子啊？</a>下@<a href="https://www.zhihu.com/people/dawn-90-70" target="_blank" rel="noopener">Limit</a>的一个回答，这是innodb引擎下使用B+树的解决方法。但由于我现在维护的是热数据，并不需要进行磁盘IO，且只需要支持查询和插入的操作，所以我需要用红黑树来解决此问题。</p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>我看了一些项目中的红黑树，比如Nginx、Redis、Linux中的红黑树，这些红黑树都是使用c语言写的，和c++代码风格迥异，后来我就想到了STL中的红黑树。STL中的map、set、multiset等容器的底层实现都是红黑树嘛，所以STL内当然也是有红黑树的代码了。</p>
-<p><a href="https://zhuanlan.zhihu.com/p/87469768" target="_blank" rel="noopener">C++ STL源码剖析之红黑树</a>和<a href="https://zhuanlan.zhihu.com/p/87487629" target="_blank" rel="noopener">C++ STL源码剖析之set与multiset那些事</a>这两篇文章帮了我很多，在第一篇文章的最后，作者提到了STL中红黑树的使用方法：</p>
-<blockquote>
-<p>引入头文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;#include&lt;map&gt;或者&lt;set&gt;</span><br></pre></td></tr></table></figure>
-
-<p>类定义：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;_Rb_tree&lt;int, int, _Identity&lt;int&gt;, less&lt;int&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
-
-<p>然后调用相应函数即可。</p>
-</blockquote>
-<p>其中有一些很关键的方法，比如插入操作：<br><img src="https://pic2.zhimg.com/80/v2-4964fbebff48fc531c5b8d71baca589c_720w.png" alt="插入操作"></p>
-<p>其中与equal相关的方法，适用于红黑树中允许出现相同key值的情况，比如STL中的multiset；而unique相关方法适用于红黑树中不允许出现相同键值的情况，比如map或者set。</p>
-<p>而带有下划线的方法，很容易让人联想到类中私有函数的命名规则。他们是函数内部实现用到的，因此我们不需要调用带有末尾下划线的方法。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br><span class="line"></span><br><span class="line">itree._M_insert_equal(<span class="number">3</span>);</span><br><span class="line">itree._M_insert_equal(<span class="number">4</span>);</span><br><span class="line">itree._M_insert_equal(<span class="number">1</span>);</span><br><span class="line">itree._M_insert_equal(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> it = itree.begin(); it != itree.end(); it++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *it &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
-
-<p>使用迭代器对map遍历的过程、或者说对红黑树遍历的过程，实际上是对红黑树做中序遍历，输出的顺序自然是从小到大的排列顺序。</p>
-<p>剩下的还有一些方法，比如find、erase之类的，都和其他STL容器的用法差不多，不再赘述。</p>
-<p><strong>上面只是最基本的红黑树用法，但实际上我们完全不知道_Rb_tree实例化时那一大堆模板参数的含义，就直接拿来用了，下面分析这些模板参数的含义。</strong></p>
-<p>首先看STL源代码中的：<strong>stl_tree.h</strong></p>
-<p>其中红黑树的模板参数定义如下，一共有5个模板参数：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Key, <span class="keyword">typename</span> _Val, <span class="keyword">typename</span> _KeyOfValue,</span><br><span class="line">         <span class="keyword">typename</span> _Compare, <span class="keyword">typename</span> _Alloc = allocator&lt;_Val&gt; &gt;</span><br><span class="line">  class _Rb_tree</span><br><span class="line">  &#123;</span><br><span class="line">  ........</span><br></pre></td></tr></table></figure>
-
-<p>在类的public定义中的typedef告诉了我们，前两个参数的含义其实是key和value：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-c7ad8d05687b09a4c41f17f10580e553_720w.png" alt="key和value"></p>
-<p>第三个参数<strong>_KeyOfValue</strong>的含义花了我一整个上午和下午的时间才弄懂。其实<strong>_KeyOfValue</strong>通过重载函数调用运算符，即()，规定了通过value取得key的方式。</p>
-<p>注意这里的key和value和map中的key和value很类似，但是稍微有些不同。我一开始就用map中的key-value的方式理解红黑树的key和value，导致代码一直编译不过。</p>
-<p>这里红黑树的key其实是包含在value里面的，而map中的key和value是分开的。这么说可能有点抽象，举个例子，如果我们定义了一个map实例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::<span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">char</span>&gt; m;</span><br></pre></td></tr></table></figure>
-
-<p>那么在map中key就是int类型的，而value是char类型的，而在这个map底层的红黑树，它的key和value（也就是红黑树的前两个模板参数<strong>_Key</strong>和<strong>_Val</strong>）将会是<strong>int</strong>和<strong>pair&lt;int,  char&gt;</strong>。</p>
-<p>这点我们可以通过阅读map的源代码（stl_map.h）发现：</p>
-<p><img src="https://pic2.zhimg.com/80/v2-0adb789a8ff439d83f9fd978fd31d8d4_720w.png" alt="map中的模板参数"></p>
-<p><strong>std::map&lt;int, char&gt;</strong>的参数就会如上图所示，然后接下来我们再观察map实例化红黑树所用的模板参数。</p>
-<p>首先注意这里对value_type的定义，<strong>std::map&lt;int, char&gt;</strong>的<strong>value_type</strong>将会是<strong>std::pair&lt;int, char&gt;</strong></p>
-<p><img src="https://pic2.zhimg.com/80/v2-fb433f411a189eb609aba3345b5962fe_720w.png" alt="value_type"></p>
-<p>然后在下面就是map中对红黑树的定义：</p>
-<p><img src="https://pic2.zhimg.com/80/v2-8609862b32723ee3da74878dac4ff1e5_720w.png" alt="map对红黑树的定义"></p>
-<p>注意这里传入的是pair，而不是char本身。所以说红黑树的key是包含在value中的。我在这个地方被坑了好久，一直以为这里的key-value定义和map中一样，导致代码一直编译不过。</p>
-<p>既然我们知道key是包含在value中的了，那么第三个参数<strong>_KeyOfValue</strong>其实就规定如何从value中取得key的过程。我们看回最初的那个红黑树的定义：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
-
-<p>这里第三个参数使用了<strong>_Identity</strong>，是什么意思呢？其实<strong>_Identity</strong>是“<strong>stl_function.h</strong>”中定义的一个结构体：</p>
-<p><img src="https://pic3.zhimg.com/80/v2-63014f2c4682cabbbbddd816eb31adc3_720w.png" alt="_Identity"></p>
-<p>其中的unary_function是一个结构体，它定义了一个二元运算的输入类与输出类：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  This is one of the @link functors functor base classes@endlink.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Arg, <span class="keyword">typename</span> _Result&gt;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">unary_function</span></span></span><br><span class="line"><span class="class">  &#123;</span></span><br><span class="line">    <span class="comment">/// @c argument_type is the type of the argument</span></span><br><span class="line">    <span class="keyword">typedef</span> _Arg 	argument_type;   </span><br><span class="line"></span><br><span class="line">    <span class="comment">/// @c result_type is the return type</span></span><br><span class="line">    <span class="keyword">typedef</span> _Result 	result_type;  </span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
-
-<p>但其实这里可以不去管unary_function，因为它的出现与否和红黑树没啥关系。我们要的其实是<strong>_Identity</strong>中的重载函数调用运算符（即对()的重载）。_Identity中对()进行了重载，最终的结果就是，返回了传入的参数本身。那么</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
-
-<p>中的<strong>_Identity<int></strong>的含义其实就很明显了，他的意思就是，当我们插入1：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">itree._M_insert_equal(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<p>那么实际上1本身既是key也是value（map中的value含义）。注意红黑树中的key用于对节点进行排序，而value则是我们要存储的值。</p>
-<p>我们回到map中对第三个模板参数的定义：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> _Rb_tree&lt;key_type, value_type, _Select1st&lt;value_type&gt;,</span><br><span class="line">	key_compare, _Pair_alloc_type&gt; _Rep_type;</span><br></pre></td></tr></table></figure>
-
-<p>这里第三个模板参数用的是： <strong>_Select1st<value_type></strong>，我们不妨看一下它的定义：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Pair&gt;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">Select1st</span></span></span><br><span class="line"><span class="class">    :</span> <span class="keyword">public</span> unary_function&lt;_Pair, <span class="keyword">typename</span> _Pair::first_type&gt;</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">typename</span> _Pair::first_type&amp;</span><br><span class="line">      <span class="keyword">operator</span>()(_Pair&amp; __x) <span class="keyword">const</span></span><br><span class="line">      &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">const</span> <span class="keyword">typename</span> _Pair::first_type&amp;</span><br><span class="line">      <span class="keyword">operator</span>()(<span class="keyword">const</span> _Pair&amp; __x) <span class="keyword">const</span></span><br><span class="line">      &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __cplusplus &gt;= 201103L</span></span><br><span class="line">      <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Pair2&gt;</span><br><span class="line">        <span class="keyword">typename</span> _Pair2::first_type&amp;</span><br><span class="line">        <span class="keyword">operator</span>()(_Pair2&amp; __x) <span class="keyword">const</span></span><br><span class="line">        &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Pair2&gt;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">typename</span> _Pair2::first_type&amp;</span><br><span class="line">        <span class="keyword">operator</span>()(<span class="keyword">const</span> _Pair2&amp; __x) <span class="keyword">const</span></span><br><span class="line">        &#123; <span class="keyword">return</span> __x.first; &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
-
-<p>上面的unary_function与红黑树无关，可以不管，只看对运算符的重载。仔细一看会发现，其实他就是传入一个pair，然后return pair.first，仅此而已。我们前面说到第三个模板参数其实是规定了从value中取出key的过程，当我们使用map&lt;int,char&gt;时，获得key的过程其实就是从pair&lt;int,char&gt;中取出第一个数的过程。</p>
-<p>有<strong>_Select1st</strong>，自然也就有<strong>_Select2nd</strong>，_Select2nd的操作当然就是取出第二个元素。这样一来第三个模板参数<strong>_KeyOfValue</strong>就很清晰了，他其实就是一个结构体，然后对()运算符进行了重载，规定了从value中取出key的方法。当你在STL的源代码中看到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_KeyOfValue()(value)</span><br></pre></td></tr></table></figure>
-
-<p>其实就是通过value获取key的过程了。注意，如果要自己写第三个模板元参数，那么在重载()符号时，记得返回值必须是const类型的引用，比如const int&amp;，关于这点可以参考：<a href="https://www.cnblogs.com/sandychn/p/12334194.html" target="_blank" rel="noopener">https://www.cnblogs.com/sandychn/p/12334194.html</a> ，这篇文章也帮了我很多。</p>
-<p>最后是第四个参数：_Compare</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Key, <span class="keyword">typename</span> _Val, <span class="keyword">typename</span> _KeyOfValue,</span><br><span class="line">         <span class="keyword">typename</span> _Compare, <span class="keyword">typename</span> _Alloc = allocator&lt;_Val&gt; &gt;</span><br></pre></td></tr></table></figure>
-
-<p>顾名思义，这个参数自然和大小比较有关：当我们使用：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">int</span>, <span class="keyword">int</span>, _Identity&lt;<span class="keyword">int</span>&gt;, less&lt;<span class="keyword">int</span>&gt;&gt; itree;</span><br></pre></td></tr></table></figure>
-
-<p>其实这里的 less<int>就是类似前面说的那些结构体，重载了()运算符，传入两个参数a、b，返回 a &lt; b的布尔值。</p>
-<p>回头再看看map的源代码，可以看到map的默认大小比较方法其实也是less：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-e9235583ba36c4e3ec12780360d0eeef_720w.png" alt="less"></p>
-<p>附上less的代码，参考前面所说的，这里应该不难看懂：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// One of the @link comparison_functors comparison functors@endlink.</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">less</span> :</span> <span class="keyword">public</span> binary_function&lt;_Tp, _Tp, <span class="keyword">bool</span>&gt;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">bool</span></span><br><span class="line">    <span class="keyword">operator</span>()(<span class="keyword">const</span> _Tp&amp; __x, <span class="keyword">const</span> _Tp&amp; __y) <span class="keyword">const</span></span><br><span class="line">    &#123; <span class="keyword">return</span> __x &lt; __y; &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
-
-<p>当然这里我们也可以自己写一套大小比较逻辑。</p>
-<p>红黑树的最后一个参数<strong>_Alloc</strong>和内存分配有关，一般我们保持其默认值就可以了。</p>
-<p>至此，我们分析了红黑树实例化时不同模板元参数的含义，现在我们可以试试解决文章最开头提出的问题：</p>
-<p>怎么在红黑树上构建图中所示b、c、d字段的索引：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
-<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>根据我们分析的内容，我们首先需要一个结构体来存储上述所示的三个索引值：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">keys</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">int</span> b;</span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line"></span><br><span class="line">    keys(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span><br><span class="line">        : a(a), b(b), c(c)&#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>然后自定义一套比较规则：优先比较a、其次比较b、最后比较c，所以我简单地写了一大堆很笨的嵌套if：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">my_less</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">bool</span></span><br><span class="line">    <span class="keyword">operator</span>()(<span class="keyword">const</span> keys &amp;x, <span class="keyword">const</span> keys &amp;y) <span class="keyword">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (x.a &lt; y.a)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (x.a &gt; y.a)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (x.b &lt; y.b)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (x.b &gt; y.b)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (x.c &lt; y.c)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>然后就可以实例化一个类了：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_Rb_tree&lt;<span class="keyword">const</span> keys, </span><br><span class="line">    pair&lt;<span class="keyword">const</span> keys, <span class="built_in">std</span>::<span class="built_in">string</span>&gt;, </span><br><span class="line">    _Select1st&lt;pair&lt;<span class="keyword">const</span> keys, <span class="keyword">char</span>&gt; &gt;, </span><br><span class="line">    my_less &gt; itree;</span><br></pre></td></tr></table></figure>
-
-<p>然后把我们前面的参数插入进去：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-3cd55671e26d7795aea719ed8e1c11f1_720w.png" alt="图源https://www.zhihu.com/question/304037770/answer/1287557228"></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">13</span>,<span class="number">12</span>,<span class="number">4</span>),<span class="string">"dll"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">1</span>,<span class="number">5</span>,<span class="number">4</span>),<span class="string">"doc"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">13</span>,<span class="number">16</span>,<span class="number">5</span>),<span class="string">"img"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">12</span>,<span class="number">14</span>,<span class="number">3</span>),<span class="string">"xml"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">12</span>,<span class="number">14</span>,<span class="number">3</span>),<span class="string">"txt"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">13</span>,<span class="number">16</span>,<span class="number">1</span>),<span class="string">"txt"</span>));</span><br><span class="line">itree._M_insert_unique(pair&lt;<span class="keyword">const</span> keys, <span class="built_in">string</span>&gt;(keys(<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>),<span class="string">"pdf"</span>));</span><br></pre></td></tr></table></figure>
-
-<p>最后使用迭代器遍历输出：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> it = itree.begin(); it != itree.end(); it++)</span><br><span class="line">&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; (*it).first.a &lt;&lt; <span class="string">' '</span> &lt;&lt; (*it).first.b &lt;&lt; <span class="string">' '</span></span><br><span class="line">                  &lt;&lt; (*it).first.c &lt;&lt; <span class="string">' '</span> &lt;&lt; (*it).second &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1 5 4 doc</span><br><span class="line">5 3 6 pdf</span><br><span class="line">12 14 3 xml</span><br><span class="line">13 12 4 dll</span><br><span class="line">13 16 1 txt</span><br><span class="line">13 16 5 img</span><br></pre></td></tr></table></figure>
-
-<p>最后的结果完全我想要的顺序：优先按第一个索引排列，相同值看第二个索引，以此类推。</p>
-<p>这部分内容坑了我好久，在网上能找到的资料也不多，所以我把这个过程记录下来了，感谢给我提供思路的那些文章和回答。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://zhuanlan.zhihu.com/p/87469768" target="_blank" rel="noopener">C++ STL源码剖析之红黑树 - Francis的文章 - 知乎</a> </p>
-<p><a href="https://zhuanlan.zhihu.com/p/87487629" target="_blank" rel="noopener">C++ STL源码剖析之set与multiset那些事 - Francis的文章 - 知乎</a></p>
-<p><a href="https://www.zhihu.com/question/304037770/answer/1287557228" target="_blank" rel="noopener">mysql联合索引的B+树到底张什么样子啊？ - Limit的回答 - 知乎</a></p>
-<p><a href="https://www.cnblogs.com/sandychn/p/12334194.html" target="_blank" rel="noopener">STL中_Rb_tree的探索</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/STL中红黑树的用法探究/">https://www.chimaoshu.top/STL中红黑树的用法探究/</a> </p>
-
-          
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/STL%E4%B8%AD%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%94%A8%E6%B3%95%E6%8E%A2%E7%A9%B6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" itemprop="url">使用DDNS脚本对阿里云提供的域名进行动态解析</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="post-title-link" itemprop="url">使用DDNS脚本对阿里云提供的域名进行动态解析</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-18T22:00:34+08:00">2020-12-18</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-12-18 22:00:34" itemprop="dateCreated datePublished" datetime="2020-12-18T22:00:34+08:00">2020-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:01:33" itemprop="dateModified" datetime="2021-02-22T21:01:33+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -532,127 +303,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h1 id="使用DDNS脚本对阿里云提供的域名进行动态解析"><a href="#使用DDNS脚本对阿里云提供的域名进行动态解析" class="headerlink" title="使用DDNS脚本对阿里云提供的域名进行动态解析"></a>使用DDNS脚本对阿里云提供的域名进行动态解析</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前用bitwarden_rs的docker容器+Nginx反向代理，并设置了https，把bitwarden服务器部署到了自己的电脑上，在校园网中提供服务–只要我的手机连上学校的wifi，就可以访问到我电脑上的bitwarden服务、</p>
+          <h1 id="使用DDNS解析脚本对阿里云提供的域名进行动态解析"><a href="#使用DDNS解析脚本对阿里云提供的域名进行动态解析" class="headerlink" title="使用DDNS解析脚本对阿里云提供的域名进行动态解析"></a>使用DDNS解析脚本对阿里云提供的域名进行动态解析</h1><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前用bitwarden_rs的docker容器+Nginx反向代理，并设置了https，把bitwarden服务器部署到了自己的电脑上，在校园网中提供服务–只要我的手机连上学校的wifi，就可以访问到我电脑上的bitwarden服务、</p>
 <p><a href="https://zhuanlan.zhihu.com/p/158794535" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/158794535</a></p>
 <p>但是我遇到了一个麻烦的问题，就是电脑在校园网的ip偶尔会发生变化，每次变化就要手动登陆阿里云去修改DNS的解析ip地址，这很麻烦。所以我决定使用DDNS来完成解析ip的动态切换。</p>
-<p>推荐Github上这个项目：<br><a href="https://github.com/NewFuture/DDNS" target="_blank" rel="noopener">https://github.com/NewFuture/DDNS</a><br>支持许多服务商的API，功能也比较完善。<br><img src="https://img-blog.csdnimg.cn/20201218132341742.png" alt="支持的DNS服务商"><br>以阿里云为例，进行介绍。大概的思路就是创建一个RAM子账户，然后授予这个账户通过API解析DNS的权限，最后把账户的ACCESS_ID和ACCESS_KEY复制到配置文件中。</p>
-<p><a href="https://help.aliyun.com/document_detail/28637.html" target="_blank" rel="noopener">https://help.aliyun.com/document_detail/28637.html</a><br>按照文档给出的方式，创建子账号，注意创建子账号的时候需要选择“编程访问”。<br><img src="https://img-blog.csdnimg.cn/20201215131413482.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201218213338242.png" alt="在这里插入图片描述"></p>
-<p>之后给RAM子账号授权，选择两个管理DNS的权限：<br><img src="https://img-blog.csdnimg.cn/20201218212451329.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201218212933821.png" alt="在这里插入图片描述"><br>之后来到Github项目的release页，选择exe或者python都可以，配置的参数可以看官方文档，需要注意的是，id填的是你的ACCESS_ID，token填的是你的ACCESS_TOKEN（以阿里云为例）。</p>
-<p>最后在bitwarden启动前，先调用脚本对DNS进行解析设定。这样每次启动bitwarden就不用一直手动修改域名解析设定了。</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ProcessName</span> = <span class="string">"docker desktop"</span></span><br><span class="line"><span class="keyword">if</span>((<span class="built_in">get-process</span> <span class="variable">$ProcessName</span> <span class="literal">-ErrorAction</span> SilentlyContinue) <span class="operator">-eq</span> <span class="variable">$Null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Docker is not running,strating...."</span> </span><br><span class="line">    start <span class="string">"Docker Desktop"</span></span><br><span class="line">    sleep <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123; </span><br><span class="line">    echo <span class="string">"Dcoker is running."</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">docker start bitwarden</span><br><span class="line"></span><br><span class="line">echo <span class="string">"resolve DNS address...."</span></span><br><span class="line">.\DNS.lnk</span><br><span class="line"></span><br><span class="line">echo <span class="string">"start Nginx..."</span></span><br><span class="line">.\nginx</span><br><span class="line"></span><br><span class="line">echo <span class="string">"ok"</span></span><br></pre></td></tr></table></figure>
-
-
-<p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> </p>
-
-          
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E4%BD%BF%E7%94%A8DDNS%E8%84%9A%E6%9C%AC%E5%AF%B9%E9%98%BF%E9%87%8C%E4%BA%91%E5%9F%9F%E5%90%8D%E8%BF%9B%E8%A1%8C%E5%8A%A8%E6%80%81%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" itemprop="url">非常简单的sqlite入门教程</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">非常简单的sqlite入门教程</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-24T18:24:18+08:00">2020-10-24</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-10-24 18:24:18" itemprop="dateCreated datePublished" datetime="2020-10-24T18:24:18+08:00">2020-10-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:03:40" itemprop="dateModified" datetime="2021-02-22T21:03:40+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -660,150 +386,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h1 id="简单的sqlite入门教程"><a href="#简单的sqlite入门教程" class="headerlink" title="简单的sqlite入门教程"></a>简单的sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a><br>点击download：<br><img src="https://img-blog.csdnimg.cn/20201024182850910.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="sqlite下载"><br><img src="https://img-blog.csdnimg.cn/20201024183129124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>下载后解压。</p>
-<p>注：如果想要在任意文件目录都可以使用sqlite，请把sqlite所在的文件夹，也就是你解压的文件夹，加入到环境变量path中。</p>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>解压后在解压文件夹下打开cmd（或者打开cmd切换到解压文件夹），输入命令：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlite3 students.db</span><br></pre></td></tr></table></figure>
-<p>表示使用sqlite3.exe来连接一个叫students的databse（db）。</p>
-<p>然后输入：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">create table <span class="title">class1</span> <span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">	ID	  <span class="keyword">int</span>		primary key 	<span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="function"><span class="params">	name  <span class="built_in">text</span>						<span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="function"><span class="params">	score <span class="keyword">int</span> 						<span class="keyword">not</span> null</span></span></span><br><span class="line"><span class="function"><span class="params">	)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>这个过程发生了什么？</p>
-<p>你在刚才打开的数据库中创建了一张表，表的名字是class1，定义表中的每一行的数据（即每一个学生的信息）分别为：ID、name、score。</p>
-<p>其中ID的类型是int，而name的类型为text，socre的类型为int。后面的not null 表示不允许他们的值为空。而ID后面有个primary key，表示数据在存储时默认会以ID从小到大的顺序进行存储。</p>
-<p>现在你可以输入</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.tables</span><br></pre></td></tr></table></figure>
-<p>来查看你刚刚建立的那张表，输入后你会看到你刚刚创建的这张表的名字。</p>
-<p>接下来我们尝试把这三个学生的数据录入存到表中：<br>姓名：张三      序号：1     分数：50<br>姓名：李四         序号：2     分数：80<br>姓名：王五      序号：3     分数：100</p>
-<p>输入这个指令：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into class1 (ID, name, score) values(1, '张三', 50);</span><br></pre></td></tr></table></figure>
-<p>这行指令的意思是，把ID=1，name=’张三’,score=50的信息，插入到了class1这个表中。</p>
-<p>按下回车键，张三的信息就会被录入到数据库中了。如何查看此时的数据库中的数据呢？</p>
-<p>你只需要：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from class1;</span><br></pre></td></tr></table></figure>
-<p>这行指令可以查看整个class1表的所有数据。</p>
-<p>类似的，你不妨试一试把李四和王五的数据也录入到数据库。</p>
-<p>我们知道了”select * from class1;”可以查看整个数据库的所有数据，那么如何只查看李四一人的数据呢？<br>你需要：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from class1 where name='王五';</span><br></pre></td></tr></table></figure>
-<p>这时候你就可以从class1中取出name=’王五’的人的数据了。<br>那么前面这个星号*是什么意思呢？<br>他表示取出王五的所有数据（也就是ID、姓名、分数）。</p>
-<p>如果我只需要取出王五的分数，不需要其他数据，那么我可以：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select score from class1 where name='王五';</span><br></pre></td></tr></table></figure>
-<p>如果我要取出王五的ID和分数，那么我可以：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select ID,score from class1 where name='王五';</span><br></pre></td></tr></table></figure>
-<p>如果我要从class1这个表中删除王五的数据，那么我可以：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete from class1 where name='王五'</span><br></pre></td></tr></table></figure>
-<p>其实SQL语句的形式很接近自然语言，所以我们很容易看懂每句话的意思。至此，你已经学会了基本的创建、增删、查询的操作。</p>
-<p>进一步学习可以参考：<a href="https://www.runoob.com/sqlite/sqlite-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/sqlite/sqlite-tutorial.html</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/非常简单的sqlite入门教程/">https://www.chimaoshu.top/非常简单的sqlite入门教程/</a> </p>
-
-          
+          <h1 id="写给新人的简单sqlite入门教程"><a href="#写给新人的简单sqlite入门教程" class="headerlink" title="写给新人的简单sqlite入门教程"></a>写给新人的简单sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/" itemprop="url">DS栈—波兰式，逆波兰式</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/" class="post-title-link" itemprop="url">DS栈—波兰式，逆波兰式</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-06T00:21:17+08:00">2020-10-06</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-10-06 00:21:17" itemprop="dateCreated datePublished" datetime="2020-10-06T00:21:17+08:00">2020-10-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:01:49" itemprop="dateModified" datetime="2021-02-22T21:01:49+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OJ/" itemprop="url" rel="index"><span itemprop="name">OJ</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -811,147 +467,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h1 id="DS栈—波兰式，逆波兰式"><a href="#DS栈—波兰式，逆波兰式" class="headerlink" title="DS栈—波兰式，逆波兰式"></a>DS栈—波兰式，逆波兰式</h1><h2 id="某校数据结构课一道OJ题"><a href="#某校数据结构课一道OJ题" class="headerlink" title="某校数据结构课一道OJ题"></a>某校数据结构课一道OJ题</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>表达式有三种表示方法，分别为：</p>
+          <h1 id="波兰式，逆波兰式"><a href="#波兰式，逆波兰式" class="headerlink" title="波兰式，逆波兰式"></a>波兰式，逆波兰式</h1><h2 id="某校数据结构课一道OJ题"><a href="#某校数据结构课一道OJ题" class="headerlink" title="某校数据结构课一道OJ题"></a>某校数据结构课一道OJ题</h2><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>表达式有三种表示方法，分别为：</p>
 <p>前缀表示(波兰式)：运算符+操作数1+操作数2</p>
 <p>中缀表示：操作数1+运算符+操作数2</p>
-<p>后缀表示(逆波兰式)：操作数1+操作数2+运算符</p>
-<p>例如：a +b * (c -d ) - e/f</p>
-<p>波兰式：-+a*b-cd/ef   （运算符在操作数的前面，用递归计算波兰式）</p>
-<p>中缀式：a+b*c-d-e/f  </p>
-<p>逆波兰式：abcd-*+ef/  （运算符在操作数的后面，用栈计算逆波兰式）</p>
-<p>​    中缀表示就是原表达式去掉扣号。    </p>
-<p>根据表达式求波兰式、逆波兰式都是教材第三章表达式求值的思想。   </p>
-<p>​    求波兰式，需要操作数栈(注意不是计算结果入栈，有计算式入栈)，运算符栈。区别在于从后往前扫描表达式，‘(’ 换成’)’,’(‘换成‘)’。栈顶运算符优先级&gt;新读入运算符优先级出栈，表3.1中的相同运算符优先级&gt;（从左往右计算）改为&lt;，例如栈顶为‘+‘，新读入的为‘+’，则栈顶优先级&lt;新读入的优先级。</p>
-<p>求逆波兰式，只需要运算符栈。操作数直接输出，操作符按表3.1优先级顺序出栈，输出。</p>
-<p>​    输入表达式，求其波兰式和逆波兰式。</p>
-<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p> 测试次数</p>
-<p>每组测试数据一行，一个合法表达式</p>
-<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p> 对每组测试数据，输出两行</p>
-<p>第一行，表达式的波兰表示</p>
-<p>第二行，表达式的逆波兰表示</p>
-<p>不同组测试数据间以空行分隔。</p>
-<h2 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">4+2*3-10&#x2F;5</span><br><span class="line">12+3*5+(2+10)*5</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\- + 4 * 2 3 &#x2F; 10 5</span><br><span class="line">4 2 3 * + 10 5 &#x2F; -</span><br><span class="line"></span><br><span class="line">+ + 12 * 3 5 * + 2 10 5</span><br><span class="line">12 3 5 * + 2 10 + 5 * +</span><br></pre></td></tr></table></figure>
-
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> space <span class="meta-string">' '</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getPriority</span><span class="params">(<span class="keyword">char</span> a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (a)</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'*'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'/'</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'+'</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'-'</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'('</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">')'</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isNumber</span><span class="params">(<span class="keyword">char</span> temp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (temp != <span class="string">'+'</span> &amp;&amp; temp != <span class="string">'-'</span> &amp;&amp; temp != <span class="string">'*'</span> &amp;&amp; temp != <span class="string">'/'</span> &amp;&amp; temp != <span class="string">'('</span> &amp;&amp; temp != <span class="string">')'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 逆波兰式只要一个运算符栈就可以，数字直接输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reservePolish</span><span class="params">(<span class="built_in">string</span> expression)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; operatorStack; <span class="comment">// 运算符栈</span></span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> theLastCharactorIsNumber = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">bool</span> theFirst = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; expression.<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> ch = expression[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'+'</span> || ch == <span class="string">'-'</span> || ch == <span class="string">'*'</span> || ch == <span class="string">'/'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (operatorStack.empty() || operatorStack.top() == <span class="string">'('</span>)</span><br><span class="line">                operatorStack.push(ch);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 逆波兰式这里有=，而波兰式没有=</span></span><br><span class="line">                <span class="keyword">while</span> (getPriority(operatorStack.top()) &gt;= getPriority(ch))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!theFirst)</span><br><span class="line">                        <span class="built_in">cout</span> &lt;&lt; space;</span><br><span class="line"></span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; operatorStack.top();</span><br><span class="line">                    operatorStack.pop();</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (operatorStack.empty())</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                operatorStack.push(ch);</span><br><span class="line">            &#125;</span><br><span class="line">            theLastCharactorIsNumber = <span class="literal">false</span>;</span><br><span class="line">            theFirst = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'('</span>) <span class="comment">// 这个不能做first</span></span><br><span class="line">        &#123;</span><br><span class="line">            operatorStack.push(ch);</span><br><span class="line">            theLastCharactorIsNumber = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">')'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (!operatorStack.empty())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (operatorStack.top() == <span class="string">'('</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    operatorStack.pop();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (!theFirst)</span><br><span class="line">                        <span class="built_in">cout</span> &lt;&lt; space;</span><br><span class="line"></span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; operatorStack.top();</span><br><span class="line">                    operatorStack.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            theLastCharactorIsNumber = <span class="literal">false</span>;</span><br><span class="line">            theFirst = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 数</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (theLastCharactorIsNumber || theFirst)</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; ch &lt;&lt; <span class="built_in">flush</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; space &lt;&lt; ch &lt;&lt; <span class="built_in">flush</span>;</span><br><span class="line"></span><br><span class="line">            theLastCharactorIsNumber = <span class="literal">true</span>;</span><br><span class="line">            theFirst = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">while</span> (!operatorStack.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!theFirst)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; space;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; operatorStack.top();</span><br><span class="line">        operatorStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 波兰式：把)和(倒换，然后从后往前读,&gt;=变成&gt;，最后逆序输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">polish</span><span class="params">(<span class="built_in">string</span> expression)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; operatorStack; <span class="comment">// 运算符栈</span></span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">char</span>&gt; output;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">bool</span> theLastCharactorIsNumber = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从后往前</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = expression.<span class="built_in">size</span>() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> ch = expression[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (ch == <span class="string">'+'</span> || ch == <span class="string">'-'</span> || ch == <span class="string">'*'</span> || ch == <span class="string">'/'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (operatorStack.empty() || operatorStack.top() == <span class="string">')'</span>)</span><br><span class="line">                operatorStack.push(ch);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 逆波兰式这里有=，而波兰式没有=</span></span><br><span class="line">                <span class="keyword">while</span> (getPriority(operatorStack.top()) &gt; getPriority(ch))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// cout &lt;&lt; operatorStack.top() &lt;&lt; " ";</span></span><br><span class="line">                    output.push(space);</span><br><span class="line">                    output.push(operatorStack.top());</span><br><span class="line">                    operatorStack.pop();</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (operatorStack.empty())</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                operatorStack.push(ch);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">')'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            operatorStack.push(ch);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (ch == <span class="string">'('</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (!operatorStack.empty())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (operatorStack.top() == <span class="string">')'</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    operatorStack.pop();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="comment">// cout &lt;&lt; operatorStack.top() &lt;&lt; " ";</span></span><br><span class="line">                    output.push(space);</span><br><span class="line">                    output.push(operatorStack.top());</span><br><span class="line">                    operatorStack.pop();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 数</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 从后往前读，而前一个读取的是数字，所以要</span></span><br><span class="line">            <span class="keyword">if</span> (!theLastCharactorIsNumber)</span><br><span class="line">            &#123;</span><br><span class="line">                output.push(space);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            output.push(ch);</span><br><span class="line">        &#125;</span><br><span class="line">        theLastCharactorIsNumber = isNumber(ch);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (!operatorStack.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// cout &lt;&lt; operatorStack.top() &lt;&lt; " ";</span></span><br><span class="line">        output.push(space);</span><br><span class="line">        output.push(operatorStack.top());</span><br><span class="line">        operatorStack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 倒叙输出</span></span><br><span class="line">    <span class="keyword">while</span> (!output.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">char</span> temp = output.top();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断栈是否只剩最后一个空格（不输出最后一个空格）</span></span><br><span class="line">        <span class="keyword">if</span> (temp == space)</span><br><span class="line">        &#123;</span><br><span class="line">            output.pop();</span><br><span class="line">            <span class="keyword">if</span> (output.empty())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; space &lt;&lt; <span class="built_in">flush</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; temp &lt;&lt; <span class="built_in">flush</span>;</span><br><span class="line">        output.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tryTimes;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; tryTimes;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tryTimes; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> expression;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; expression;</span><br><span class="line"></span><br><span class="line">        polish(expression);</span><br><span class="line">        reservePolish(expression);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i != tryTimes - <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>参考资料：</p>
-<p><a href="https://blog.csdn.net/linraise/article/details/20459751" target="_blank" rel="noopener">https://blog.csdn.net/linraise/article/details/20459751</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/141207867" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/141207867</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/">https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/</a> </p>
-
-          
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/DS%E6%A0%88%E2%80%94%E6%B3%A2%E5%85%B0%E5%BC%8F%EF%BC%8C%E9%80%86%E6%B3%A2%E5%85%B0%E5%BC%8F/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/" itemprop="url">为1M小水管的Minecraft服务器加速的各种尝试</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/" class="post-title-link" itemprop="url">为1M小水管的Minecraft服务器加速的各种尝试</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-17T08:20:00+08:00">2020-07-17</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-07-17 08:20:00" itemprop="dateCreated datePublished" datetime="2020-07-17T08:20:00+08:00">2020-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:01:37" itemprop="dateModified" datetime="2021-02-22T21:01:37+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -959,165 +550,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>阿里云的学生机，10块钱一个月的那种，只有1Mbps的带宽。1Mbps是什么概念呢？就是公网下行带宽最大是<strong>1×1024÷8 = 128 kb/s</strong>，每秒最多128kb的速度，开mc服务器基本顶不住。一个只有三人的私人服务器，差不多两人就能把带宽占满，三人就开始卡，如何解决呢？</p>
-<h3 id="首先从Minecraft服务器的设置出发"><a href="#首先从Minecraft服务器的设置出发" class="headerlink" title="首先从Minecraft服务器的设置出发"></a>首先从Minecraft服务器的设置出发</h3><p><a href="https://minecraft-zh.gamepedia.com/Server.properties" target="_blank" rel="noopener">Minecraft维基百科</a>上关于服务器的设置文件<strong>server.properties</strong>讲的非常清楚，其中有两处地方可以大大减少服务器的带宽，他们分别是：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200717083226118.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20200717083357514.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p><img src="https://img-blog.csdnimg.cn/20200717110712671.png" alt="在这里插入图片描述"></p>
-<p>其中<strong>network-compression-threshold</strong>与数据包的压缩有关，他的本质就是拿CPU资源去换带宽资源，我的设置是0，即压缩全部数据包。</p>
-<p>而<strong>view-distance</strong>是玩家的视野距离，我一直开着1（最低配置），不过玩家几乎是感觉不到它的存在的，可以放心调低。</p>
-<p>而第三个是Linux专用的，可以优化数据包的收发。</p>
-<p>通过这两个配置，我的Minecraft服务器已经基本够3人玩了，但是3人的时候还是会轮流变卡，一看阿里云后台的公网出口带宽，都是全满的。还是需要解决问题！</p>
-<h3 id="在本机运行Minecraft服务器，使用阿里云的服务器做中转？"><a href="#在本机运行Minecraft服务器，使用阿里云的服务器做中转？" class="headerlink" title="在本机运行Minecraft服务器，使用阿里云的服务器做中转？"></a>在本机运行Minecraft服务器，使用阿里云的服务器做中转？</h3><p>用frp进行端口映射，把本地的25565端口映射到云端上，这样用本机的CPU就会好一些，并且frp可以做压缩。</p>
-<p>最终效果：比直接开在云端还慢，因为公网下行数据实际上更多了，阿里云需要在我的电脑和朋友的电脑之间做数据中转。效果很差，放弃了，强烈不推荐。</p>
-<h3 id="P2P的Minecraft服务器？"><a href="#P2P的Minecraft服务器？" class="headerlink" title="P2P的Minecraft服务器？"></a>P2P的Minecraft服务器？</h3><p>既然做中转会受到阿里云的带宽限制，那如果我们使用P2P呢？直接在两台电脑直接建立对等连接，而云服务器只在一开始负责帮两台电脑建立连接，等到连接建立后，数据是不经过阿里云做中转的，直接在我的朋友的电脑直接流通。</p>
-<p>于是我开始着手寻找能够进行P2P打洞的软件，刚开始用了frp的一个P2P打洞功能，叫做XTCP，服务端配置是这样的：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">7000</span></span><br><span class="line"><span class="attr">bind_udp_port</span> = <span class="number">7001</span></span><br></pre></td></tr></table></figure>
-
-<p>我的电脑客户端配置是这样的：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="comment"># 你的frp服务器的公网ip</span></span><br><span class="line"><span class="attr">server_addr</span> = xx.xx.xx.xxx</span><br><span class="line"><span class="comment"># 你的frp服务器的默认端口</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[mc]</span></span><br><span class="line"><span class="attr">type</span> = xtcp</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line"><span class="attr">sk</span> = oc7D!PgY&amp;guFBPwoEfKq</span><br><span class="line"><span class="attr">local_ip</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="comment"># 远程桌面的本地端口号</span></span><br><span class="line"><span class="attr">local_port</span> = <span class="number">25565</span></span><br></pre></td></tr></table></figure>
-
-<p>朋友的电脑客户端的配置是这样的：</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># frpc.ini</span></span><br><span class="line"><span class="section">[common]</span></span><br><span class="line"><span class="comment"># 你的frp服务器的公网ip</span></span><br><span class="line"><span class="attr">server_addr</span> = xx.xx.xx.xx</span><br><span class="line"><span class="comment"># 你的frp服务器的默认端口</span></span><br><span class="line"><span class="attr">server_port</span> = <span class="number">7000</span></span><br><span class="line"></span><br><span class="line"><span class="section">[mc_visitor]</span></span><br><span class="line"><span class="attr">type</span> = xtcp</span><br><span class="line"><span class="comment"># stcp 的访问者</span></span><br><span class="line"><span class="attr">role</span> = visitor</span><br><span class="line"><span class="comment"># 要访问的 stcp 代理的名字</span></span><br><span class="line"><span class="attr">server_name</span> = mc</span><br><span class="line"><span class="comment"># 只有 sk 一致的用户才能访问到此服务</span></span><br><span class="line"><span class="attr">sk</span> = oc7D!PgY&amp;guFBPwoEfKq</span><br><span class="line"><span class="comment"># 绑定本地端口用于访问 远程桌面 服务</span></span><br><span class="line"><span class="attr">bind_addr</span> = <span class="number">127.0</span>.<span class="number">0.1</span></span><br><span class="line"><span class="attr">bind_port</span> = <span class="number">6000</span></span><br></pre></td></tr></table></figure>
-
-<p>这样，（理论上）只要朋友访问127.0.0.1:6000就能访问到我的电脑上的Minecraft服务器了。然而最终失败了，连接不能顺利地建立。本来frp的打洞功能也非常不成熟，受到NAT类型的影响。</p>
-<p><strong>然后我又开始寻找其他的P2P解决方案，最终找到了NPS</strong></p>
-<p>和frp一样，也是Github上开源的项目，也都是用Go语言写的。</p>
-<p><a href="https://github.com/ehang-io/nps" target="_blank" rel="noopener">https://github.com/ehang-io/nps</a></p>
-<p>于是开始了我的部署之路，安装过程只要照着(官方教程)[<a href="https://ehang-io.github.io/nps/#/install]来就行了。最终登陆管理面板是这样的：" target="_blank" rel="noopener">https://ehang-io.github.io/nps/#/install]来就行了。最终登陆管理面板是这样的：</a></p>
-<p><img src="https://img-blog.csdnimg.cn/20200717102417522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="管理面板"></p>
-<p>然后照着官方教程，创建一个客户端：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200717103015637.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="新建客户端"></p>
-<p>参数可以随便填，然后复制最下面红色的那行命令：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200717103158542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="复制"></p>
-<p>然后下载nps的客户端到我运行Minecraft服务器的本机电脑，打开cmd切换到客户端exe所在的目录下，把命令复制进去运行。注意这里不能使用PowerShell，否则会连接不上。如果cmd显示无法运行，就把那行命令前面的./去掉。</p>
-<p>之后去创建一个P2P连接，客户端ID要和上面我们创建的客户端的ID一致。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200717103614392.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="P2P连接"></p>
-<p>然后像前面一样，复制最下面的命令：</p>
-<p><img src="https://img-blog.csdnimg.cn/20200717103831997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="复制命令"></p>
-<p>其中那个“唯一表示密钥”是自动生成的。然后同理让朋友在他自己电脑上下载nps的客户端并cmd运行命令。之后朋友只要在mc服务器的地址填上”127.0.0.1:2000”（默认端口是2000，可以自己换），就能访问到我本机开在127.0.0.1:25565的Minecraft服务器了。</p>
-<p>现在带宽已经没问题了，但是朋友还是反馈很卡，也找不出原因，所以就暂时放弃了这个方案。</p>
-<h3 id="阿里云不同实例内网互联-另一台服务器流量转发？"><a href="#阿里云不同实例内网互联-另一台服务器流量转发？" class="headerlink" title="阿里云不同实例内网互联+另一台服务器流量转发？"></a>阿里云不同实例内网互联+另一台服务器流量转发？</h3><p>因为阿里云所谓的1Mbps的带宽限制，只是公网下行带宽的限制，对其他带宽（比如上行带宽、或者内网带宽）是没有限制的。我和同学在不同的阿里云账号下各拥有一台阿里云服务器，并且在同地域（这意味着内网互联是免费的）。于是我就有了另一个思路，依然把Minecraft服务器开在一台云服务器上，但是一部分玩家的流量直连云服务器，另一部分玩家通过连接另一台闲置的云服务器，然后由闲置的云服务器把流量转发到Minecraft服务器。这样带宽就变成两台服务器加起来2Mbps了。</p>
-<p>首先是探索了半天阿里云的内网互联，由于阿里云的业务一直变化，所以网上找到的教程全都过期了，只好去看阿里云官方的文档。</p>
-<p>首先你要在专有网络–快速链接–高速通道，找到云企业网，然后创建云企业网实例。</p>
-<p><img src="https://img-blog.csdnimg.cn/20200717105028243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="云企业网"></p>
-<p>先把你自己账号下的实例绑定进去，之后照着阿里云文档操作。</p>
-<p><a href="https://help.aliyun.com/document_detail/64648.html" target="_blank" rel="noopener">阿里云帮助文档</a></p>
-<p>然后登陆同学的账号，进行企业网授权，详情查看搜索阿里云文档关于授权部分内容。之后再登陆你的账户把同学的实例加入企业网，这样两个实例就可以通网了。</p>
-<p>之后，使用frp，把Minecraft服务器的25565端口映射到另一台服务器上（记得ip不要填公网ip，要填内网ip，这样才不会占用公网下行带宽），就可以了，具体不再赘述。你也可以配置服务器的防火墙规则或者使用Nginx做端口转发，也是可以的。</p>
-<p>用frp的优点是他可以进行数据压缩，进一步减少了带宽。</p>
-<p>总的来说，这个方案的效果还不错。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/">https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/</a> </p>
-
-          
+          <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>阿里云的学生机，10块钱一个月的那种，只有1Mbps的带宽。1Mbps是什么概念呢？就是公网下行带宽最大是<strong>1×1024÷8 = 128 kb/s</strong>，每秒最多128kb的速度，开mc服务器基本顶不住。一个只有三人的私人服务器，差不多两人就能把带宽占满，三人就开始卡，如何解决呢？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E4%B8%BA1M%E5%B0%8F%E6%B0%B4%E7%AE%A1%E7%9A%84Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8A%A0%E9%80%9F/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/" itemprop="url">在win10自用机上使用Nginx+Docker部署bitwarden_rs</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/" class="post-title-link" itemprop="url">在win10自用机上使用Nginx+Docker部署bitwarden_rs</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-11T09:26:29+08:00">2020-07-11</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-07-11 09:26:29" itemprop="dateCreated datePublished" datetime="2020-07-11T09:26:29+08:00">2020-07-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:01:41" itemprop="dateModified" datetime="2021-02-22T21:01:41+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1125,149 +631,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="最初的想法"><a href="#最初的想法" class="headerlink" title="最初的想法"></a>最初的想法</h2><p>从很久之前就一直想要找到1Password的替代品，当时自己用AES256 + RSA2048的加密方式，写一个服务端和客户端，只能在终端黑窗口里面运行，总归没有这些成熟的产品用得爽。后来了解到了Bitwarden，想部署到服务器上，想了想不如部署到本机上吧，不然服务器一到期就一直得续费。原版的Bitwarden服务端的服务对象是比较广的，资源消耗也比较大，总归不是办法。后来了解到Bitwarden_rs，是大佬用Rust重新写的一个不那么耗费资源的版本，就决定是它了。</p>
-<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><h3 id="首先是Bitwarden的部署"><a href="#首先是Bitwarden的部署" class="headerlink" title="首先是Bitwarden的部署"></a>首先是Bitwarden的部署</h3><p>首先需要在win10上安装Docker，不再赘述。<br>然后根据 <a href="https://github.com/dani-garcia/bitwarden_rs" target="_blank" rel="noopener">Github上官方给出的说明</a> ，只要打开命令行，输入下面命令就可以安装完成并部署到localhost中。</p>
-<p>首先拉取镜像：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull bitwardenrs/server:latest</span><br></pre></td></tr></table></figure>
-<p>然后是运行</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="literal">-d</span> -<span class="literal">-name</span> bitwarden <span class="literal">-v</span> /把这个路径换成你本机要存储的数据的绝对路径/:/<span class="keyword">data</span>/ <span class="literal">-p</span> <span class="number">80</span>:<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">80</span> bitwardenrs/server:latest</span><br></pre></td></tr></table></figure>
-<p>如果要开启管理面板就加个参数，把上面命令换成这个：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="literal">-d</span> -<span class="literal">-name</span> bitwarden <span class="literal">-e</span> ADMIN_TOKEN=换成你的管理面板登陆密码 <span class="literal">-v</span> /把这个路径换成你本机要存储的数据的绝对路径/:/<span class="keyword">data</span>/ <span class="literal">-p</span> <span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">80</span>:<span class="number">80</span>  bitwardenrs/server:latest</span><br></pre></td></tr></table></figure>
-<p>记得把路径换成你本机要存储这些密码数据的路径，如果不设置的话，你电脑一关机，数据就都没了。</p>
-<p>当然你也可以把127.0.0.1:80:80中的”127.0.0.1:80”换成你要部署的本机ip的端口，如果想要部署在0.0.0.0（所有指向本机的ip）就直接输入80:80就好了。由于后面我要用Nginx进行反向代理，所以我是部署在了127.0.0.1。</p>
-<p>只要你的Docker是正常的（包括网络连接正常），那么运行这两行命令之后，在浏览器访问<a href="http://localhost就可以正常访问到了。" target="_blank" rel="noopener">http://localhost就可以正常访问到了。</a></p>
-<p><img src="https://img-blog.csdnimg.cn/20200711095836893.png" alt="bitwarden"></p>
-<p>现在你已经可以在本机使用Bitwarden的服务了，如果想让自己的手机或其他设备也安全地用上，请继续往下看。</p>
-<h3 id="接下来是Nginx进行反向代理"><a href="#接下来是Nginx进行反向代理" class="headerlink" title="接下来是Nginx进行反向代理"></a>接下来是Nginx进行反向代理</h3><p>先到Nginx官网<a href="http://nginx.org/" target="_blank" rel="noopener">http://nginx.org/</a>上下载最新的适用于Windows的Nginx<br><img src="https://img-blog.csdnimg.cn/20200711102432429.png" alt="Nginx官网"><br><img src="https://img-blog.csdnimg.cn/20200711102552703.png" alt="Nginx下载"><br>下载Nginx压缩包之后找一个文件夹解压，我解压到了/bitwarden文件夹下。</p>
-<p>然后再bitwarden/conf/目录下创建一个文件夹，命名为cert。</p>
-<p>然后去给你的域名申请一个HTTPS证书，我是用了阿里云免费的证书，下载Nginx版本的证书（包含xxx.key和xxx.pem两个文件），然后把这两个文件放到cert下面。</p>
-<p>然后编辑bitwarden/conf/nginx.conf 的配置，如下：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span> <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="comment"># HTTPS server</span></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">listen</span> <span class="number">443</span> ssl; <span class="comment">#SSL协议访问端口号为443。此处如未添加ssl，可能会造成Nginx无法启动。</span></span><br><span class="line">        <span class="attribute">server_name</span> localhost; <span class="comment">#将localhost修改为您证书绑定的域名，例如：www.example.com。</span></span><br><span class="line">        <span class="attribute">ssl_certificate</span> cert/domain name.pem; <span class="comment">#将domain name.pem替换成您证书的文件名。</span></span><br><span class="line">        <span class="attribute">ssl_certificate_key</span> cert/domain name.key; <span class="comment">#将domain name.key替换成您证书的密钥文件名。</span></span><br><span class="line">        <span class="attribute">ssl_session_timeout</span> <span class="number">10s</span>;</span><br><span class="line">        <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4; <span class="comment">#使用此加密套件。</span></span><br><span class="line">        <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>; <span class="comment">#使用该协议进行配置。</span></span><br><span class="line">        <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">proxy_pass</span> http://localhost;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>最后记得设置域名的解析记录，把你要的域名解析到你电脑的IP地址，之后就能通过域名进行https访问了。</p>
-<p>我是解析到了我的内网IP地址，所以说我的手机需要和电脑连接同一个wifi才能访问到电脑的服务器。如果你想要让所有设备都能访问，那么可以用frp把你的电脑的443端口映射到云服务器上，同时把域名解析的ip设置你的云服务器的ip。（或者直接把bitwarden部署到你的云服务器上）</p>
-<p>至此，已经可以使用https的方式，访问服务器了，部署已经完成。</p>
-<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>Bitwarden提供了多种客户端，有安卓、IOS的APP端、浏览器web端、浏览器插件、win、linux、macOS的桌面端、甚至还有好几个命令行的版本，全部可以从官网下载。<a href="https://bitwarden.com/#download" target="_blank" rel="noopener">https://bitwarden.com/#download</a></p>
-<h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ProcessName</span> = <span class="string">"docker desktop"</span></span><br><span class="line"><span class="keyword">if</span>((<span class="built_in">get-process</span> <span class="variable">$ProcessName</span> <span class="literal">-ErrorAction</span> SilentlyContinue) <span class="operator">-eq</span> <span class="variable">$Null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Docker is not running,strating...."</span> </span><br><span class="line">    start <span class="string">"Docker Desktop"</span></span><br><span class="line">    sleep <span class="number">20</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123; </span><br><span class="line">    echo <span class="string">"Process is running."</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">docker start bitwarden</span><br><span class="line">.\nginx</span><br></pre></td></tr></table></figure>
-
-<p>将脚本保存为xxx..ps1，然后把这个脚本放到与Nginx.exe同目录下，把docker.exe的快捷方式也放到这个目录下（或者设置docker为开机启动）。</p>
-<p>你可以把这个脚本设置为开机启动，你可以另外写一个run.bat</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line">powershell .\run.ps1</span><br></pre></td></tr></table></figure>
-
-<p>然后win+r，输入shell:startup后回车，打开控制开机自启动的文件目录，然后把这个bat的快捷方式放进去文件夹，之后开机就会自启动了。</p>
-<h2 id="结束脚本"><a href="#结束脚本" class="headerlink" title="结束脚本"></a>结束脚本</h2><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.\nginx -s stop</span><br><span class="line">docker stop <span class="number">822</span>faa38fd55</span><br><span class="line">choice /t <span class="number">2</span> /d y /n &gt;<span class="built_in">nul</span></span><br></pre></td></tr></table></figure>
-<p>其中822faa38fd55指的是容器的ID（可以通过docker ps -a来查看容器的ID）<br>将脚本保存为xxx.bat</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/">https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/</a> </p>
-
-          
+          <h2 id="最初的想法"><a href="#最初的想法" class="headerlink" title="最初的想法"></a>最初的想法</h2><p>从很久之前就一直想要找到1Password的替代品，当时自己用AES256 + RSA2048的加密方式，写一个服务端和客户端，只能在终端黑窗口里面运行，总归没有这些成熟的产品用得爽。后来了解到了Bitwarden，想部署到服务器上，想了想不如部署到本机上吧，不然服务器一到期就一直得续费。原版的Bitwarden服务端的服务对象是比较广的，资源消耗也比较大，总归不是办法。后来了解到Bitwarden_rs，是大佬用Rust重新写的一个不那么耗费资源的版本，就决定是它了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9C%A8win10%E8%87%AA%E7%94%A8%E6%9C%BA%E4%B8%8A%E4%BD%BF%E7%94%A8Nginx-Docker%E9%83%A8%E7%BD%B2bitwarden-rs/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/" itemprop="url">关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/" class="post-title-link" itemprop="url">关于win10下深信服sslvpn的客户端流量分流/不同网卡流量分流</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-03T19:34:15+08:00">2020-05-03</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-05-03 19:34:15" itemprop="dateCreated datePublished" datetime="2020-05-03T19:34:15+08:00">2020-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:01:28" itemprop="dateModified" datetime="2021-02-22T21:01:28+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1275,126 +712,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>​    如果你的单位或学校使用了深信服的sslvpn，有时候会有需要流量分流的场景，比如访问internet不直连而是走了sslvpn，比如sslvpn设定的路由策略与其他连接冲突导致无法上公网之类的问题。</p>
+          <p>​    如果你的单位或学校使用了深信服的sslvpn，有时候会有需要流量分流的场景，比如访问internet不直连而是走了sslvpn，比如sslvpn设定的路由策略与其他连接冲突导致无法上公网之类的问题。</p>
 <p>踩了一下午坑，终于解决了问题。</p>
 <p>​    解决的方法是修改路由表。通过修改路由表可以实现对不同的ip段走不同的连接模式。</p>
-<p>​    如果你够细心的话，会发现用了深信服的vpn电脑会多了一个网络适配器<br><img src="https://pic.chimaoshu.top/imgs/2020/05/e83458ea7b3e6f93.png" alt="适配器"></p>
-<p>理论上这个方法不止可以用于深信服的vpn，只要是多个网卡/网络适配器的分流都适用。</p>
-<p>打开cmd，输入 ipconfig/all 查看你要分流的两个网卡/网络适配器的网关ip</p>
-<p><img src="https://pic.chimaoshu.top/imgs/2020/05/18cfa245bb84a06e.png" alt="这个2开头的ip地址是虚拟的ip地址"></p>
-<p>然后输入 route print -4 显示ipv4的路由规则</p>
-<p><img src="https://pic.chimaoshu.top/imgs/2020/05/0ba81623e8b3ae78.png" alt="路由表"><br>可以看到路由表规定了不同的目标ip（包括目标的子网掩码）会走不同的网关，所以我们可以用<br>route add 和 route delete 命令对路由表进行删改，至于具体命令用法，百度一大堆，不再赘述，而且我也忘了。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/">https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/</a> </p>
-
-          
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%85%B3%E4%BA%8E%E6%B7%B1%E4%BF%A1%E6%9C%8Dsslvpn%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B5%81%E9%87%8F%E5%88%86%E6%B5%81/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/" itemprop="url">filezilla配置ssl证书过程中出现'Failed to load SSL Libraries'、'Cannot create certificate.Failed to initialize SSL library'、'Could not load certificate file: error:02001003:system library:fopen:No such process (0)'</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/" class="post-title-link" itemprop="url">filezilla配置ssl证书过程中出现'Failed to load SSL Libraries'、'Cannot create certificate.Failed to initialize SSL library'、'Could not load certificate file: error:02001003:system library:fopen:No such process'</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-16T17:55:43+08:00">2020-03-16</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-03-16 17:55:43" itemprop="dateCreated datePublished" datetime="2020-03-16T17:55:43+08:00">2020-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:01:56" itemprop="dateModified" datetime="2021-02-22T21:01:56+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9D%91/" itemprop="url" rel="index"><span itemprop="name">坑</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1402,119 +795,80 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>‘Failed to load SSL Libraries’<br>‘Cannot create certificate.Failed to initialize SSL library’<br>以上两个问题的解决方法：<br>1.系统更新<br>2.卸载干净，然后从官网下载安装最新的版本<br>3.不要用中文版的filezilla server</p>
-<p>‘Could not load certificate file: error:02001003:system library:fopen:No such process (0)’<br>解决方法：<br>1.检查证书所在文件夹是否有赋予足够的用户权限<br>2.以管理员身份运行filezilla server<br>3.证书的存放路径不要有中文</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/</a> </p>
-
-          
+          <p>‘Failed to load SSL Libraries’<br>‘Cannot create certificate.Failed to initialize SSL library’</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/filezilla%E9%85%8D%E7%BD%AEssl%E8%AF%81%E4%B9%A6%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%87%BA%E7%8E%B0-Failed-to-load-SSL-Libraries-%E3%80%81-Cannot-create-certificate-Failed-to-initialize-SSL-library-%E3%80%81-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/" itemprop="url">ImportError cannot import name ''DerBitString'' from ''Crypto.Util.asn1''</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/" class="post-title-link" itemprop="url">ImportError cannot import name ''DerBitString'' from ''Crypto.Util.asn1''</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T18:50:32+08:00">2020-03-14</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-03-14 18:50:32" itemprop="dateCreated datePublished" datetime="2020-03-14T18:50:32+08:00">2020-03-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 21:02:13" itemprop="dateModified" datetime="2021-02-22T21:02:13+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9D%91/" itemprop="url" rel="index"><span itemprop="name">坑</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1522,124 +876,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>今天用到 PyCryptodome 模块的时候，当我用到了 </p>
+          <p>今天用到 PyCryptodome 模块的时候，当我用到了 </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br></pre></td></tr></table></figure>
-<p>的时候，出现了错误：<br>ImportError : cannot import name ‘’DerBitString’’ from ‘’Crypto.Util.asn1’’。<br>找到了<a href="http://program.dengshilong.org/2018/10/11/%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5DerBitString%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">这篇博客</a>和<a href="https://pycryptodome.readthedocs.io/en/latest/src/faq.html#why-do-i-get-the-error-no-module-named-crypto-on-windows" target="_blank" rel="noopener">官方文档</a>，都提到了Windows下同时安装PyCryptodome和PyCrypto会出现这个问题。<br>给出的解决方案是：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall crypto</span><br><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
-<p>但我并没有安装crypto模块也出现了问题，后来发现只要</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
-<p>重新装一下pycryptodome问题就解决了。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</a> </p>
-
-          
+<p>的时候，出现了错误：<br>ImportError : cannot import name ‘’DerBitString’’ from ‘’Crypto.Util.asn1’’。<br>找到了<a href="http://program.dengshilong.org/2018/10/11/%E6%97%A0%E6%B3%95%E5%AF%BC%E5%85%A5DerBitString%E9%94%99%E8%AF%AF/" target="_blank" rel="noopener">这篇博客</a>和<a href="https://pycryptodome.readthedocs.io/en/latest/src/faq.html#why-do-i-get-the-error-no-module-named-crypto-on-windows" target="_blank" rel="noopener">官方文档</a>，都提到了Windows下同时安装PyCryptodome和PyCrypto会出现这个问题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
       
-
-  
-
   
   
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jt10n">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu">
+      <meta itemprop="name" content="chimaoshu's blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" itemprop="url">（详细版）基于frp与v2ray的几种校园网内网穿透的方案</a></h1>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">（详细）基于frp与v2ray的几种校园网内网穿透的方案</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T16:12:01+08:00">2020-03-12</time>
-            
+              <span class="post-meta-item-text">Posted on</span>
 
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
+              <time title="Created: 2020-03-12 16:12:01" itemprop="dateCreated datePublished" datetime="2020-03-12T16:12:01+08:00">2020-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-22 20:37:30" itemprop="dateModified" datetime="2021-02-22T20:37:30+08:00">2021-02-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">网络</span></a>
+                </span>
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1647,10 +959,6 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>非零基础请移步<a href="\（简略版）基于frp与v2ray的几种校园网内网穿透的方案\">（简略版）基于frp与v2ray的几种校园网内网穿透的方案</a></p>
 <p><a href="#0">设备</a></p>
 <p><a href="#1">方案一:简单的frp socks5/http代理</a></p>
@@ -1659,50 +967,31 @@
 <p><a href="#4">方案四：用v2ray自带的反向代理功能</a></p>
 <p><a href="#5">方案五：用路由器代替校内主机</a></p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+            <div class="post-button">
+              <a class="btn" href="/%EF%BC%88%E8%AF%A6%E7%BB%86%E7%89%88%EF%BC%89%E5%9F%BA%E4%BA%8Efrp%E4%B8%8Ev2ray%E7%9A%84%E5%87%A0%E7%A7%8D%E6%A0%A1%E5%9B%AD%E7%BD%91%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E7%9A%84%E6%96%B9%E6%A1%88/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
     </div>
-    
-    
-    
 
     
-
     
-
     
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
-  </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1710,150 +999,127 @@
           </div>
           
 
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Jt10n</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/%20%7C%7C%20archive">
-              
-                  <span class="site-state-item-count">13</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">28</span>
-                  <span class="site-state-item-name">标签</span>
-                
-              </div>
-            
-
-          </nav>
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Jt10n</span>
-
-  
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.0.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jch4n"
+      src="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+  <p class="site-author-name" itemprop="name">Jch4n</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chimaoshu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chimaoshu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/chi-mao-shu-53/" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;chi-mao-shu-53&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-edge"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Jt10n@foxmail.com" title="E-Mail → mailto:Jt10n@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jch4n</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
 
 
 
@@ -1862,79 +1128,29 @@
 
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
 
 
+<script src="/js/schemes/pisces.js"></script>
 
 
-
-
-
-
-
-
-
+<script src="/js/next-boot.js"></script>
 
 
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
 
 
 
@@ -1947,22 +1163,8 @@
 
 
 
-  
 
 
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
 
   
 
