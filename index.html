@@ -196,7 +196,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-24 11:19:35" itemprop="dateModified" datetime="2021-02-24T11:19:35+08:00">2021-02-24</time>
+                <time title="Modified: 2021-02-24 11:21:41" itemprop="dateModified" datetime="2021-02-24T11:21:41+08:00">2021-02-24</time>
               </span>
 
           
@@ -212,7 +212,7 @@
       
           <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>我想在数据库中存一个被转化为Base64字符串的SHA256哈希值，我在想要用什么类型的值来存储，是用Text还是char[n]，这实际上和base64编码的长度有关，于是就查了下wiki。</p>
 <h3 id="编码原理"><a href="#编码原理" class="headerlink" title="编码原理"></a>编码原理</h3><p>编码其实是基于一个64个数值的编码表（图源维基百科）:<br><img src="https://pic2.zhimg.com/80/v2-a5e95666494c4d739b9488596f47aa57_720w.png" alt="base64编码表" style="zoom: 67%;" /></p>
-<p>也就是说每一个base64字符能够表示6bit的内容（2的6次方为64），换句话说，每4个base64字符（4 * 6）可以表示3（3 * 8）字节的内容。</p>
+<p>也就是说每一个base64字符能够表示6bit的内容（2的6次方为64），换句话说，每4个base64字符（4 * 6 = 24）可以表示3（3 * 8 = 24）字节的内容。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/base64%E7%BC%96%E7%A0%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%95%BF%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95/#more" rel="contents">
