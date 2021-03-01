@@ -107,8 +107,8 @@
         <category>c++</category>
       </categories>
       <tags>
-        <tag>c++</tag>
         <tag>protobuf</tag>
+        <tag>c++</tag>
         <tag>CentOS</tag>
       </tags>
   </entry>
@@ -288,16 +288,16 @@
 <p><a href="https://zhuanlan.zhihu.com/p/87487629" target="_blank" rel="noopener">C++ STL源码剖析之set与multiset那些事 - Francis的文章 - 知乎</a></p>
 <p><a href="https://www.zhihu.com/question/304037770/answer/1287557228" target="_blank" rel="noopener">mysql联合索引的B+树到底张什么样子啊？ - Limit的回答 - 知乎</a></p>
 <p><a href="https://www.cnblogs.com/sandychn/p/12334194.html" target="_blank" rel="noopener">STL中_Rb_tree的探索</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/STL中红黑树的用法探究/">https://www.chimaoshu.top/STL中红黑树的用法探究/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/STL中红黑树的用法探究/">https://www.chimaoshu.top/STL中红黑树的用法探究/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>c++</category>
       </categories>
       <tags>
+        <tag>c++</tag>
         <tag>STL</tag>
         <tag>红黑树</tag>
         <tag>RBTree</tag>
-        <tag>c++</tag>
         <tag>索引</tag>
       </tags>
   </entry>
@@ -316,7 +316,7 @@
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$ProcessName</span> = <span class="string">"docker desktop"</span></span><br><span class="line"><span class="keyword">if</span>((<span class="built_in">get-process</span> <span class="variable">$ProcessName</span> <span class="literal">-ErrorAction</span> SilentlyContinue) <span class="operator">-eq</span> <span class="variable">$Null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Docker is not running,strating...."</span> </span><br><span class="line">    start <span class="string">"Docker Desktop"</span></span><br><span class="line">    sleep <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123; </span><br><span class="line">    echo <span class="string">"Dcoker is running."</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">docker start bitwarden</span><br><span class="line"></span><br><span class="line">echo <span class="string">"resolve DNS address...."</span></span><br><span class="line">.\DNS.lnk</span><br><span class="line"></span><br><span class="line">echo <span class="string">"start Nginx..."</span></span><br><span class="line">.\nginx</span><br><span class="line"></span><br><span class="line">echo <span class="string">"ok"</span></span><br></pre></td></tr></table></figure>
 
 
-<p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>网络</category>
@@ -411,7 +411,7 @@
 <p>参考资料：</p>
 <p><a href="https://blog.csdn.net/linraise/article/details/20459751" target="_blank" rel="noopener">https://blog.csdn.net/linraise/article/details/20459751</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/141207867" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/141207867</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/">https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/">https://www.chimaoshu.top/DS栈—波兰式，逆波兰式/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>OJ</category>
@@ -476,7 +476,7 @@
 <p>之后，使用frp，把Minecraft服务器的25565端口映射到另一台服务器上（记得ip不要填公网ip，要填内网ip，这样才不会占用公网下行带宽），就可以了，具体不再赘述。你也可以配置服务器的防火墙规则或者使用Nginx做端口转发，也是可以的。</p>
 <p>用frp的优点是他可以进行数据压缩，进一步减少了带宽。</p>
 <p>总的来说，这个方案的效果还不错。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/">https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/">https://www.chimaoshu.top/为1M小水管的Minecraft服务器加速/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>网络</category>
@@ -526,7 +526,7 @@
 <p>然后win+r，输入shell:startup后回车，打开控制开机自启动的文件目录，然后把这个bat的快捷方式放进去文件夹，之后开机就会自启动了。</p>
 <h2 id="结束脚本"><a href="#结束脚本" class="headerlink" title="结束脚本"></a>结束脚本</h2><figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">.\nginx -s stop</span><br><span class="line">docker stop <span class="number">822</span>faa38fd55</span><br><span class="line">choice /t <span class="number">2</span> /d y /n &gt;<span class="built_in">nul</span></span><br></pre></td></tr></table></figure>
 <p>其中822faa38fd55指的是容器的ID（可以通过docker ps -a来查看容器的ID）<br>将脚本保存为xxx.bat</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/">https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/">https://www.chimaoshu.top/在win10自用机上使用Nginx-Docker部署bitwarden-rs/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>网络</category>
@@ -551,7 +551,7 @@
 <p><img src="https://pic.chimaoshu.top/imgs/2020/05/18cfa245bb84a06e.png" alt="这个2开头的ip地址是虚拟的ip地址"></p>
 <p>然后输入 route print -4 显示ipv4的路由规则</p>
 <p><img src="https://pic.chimaoshu.top/imgs/2020/05/0ba81623e8b3ae78.png" alt="路由表"><br>可以看到路由表规定了不同的目标ip（包括目标的子网掩码）会走不同的网关，所以我们可以用<br>route add 和 route delete 命令对路由表进行删改，至于具体命令用法，百度一大堆，不再赘述，而且我也忘了。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/">https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/">https://www.chimaoshu.top/关于深信服sslvpn的客户端流量分流/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>网络</category>
@@ -570,7 +570,7 @@
 
 <p>以上两个问题的解决方法：<br>1.系统更新<br>2.卸载干净，然后从官网下载安装最新的版本<br>3.不要用中文版的filezilla server</p>
 <p>‘Could not load certificate file: error:02001003:system library:fopen:No such process (0)’<br>解决方法：<br>1.检查证书所在文件夹是否有赋予足够的用户权限<br>2.以管理员身份运行filezilla server<br>3.证书的存放路径不要有中文</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/">https://www.chimaoshu.top/filezilla配置ssl证书过程中出现-Failed-to-load-SSL-Libraries-、-Cannot-create-certificate-Failed-to-initialize-SSL-library-、-Could-not-load-certificate-file-error-02001003-system-library-fopen-No-such-process-0/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>坑</category>
@@ -594,7 +594,7 @@
 <p>但我并没有安装crypto模块也出现了问题，后来发现只要</p>
 <figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">pip uninstall pycryptodome</span><br><span class="line">pip install pycryptodome</span><br></pre></td></tr></table></figure>
 <p>重新装一下pycryptodome问题就解决了。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/">https://www.chimaoshu.top/ImportError-cannot-import-name-DerBitString-from-Crypto-Util-asn1/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>坑</category>
@@ -687,14 +687,14 @@
 <p>frp设置：<br>勾选“启动frpc客户端”，后面配置和前面的一样<br><img src="https://img-blog.csdnimg.cn/20200312151058521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="frp"><br>v2ray配置：<br>开启透明代理，设置透明代理窗口1099<br>（如果你这个路由器不想用于平时上网，可以不用勾选）<br><img src="https://img-blog.csdnimg.cn/20200312151236279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="v2ray"><br>然后进行config.json的配置:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是透明代理的inbound，平时连路由器上网的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transparent"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 1099,</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"dokodemo-door"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"network"</span>: <span class="string">"tcp,udp"</span>,</span><br><span class="line">        <span class="string">"followRedirect"</span>: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"sniffing"</span>: &#123;</span><br><span class="line">        <span class="string">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"destOverride"</span>: [<span class="string">"http"</span>, <span class="string">"tls"</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="string">"sockopt"</span>: &#123;</span><br><span class="line">          <span class="string">"tproxy"</span>: <span class="string">"tproxy"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是校外跳进来的inbound，校外的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"vmess-mapping"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 10809, // 本地监听端口</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"id"</span>: <span class="string">"123456"</span>, // 用户ID（相当于ssr中的密码），客户端与服务器只要保持相同即可</span><br><span class="line">            <span class="string">"alterId"</span>: 64 //客户端与服务端须保持相同</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"direct"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //如果这个路由器还想用于平时上网，</span><br><span class="line">      //可以自行添加自己平时  上    网  的配置，</span><br><span class="line">      //然后在rules里面添加路由规则</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"routing"</span>: &#123;</span><br><span class="line">    <span class="string">"domainStrategy"</span>: <span class="string">"IPOnDemand"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果这个路由器还想用于平时上网，<br>可以自行添加自己平时上网的服务器配置，<br>然后在rules里面添加路由规则。</p>
-<h1 id="end"><a href="#end" class="headerlink" title="end"></a>end</h1><p>本文地址： <a href="https://www.chimaoshu.top/（详细版）基于frp与v2ray的几种校园网内网穿透的方案/">https://www.chimaoshu.top/（详细版）基于frp与v2ray的几种校园网内网穿透的方案/</a> </p>
+<h1 id="end"><a href="#end" class="headerlink" title="end"></a>end</h1><p>本文地址： <a href="https://www.chimaoshu.top/（详细版）基于frp与v2ray的几种校园网内网穿透的方案/">https://www.chimaoshu.top/（详细版）基于frp与v2ray的几种校园网内网穿透的方案/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>网络</category>
       </categories>
       <tags>
-        <tag>v2ray</tag>
         <tag>frp</tag>
+        <tag>v2ray</tag>
         <tag>内网穿透</tag>
       </tags>
   </entry>
@@ -771,14 +771,14 @@
 <p>（如果这个路由器不想用于平时上网，可以不用勾选）<br><img src="https://img-blog.csdnimg.cn/20200312151236279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dzY21z,size_16,color_FFFFFF,t_70" alt="v2ray"><br>然后进行config.json的配置:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是透明代理的inbound，平时连路由器上网的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"transparent"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 1099,</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"dokodemo-door"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"network"</span>: <span class="string">"tcp,udp"</span>,</span><br><span class="line">        <span class="string">"followRedirect"</span>: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"sniffing"</span>: &#123;</span><br><span class="line">        <span class="string">"enabled"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">"destOverride"</span>: [<span class="string">"http"</span>, <span class="string">"tls"</span>]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="string">"sockopt"</span>: &#123;</span><br><span class="line">          <span class="string">"tproxy"</span>: <span class="string">"tproxy"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //这个是校外跳进来的inbound，校外的流量走这里</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"vmess-mapping"</span>,</span><br><span class="line">      <span class="string">"port"</span>: 10809, // 本地监听端口</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"id"</span>: <span class="string">"123456"</span>, // 用户ID（相当于ssr中的密码），客户端与服务器只要保持相同即可</span><br><span class="line">            <span class="string">"alterId"</span>: 64 //客户端与服务端须保持相同</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">"tag"</span>: <span class="string">"direct"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      //如果这个路由器还想用于平时上网，</span><br><span class="line">      //可以自行添加自己平时kx上网的配置，</span><br><span class="line">      //然后在rules里面添加路由规则</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"routing"</span>: &#123;</span><br><span class="line">    <span class="string">"domainStrategy"</span>: <span class="string">"IPOnDemand"</span>,</span><br><span class="line">    <span class="string">"rules"</span>: []</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果这个路由器还想用于平时上网，<br>可以自行添加自己平时上网的服务器配置，<br>然后在rules里面添加路由规则。</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/">https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/">https://www.chimaoshu.top/（简略版）基于frp与v2ray的几种校园网内网穿透的方案/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <categories>
         <category>网络</category>
       </categories>
       <tags>
-        <tag>v2ray</tag>
         <tag>frp</tag>
+        <tag>v2ray</tag>
         <tag>内网穿透</tag>
       </tags>
   </entry>
@@ -786,7 +786,7 @@
     <title>myfirstpage</title>
     <url>/myfirstpage/</url>
     <content><![CDATA[<p>my first page</p>
-<p>本文地址： <a href="https://www.chimaoshu.top/myfirstpage/">https://www.chimaoshu.top/myfirstpage/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/myfirstpage/">https://www.chimaoshu.top/myfirstpage/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
       <tags>
         <tag>test</tag>
@@ -808,7 +808,7 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/hello-world/">https://www.chimaoshu.top/hello-world/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/hello-world/">https://www.chimaoshu.top/hello-world/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
   </entry>
 </search>

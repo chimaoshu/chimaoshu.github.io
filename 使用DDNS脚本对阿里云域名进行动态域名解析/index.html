@@ -83,6 +83,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="chimaoshu's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -243,7 +244,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ProcessName</span> = <span class="string">"docker desktop"</span></span><br><span class="line"><span class="keyword">if</span>((<span class="built_in">get-process</span> <span class="variable">$ProcessName</span> <span class="literal">-ErrorAction</span> SilentlyContinue) <span class="operator">-eq</span> <span class="variable">$Null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    echo <span class="string">"Docker is not running,strating...."</span> </span><br><span class="line">    start <span class="string">"Docker Desktop"</span></span><br><span class="line">    sleep <span class="number">30</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123; </span><br><span class="line">    echo <span class="string">"Dcoker is running."</span> </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">docker start bitwarden</span><br><span class="line"></span><br><span class="line">echo <span class="string">"resolve DNS address...."</span></span><br><span class="line">.\DNS.lnk</span><br><span class="line"></span><br><span class="line">echo <span class="string">"start Nginx..."</span></span><br><span class="line">.\nginx</span><br><span class="line"></span><br><span class="line">echo <span class="string">"ok"</span></span><br></pre></td></tr></table></figure>
 
 
-<p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> </p>
+<p>本文地址： <a href="https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/">https://www.chimaoshu.top/使用DDNS脚本对阿里云域名进行动态域名解析/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 
     </div>
 
@@ -390,6 +391,9 @@
       </span>
       <span class="links-of-author-item">
         <a href="mailto:Jt10n@foxmail.com" title="E-Mail → mailto:Jt10n@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
       </span>
   </div>
 
