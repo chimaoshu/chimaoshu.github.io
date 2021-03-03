@@ -9,9 +9,9 @@
 <p>I found many solutions on the Internet but none of them can solve my problem. Finally I found that it just because I have changed the main login email of my Microsoft account a few days ago, and I have to connect to my PC by my new email instead of the old one.</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/">https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
-      <tags>
-        <tag>坑</tag>
-      </tags>
+      <categories>
+        <category>坑</category>
+      </categories>
   </entry>
   <entry>
     <title>c#在使用protobuf过程中遇到的小坑</title>
