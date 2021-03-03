@@ -6,7 +6,7 @@
   <link href="https://www.chimaoshu.top/atom.xml" rel="self"/>
   
   <link href="https://www.chimaoshu.top/"/>
-  <updated>2021-03-03T03:52:06.717Z</updated>
+  <updated>2021-03-03T03:55:53.081Z</updated>
   <id>https://www.chimaoshu.top/</id>
   
   <author>
@@ -21,17 +21,15 @@
     <link href="https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/"/>
     <id>https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/</id>
     <published>2021-03-03T03:32:55.000Z</published>
-    <updated>2021-03-03T03:52:06.717Z</updated>
+    <updated>2021-03-03T03:55:53.081Z</updated>
     
-    <content type="html"><![CDATA[<p>I got this problem when I was trying to login into my PC by remote desktop APP.</p><img src="1.jpg" alt="problem" style="zoom:50%;" /><p>I found many solutions on the Internet but none of them can solve my problem. Finally I found that it just because I have changed the main login email of my Microsoft account a few days ago, and I have to connect to my PC by my new email instead of the old one.</p><p>本文地址： <a href="https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/">https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>]]></content>
+    <content type="html"><![CDATA[<p>I got this problem when I was trying to login into my PC by remote desktop APP.</p><img src="https://raw.githubusercontent.com/chimaoshu/chimaoshu.github.io/master/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/1.jpg" alt="problem" style="zoom:50%;" /><p>I found many solutions on the Internet but none of them can solve my problem. Finally I found that it just because I have changed the main login email of my Microsoft account a few days ago, and I have to connect to my PC by my new email instead of the old one.</p><p>本文地址： <a href="https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/">https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>]]></content>
     
     
       
       
     <summary type="html">&lt;p&gt;I got this problem when I was trying to login into my PC by remote desktop APP.&lt;/p&gt;
-&lt;img src=&quot;1.jpg&quot; alt=&quot;problem&quot; style=&quot;zoom:50%;&quot; /&gt;
-
-</summary>
+&lt;img src=&quot;https://raw.githubusercontent.com/chimaoshu</summary>
       
     
     
