@@ -4,7 +4,7 @@
     <title>Microsoft Remote Desktop: We couldn&#39;t connect to the remote pc, this might be due to an expired password. Error code: 0x207</title>
     <url>/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/</url>
     <content><![CDATA[<p>I got this problem when I was trying to login into my PC by remote desktop APP.</p>
-<img src="./Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/1.jpg" alt="problem" style="zoom:50%;" />
+<img src="1.jpg" alt="problem" style="zoom:50%;" />
 
 <p>I found many solutions on the Internet but none of them can solve my problem. Finally I found that it just because I have changed the main login email of my Microsoft account a few days ago, and I have to connect to my PC by my new email instead of the old one.</p>
 <p>本文地址： <a href="https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/">https://www.chimaoshu.top/Microsoft-Remote-Desktop-we-couldn-t-connect-to-the-remote-pc-this-might-be-due-to-an-expired-password/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
