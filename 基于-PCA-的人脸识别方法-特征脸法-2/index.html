@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-b93a5323ebabf99fee4da23e34437af3_720w.png">
 <meta property="og:image" content="https://pic2.zhimg.com/80/v2-b28e7539b316ae71d17c8eb6aa85ecbc_720w.png">
 <meta property="article:published_time" content="2021-03-18T13:58:13.000Z">
-<meta property="article:modified_time" content="2021-03-18T13:59:49.793Z">
+<meta property="article:modified_time" content="2021-03-18T15:32:27.179Z">
 <meta property="article:author" content="Jch4n">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="PCA">
@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-03-18 21:58:13 / Modified: 21:59:49" itemprop="dateCreated datePublished" datetime="2021-03-18T21:58:13+08:00">2021-03-18</time>
+              <time title="Created: 2021-03-18 21:58:13 / Modified: 23:32:27" itemprop="dateCreated datePublished" datetime="2021-03-18T21:58:13+08:00">2021-03-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,7 +269,7 @@
 <ol start="5">
 <li>取出第一张人脸，使用不同数量的特征向量进行重构。</li>
 </ol>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 取出第一个人的人脸，用于重建</span></span><br><span class="line">single_face = centered_face(:,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">20</span>:<span class="number">20</span>:<span class="number">160</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 取出相应数量特征脸</span></span><br><span class="line">    eigen_faces = all_eigen_faces(:,<span class="number">1</span>:<span class="built_in">i</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">% 重建人脸并显示</span></span><br><span class="line">    rebuild_faces = eigen_faces * (eigen_faces' * single_face) + mean_face;</span><br><span class="line">    subplot(<span class="number">2</span>, <span class="number">4</span>, index);</span><br><span class="line">    index = index + <span class="number">1</span>;</span><br><span class="line">    fig = show_face(rebuild_faces);</span><br><span class="line">    title(sprintf(<span class="string">"i=%d"</span>, <span class="built_in">i</span>));    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">160</span>)</span><br><span class="line">    	waitfor(fig);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 取出第一个人的人脸，用于重建</span></span><br><span class="line">single_face = centered_face(:,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">index = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">20</span>:<span class="number">20</span>:<span class="number">160</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 取出相应数量特征脸</span></span><br><span class="line">    eigen_faces = all_eigen_faces(:,<span class="number">1</span>:<span class="built_in">i</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">% 重建人脸并显示</span></span><br><span class="line">    rebuild_faces = eigen_faces * (eigen_faces' * single_face) + mean_face;</span><br><span class="line">    subplot(<span class="number">2</span>, <span class="number">4</span>, index);</span><br><span class="line">    index = index + <span class="number">1</span>;</span><br><span class="line">    fig = show_face(rebuild_faces);</span><br><span class="line">    title(sprintf(<span class="string">"i=%d"</span>, <span class="built_in">i</span>));    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">160</span>)</span><br><span class="line">    	waitfor(fig);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>下图是分别在20，40，60，…，160数量的特征向量下重构的人脸。从直观上可以看出随着特征向量数量的增加，重构出的人脸越来越清晰。这是因为使用越多的特征向量进行人脸重构，丢失的信息越少，因此重构出的人脸更加清晰。</p>
 <p><img src="https://pic1.zhimg.com/80/v2-48ed671d57d950ebe9684bc36bbd4b9f_720w.png" alt="使用不同的人脸进行重构"></p>
@@ -338,7 +338,10 @@
     <a href="/%E5%9F%BA%E4%BA%8EPCA%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95/" rel="prev" title="基于PCA的人脸识别方法——特征脸法">
       <i class="fa fa-chevron-left"></i> 基于PCA的人脸识别方法——特征脸法
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/%E5%9F%BA%E4%BA%8E-2DPCA-%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95-3/" rel="next" title="基于 2DPCA 的人脸识别方法——特征脸法[3]">
+      基于 2DPCA 的人脸识别方法——特征脸法[3] <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -413,7 +416,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
