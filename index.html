@@ -166,6 +166,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E5%9F%BA%E4%BA%8E-PCA-%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95-%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/%E5%9F%BA%E4%BA%8E-PCA-%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95-%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95-2/" class="post-title-link" itemprop="url">基于 PCA 的人脸识别方法--特征脸法[2]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-18 21:58:13 / Modified: 21:59:49" itemprop="dateCreated datePublished" datetime="2021-03-18T21:58:13+08:00">2021-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="基于-PCA-的人脸识别方法——特征脸法-2"><a href="#基于-PCA-的人脸识别方法——特征脸法-2" class="headerlink" title="基于 PCA 的人脸识别方法——特征脸法[2]"></a>基于 PCA 的人脸识别方法——特征脸法[2]</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次主要说说 Matlab 实现与可视化。上次用了 YaleB 数据集不够好用，每个人的人脸图片数量不同，导致训练数据和测试数据划分比较麻烦。这次换了ORL数据集，好了些。</p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><ol>
+<li>数据读取与预处理，ORL数据集一共400张图，40人，一个人10张。每个人10张照片，取4张作为测试数据，6张作为训练数据。</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 400张图，一共40人，一人10张</span></span><br><span class="line">load(<span class="string">'ORL4646.mat'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 重塑后400列，一列是一张脸</span></span><br><span class="line">reshaped_faces = <span class="built_in">reshape</span>(ORL4646, <span class="number">46</span>*<span class="number">46</span>,<span class="number">400</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取出前40%作为测试数据，剩下60%作为训练数据</span></span><br><span class="line">test_data_index = [];</span><br><span class="line">train_data_index = [];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">0</span>:<span class="number">39</span></span><br><span class="line">    test_data_index = [test_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">1</span>:<span class="number">10</span>*<span class="built_in">i</span>+<span class="number">4</span>];</span><br><span class="line">    train_data_index = [train_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">5</span>:<span class="number">10</span>*(<span class="built_in">i</span>+<span class="number">1</span>)];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test_data = reshaped_faces(:, test_data_index);</span><br><span class="line">train_data = reshaped_faces(:, train_data_index);</span><br></pre></td></tr></table></figure>
+
+<p>得到的训练数据和测试数据都是一个矩阵，每一列就是一张脸。通过提取训练数据中的部分列向量，重塑为方阵，并转化为灰度图像得到下图，代表了未经处理的原始数据，如图所示：</p>
+<img src="https://pic1.zhimg.com/80/v2-af75551ea61d0afe250e2c36423009c7_720w.png" alt="原始数据" style="zoom:50%;" />
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9F%BA%E4%BA%8E-PCA-%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95-%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95-2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E5%9F%BA%E4%BA%8EPCA%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -191,7 +273,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-03-12 16:48:14 / Modified: 16:49:59" itemprop="dateCreated datePublished" datetime="2021-03-12T16:48:14+08:00">2021-03-12</time>
+              <time title="Created: 2021-03-12 16:48:14 / Modified: 16:51:49" itemprop="dateCreated datePublished" datetime="2021-03-12T16:48:14+08:00">2021-03-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,118 +312,14 @@
 <li><p>由于新空间的维度小于原来的空间，所以把数据投影到新的空间后，可以大大降低数据的复杂度（虽然会损失少量信息）。</p>
 </li>
 </ol>
-<p><img src="https://pic4.zhimg.com/80/v2-cdc06841330ffef8f47cebcd56a8fba9_720w.png" alt="_"></p>
-<h2 id="PCA-的大致思路"><a href="#PCA-的大致思路" class="headerlink" title="PCA 的大致思路"></a>PCA 的大致思路</h2><ol>
-<li>样本中心化：算出数据在每一个维度上的平均值，让该维数值减去这个平均值，中心化不会改变求得的新空间，但会减少计算量。</li>
-<li>对中心化后的数据，算出这些数据的协方差矩阵。协方差矩阵的含义：第 i 行 k 列的值，表示 i k 对应的两个方向（坐标轴）的协方差。</li>
-</ol>
-<ol start="3">
-<li><p>对协方差矩阵进行对角化，即算出协方差矩阵的特征值与特征向量。</p>
-<p>含义：对角化意味着非对角线元素为0，也就意味着不同坐标轴（不同方向）之间两两互不相关（协方差为0）。而协方差矩阵对角线上元素，就是数据在各个方向上的方差（也是特征值），方差越大意味着数据在这个方向上的散度越大，也就意味着这个方向包含的信息更多。</p>
-</li>
-<li><p>取特征值大的一些特征向量构成一个矩阵 P，这个矩阵是一个投影矩阵：能够把原始空间的数据投影到新的空间。</p>
-</li>
-</ol>
-<h2 id="特征脸法的大致思路"><a href="#特征脸法的大致思路" class="headerlink" title="特征脸法的大致思路"></a>特征脸法的大致思路</h2><ol>
-<li><p>数据预处理：将每一张人脸拉成一个列向量，所有人脸构成一个矩阵，每列是一张列。</p>
-</li>
-<li><p>求平均脸：对每一行都求平均值，得到一个列向量，我们称之为“平均脸”，是所有人脸的平均。下图是 YaleB 数据集求得的一张平均脸。</p>
-</li>
-</ol>
-<p><img src="https://pic1.zhimg.com/80/v2-918060b552a96c398d46f84574d5f2e4_720w.png" alt="平均脸"></p>
-<ol start="3">
-<li><p>样本中心化：每一个脸都减去平均脸。下图是原始数据在减去平均脸后得到的中心化的数据。</p>
-<img src="https://pic1.zhimg.com/80/v2-65a459d10dbf796dcd4dbfec736c810a_720w.png" alt="中心化的数据" style="zoom:33%;" />
-
-
-</li>
-</ol>
-<ol start="4">
-<li><p>对中心化后的样本，求协方差矩阵的特征向量。每一个特征向量都是一张脸，我们称之为“特征脸”（eigenface），原始的人脸可以表示为特征脸的线性组合。</p>
-<blockquote>
-<p>比如，一张人脸图像可能是特征脸1的10%，加上特征脸2的55%，再减去特征脸3的3%。</p>
-<p>——<a href="https://zh.wikipedia.org/zh-hans/特征脸" target="_blank" rel="noopener">特征脸 - 维基百科，自由的百科全书 (wikipedia.org)</a></p>
-</blockquote>
-</li>
-</ol>
-<p>   下图把特征脸按照特征值大小排列，可以看到特征值大的脸，其包含的有效信息更多。</p>
-   <img src="https://pic2.zhimg.com/80/v2-62f392d4e1056457c15ccb4dd81dc539_720w.png" alt="特征脸" style="zoom:33%;" />
-
-
-
-<ol start="5">
-<li><p>取出特征值较大的特征脸，构成投影矩阵。这个投影矩阵可以把人脸投影到一个子空间上，我们称之为脸空间（face space）。</p>
-</li>
-<li><p>把某个人的所有脸都投影到脸空间中，求均值，得到脸空间中的一个点，称之为这个人的“特征”（pattern vector）。以此类推，求出每一个人的“特征”，每一个特征代表一个人的脸。</p>
-</li>
-<li><p>现在有了一个待识别的人脸，只要把它也投影成子空间的一个点，看这个点和空间中哪个点（这个点代表某个人的脸）离得近，我们就认为这个脸是某个人的。</p>
-</li>
-<li><p>如果它和“最近的脸”离得太远，我们认为这张图象并不是一张脸。</p>
-</li>
-</ol>
-<h2 id="特征脸法的具体计算细节"><a href="#特征脸法的具体计算细节" class="headerlink" title="特征脸法的具体计算细节"></a>特征脸法的具体计算细节</h2><p>以 YaleB 数据集为例，进行分析。YaleB 数据集包含 2414 个人脸，每个人脸是 32x32=1024 大小。</p>
-<ol>
-<li><p>数据预处理：读取数据集，“YaleB_32x32.mat”包含已经处理好的数据，含有一个 2414x1024 大小的矩阵，每行是一张人脸。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">load(<span class="string">'YaleB_32x32.mat'</span>);</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="2">
-<li><p>计算平均脸：对每一列都求出一个平均值，最终得到一个 1024 维的行向量，即平均脸。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean_face = <span class="built_in">mean</span>(train_data, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="3">
-<li><p>样本中心化：把原始数据每行是一个人脸，让每一行都减去平均脸，这里顺便做一次转置，与论文保持一致。转置后每一列是一张人脸。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">centered_face = (train_data - mean_face)';</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>计算写协方差矩阵的特征值、特征向量</p>
-</li>
-</ol>
-<p>   一般来说，计算协方差矩阵特征值和特征向量的方法是，先计算协方差矩阵，然后求其特征值和特征向量。但是这种方法的计算规模较大，所以论文提出了一种更加节省算力的方法——SVD，<a href="https://zh.wikipedia.org/wiki/奇异值分解" target="_blank" rel="noopener">奇异值分解 - 维基百科，自由的百科全书 (wikipedia.org)</a>。</p>
-<p>   论文给出了详细的推理过程，最终得出的结论是：计算 L = A’ * A ，而不是 Cov = A * A’ （Cov指的是协方差矩阵）。求出 L 的特征向量后，令其与前面求出的中心化数据 A 相乘后便可得到协方差矩阵的特征向量。</p>
-   <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 这里L是协方差矩阵的替代</span></span><br><span class="line">L = centered_face' * centered_face;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 算特征向量与对角矩阵</span></span><br><span class="line">[eigen_vectors, dianogol_matrix] = eig(L);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 从对角矩阵获取特征值</span></span><br><span class="line">eigen_values = <span class="built_in">diag</span>(dianogol_matrix);</span><br></pre></td></tr></table></figure>
-
-
-<ol start="5">
-<li><p>取出特征值较大的特征向量，作为特征脸。特征值的累加如下图所示，排位靠前的几个特征值占了总特征值的大部分：</p>
-<p><img src="https://pic4.zhimg.com/80/v2-b235c3e10511e5a15997553103317f6c_720w.jpeg" alt=""></p>
-<p> 取出的特征向量构成投影矩阵，这个投影矩阵可以把人脸投影到一个子空间上，我们称之为脸空间（face space）。此后只要用投影矩阵去左乘数据，就能把数据投影到子空间中。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 对特征值进行排序，获得排列后的特征值和索引</span></span><br><span class="line">[sorted_eigen_values, index] = <span class="built_in">sort</span>(eigen_values, <span class="string">'descend'</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">% 获取排序后的征值对应的特征向量</span></span><br><span class="line">sorted_eigen_vectors = eigen_vectors(:, index);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 特征脸(所有）</span></span><br><span class="line">eigen_faces = centered_face * sorted_eigen_vectors;</span><br><span class="line">waitfor(show_faces(eigen_faces));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取出前90%的特征值对应的特征脸</span></span><br><span class="line">order = <span class="number">0</span>;</span><br><span class="line">sum_eigen_values = sum(sorted_eigen_values);</span><br><span class="line">target_eigen_values = sum_eigen_values * <span class="number">0.9</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=sorted_eigen_values'</span><br><span class="line">    count = count + <span class="built_in">i</span>;</span><br><span class="line">    order = order + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (count &lt; target_eigen_values)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 占90%特征值对应的约简后的特征脸</span></span><br><span class="line">reduced_eigen_faces = eigen_faces(:,<span class="number">1</span>:order);</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<ol start="6">
-<li><p>把某个人的所有脸都投影到脸空间上，求平均后得到一个”pattern vector”。</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 将已知人脸投影到脸空间中，即eigenface pattern vector</span></span><br><span class="line"><span class="comment">% 每列是一个人脸的特征向量</span></span><br><span class="line">omega = reduced_eigen_faces' * centered_face;</span><br></pre></td></tr></table></figure>
-
-<p>这里取出前五个人的人脸求平均值得到前五个人人的”pattern vector”，它代表了五个人的脸的特征：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 求5个人在脸空间中的pattern vector</span></span><br><span class="line">omega_k_1 = <span class="built_in">mean</span>(omega(:,<span class="number">1</span>:<span class="number">63</span>),<span class="number">2</span>);</span><br><span class="line">omega_k_2 = <span class="built_in">mean</span>(omega(:,<span class="number">64</span>:<span class="number">127</span>),<span class="number">2</span>);</span><br><span class="line">omega_k_3 = <span class="built_in">mean</span>(omega(:,<span class="number">128</span>:<span class="number">191</span>),<span class="number">2</span>);</span><br><span class="line">omega_k_4 = <span class="built_in">mean</span>(omega(:,<span class="number">192</span>:<span class="number">255</span>),<span class="number">2</span>);</span><br><span class="line">omega_k_5 = <span class="built_in">mean</span>(omega(:,<span class="number">256</span>:<span class="number">319</span>),<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>假设现在有了一个新的人脸，想要知道它是谁的人脸。那么首先需要将其投影到脸空间中：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 新人脸投影到脸空间中</span></span><br><span class="line">omega_new_face = reduced_eigen_faces' * (new_face - mean_face)';</span><br></pre></td></tr></table></figure>
-
-<p>然后计算它和最近的点的距离，如果这个距离过大（阈值自主设定），那么我们可以认为它不是一张脸。</p>
-<p>新的人脸投影到脸空间后，它实际上是脸空间中的一个点，其他已知人的“eigen pattern”也是一些脸空间的点。所以只要计算新的点与其他人的点的距离，如果这个点最接近 A 所属的点，那么我们就认为这个脸是属于 A 的。</p>
-</li>
-</ol>
-   <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 计算新的点与特征向量均值的距离（论文中称之为与脸空间的距离）</span></span><br><span class="line">euclidean_matric_face_space = norm(omega_new_face - omega_k_face_space);</span><br></pre></td></tr></table></figure>
-
-<pre><code>计算距离的过程，求的是欧几里得距离，论文中表示为二范数（欧几里得范数），实际上就是初高中解析几何中常见的”求空间中两        点距离的方法”。</code></pre>   <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 计算新的脸与五个人的脸的距离</span></span><br><span class="line">euclidean_matric_1 = norm(omega_new_face - omega_k_1);</span><br><span class="line">euclidean_matric_2 = norm(omega_new_face - omega_k_2);</span><br><span class="line">euclidean_matric_3 = norm(omega_new_face - omega_k_3);</span><br><span class="line">euclidean_matric_4 = norm(omega_new_face - omega_k_4);</span><br><span class="line">euclidean_matric_5 = norm(omega_new_face - omega_k_5);</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="https://www.mitpressjournals.org/doi/pdfplus/10.1162/jocn.1991.3.1.71" target="_blank" rel="noopener">Eigenfaces for Recognition (mitpressjournals.org)</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Eigenface" target="_blank" rel="noopener">eigenface (wikipedia.org)</a></p>
-<p><a href="https://ww2.mathworks.cn/matlabcentral/fileexchange/45915-eigenfaces-algorithm" target="_blank" rel="noopener">eigenfaces algorithm - File Exchange - MATLAB Central (mathworks.cn)</a></p>
-<p><a href="https://zh.wikipedia.org/zh-hans/特征脸" target="_blank" rel="noopener">特征脸 - 维基百科，自由的百科全书 (wikipedia.org)</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/26652435" target="_blank" rel="noopener">人脸识别之主成分分析（PCA） - 知乎 (zhihu.com)</a></p>
-<p>本文地址： <a href="https://www.chimaoshu.top/基于PCA的人脸识别方法——特征脸法/">https://www.chimaoshu.top/基于PCA的人脸识别方法——特征脸法/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%9F%BA%E4%BA%8EPCA%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1012,91 +990,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
-      <meta itemprop="name" content="Jch4n">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="chimaoshu's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">非常简单的sqlite入门教程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-10-24 18:24:18" itemprop="dateCreated datePublished" datetime="2020-10-24T18:24:18+08:00">2020-10-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-02-22 21:03:40" itemprop="dateModified" datetime="2021-02-22T21:03:40+08:00">2021-02-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="写给新人的简单sqlite入门教程"><a href="#写给新人的简单sqlite入门教程" class="headerlink" title="写给新人的简单sqlite入门教程"></a>写给新人的简单sqlite入门教程</h1><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>进入sqlite的官网：<a href="https://www.sqlite.org/index.html" target="_blank" rel="noopener">https://www.sqlite.org/index.html</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%E7%9A%84sqlite%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1164,7 +1061,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1177,7 +1074,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

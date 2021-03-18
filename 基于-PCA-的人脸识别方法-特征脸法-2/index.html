@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.chimaoshu.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="基于 PCA 的人脸识别方法——特征脸法[2]前言这次主要说说 Matlab 实现与可视化。上次用了 YaleB 数据集不够好用，每个人的人脸图片数量不同，导致训练数据和测试数据划分比较麻烦。这次换了ORL数据集，好了些。 PCA 数据读取与预处理，ORL数据集一共400张图，40人，一个人10张。每个人10张照片，取4张作为测试数据，6张作为训练数据。  12345678910111213141">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 PCA 的人脸识别方法--特征脸法[2]">
+<meta property="og:url" content="https://www.chimaoshu.top/%E5%9F%BA%E4%BA%8E-PCA-%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95-%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95-2/index.html">
+<meta property="og:site_name" content="chimaoshu&#39;s blog">
+<meta property="og:description" content="基于 PCA 的人脸识别方法——特征脸法[2]前言这次主要说说 Matlab 实现与可视化。上次用了 YaleB 数据集不够好用，每个人的人脸图片数量不同，导致训练数据和测试数据划分比较麻烦。这次换了ORL数据集，好了些。 PCA 数据读取与预处理，ORL数据集一共400张图，40人，一个人10张。每个人10张照片，取4张作为测试数据，6张作为训练数据。  12345678910111213141">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-af75551ea61d0afe250e2c36423009c7_720w.png">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-c551f75d984fc0d79fc5f0c5d98c1fd8_720w.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-a7e6d21d2be0d333d35b1e25631c47c2_720w.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-f900daeddee23b2b36e859957f9e6cee_720w.png">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-48ed671d57d950ebe9684bc36bbd4b9f_720w.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-42364c1fbd82c5bd49b3c2ebb35eb68d_720w.png">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-b93a5323ebabf99fee4da23e34437af3_720w.png">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-b28e7539b316ae71d17c8eb6aa85ecbc_720w.png">
+<meta property="article:published_time" content="2021-03-18T13:58:13.000Z">
+<meta property="article:modified_time" content="2021-03-18T13:59:49.793Z">
+<meta property="article:author" content="Jch4n">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="PCA">
+<meta property="article:tag" content="人脸识别">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-af75551ea61d0afe250e2c36423009c7_720w.png">
+
+<link rel="canonical" href="https://www.chimaoshu.top/%E5%9F%BA%E4%BA%8E-PCA-%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95-%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>基于 PCA 的人脸识别方法--特征脸法[2] | chimaoshu's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="chimaoshu's blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">chimaoshu's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">coding 4 fun</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-friendly-links">
+
+    <a href="/friend-links/" rel="section"><i class="fa fa-fw fa-users"></i>friendly links</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://www.chimaoshu.top/%E5%9F%BA%E4%BA%8E-PCA-%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95-%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+      <meta itemprop="name" content="Jch4n">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="chimaoshu's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于 PCA 的人脸识别方法--特征脸法[2]
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-18 21:58:13 / Modified: 21:59:49" itemprop="dateCreated datePublished" datetime="2021-03-18T21:58:13+08:00">2021-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="基于-PCA-的人脸识别方法——特征脸法-2"><a href="#基于-PCA-的人脸识别方法——特征脸法-2" class="headerlink" title="基于 PCA 的人脸识别方法——特征脸法[2]"></a>基于 PCA 的人脸识别方法——特征脸法[2]</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次主要说说 Matlab 实现与可视化。上次用了 YaleB 数据集不够好用，每个人的人脸图片数量不同，导致训练数据和测试数据划分比较麻烦。这次换了ORL数据集，好了些。</p>
+<h2 id="PCA"><a href="#PCA" class="headerlink" title="PCA"></a>PCA</h2><ol>
+<li>数据读取与预处理，ORL数据集一共400张图，40人，一个人10张。每个人10张照片，取4张作为测试数据，6张作为训练数据。</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 400张图，一共40人，一人10张</span></span><br><span class="line">load(<span class="string">'ORL4646.mat'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 重塑后400列，一列是一张脸</span></span><br><span class="line">reshaped_faces = <span class="built_in">reshape</span>(ORL4646, <span class="number">46</span>*<span class="number">46</span>,<span class="number">400</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取出前40%作为测试数据，剩下60%作为训练数据</span></span><br><span class="line">test_data_index = [];</span><br><span class="line">train_data_index = [];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">0</span>:<span class="number">39</span></span><br><span class="line">    test_data_index = [test_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">1</span>:<span class="number">10</span>*<span class="built_in">i</span>+<span class="number">4</span>];</span><br><span class="line">    train_data_index = [train_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">5</span>:<span class="number">10</span>*(<span class="built_in">i</span>+<span class="number">1</span>)];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test_data = reshaped_faces(:, test_data_index);</span><br><span class="line">train_data = reshaped_faces(:, train_data_index);</span><br></pre></td></tr></table></figure>
+
+<p>得到的训练数据和测试数据都是一个矩阵，每一列就是一张脸。通过提取训练数据中的部分列向量，重塑为方阵，并转化为灰度图像得到下图，代表了未经处理的原始数据，如图所示：</p>
+<img src="https://pic1.zhimg.com/80/v2-af75551ea61d0afe250e2c36423009c7_720w.png" alt="原始数据" style="zoom:50%;" />
+
+<a id="more"></a>
+
+<ol start="2">
+<li><p>对训练数据的所有列向量求平均，得到平均列向量，将其重塑为图像即为”平均脸“，如图所示。由于该图像源于所有人脸的平均，所以直观上看可以看出人脸的轮廓，但五官细节较为模糊。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 求平均脸，即每一列分别求均值</span></span><br><span class="line">mean_face = <span class="built_in">mean</span>(train_data, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+   <img src="https://pic1.zhimg.com/80/v2-c551f75d984fc0d79fc5f0c5d98c1fd8_720w.png" alt="平均脸" style="zoom:50%;" />
+
+<ol start="3">
+<li><p>将所有列向量减去平均列向量，得到中心化后的数据。将部分中心化后的列向量重塑后转化为灰度图像，即为中心化后的脸。由于减去了平均人脸，因此相比原始人脸，中心化后的人脸的灰度值更低，图像直观上显得更加暗淡。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">centered_face = (train_data - mean_face);</span><br></pre></td></tr></table></figure>
+
+<img src="https://pic2.zhimg.com/80/v2-a7e6d21d2be0d333d35b1e25631c47c2_720w.png" alt="中心化数据" style="zoom:50%;" />
+</li>
+<li><p>求出协方差矩阵的特征值与特征向量，将特征向量按照特征值大小排序。下图是部分特征向量通过重塑后转化为灰度图像得到的特征脸。从直观上可以看出随着特征值的降低，对应的特征脸越来越模糊，这是因为特征值大的特征脸保留了更多的有效信息。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 协方差矩阵</span></span><br><span class="line">cov_matrix = centered_face * centered_face';</span><br><span class="line">[eigen_vectors, dianogol_matrix] = eig(cov_matrix);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 从对角矩阵获取特征值</span></span><br><span class="line">eigen_values = <span class="built_in">diag</span>(dianogol_matrix);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 对特征值进行排序，获得排列后的特征值和索引</span></span><br><span class="line">[sorted_eigen_values, index] = <span class="built_in">sort</span>(eigen_values, <span class="string">'descend'</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">% 获取排序后的征值对应的特征向量</span></span><br><span class="line">sorted_eigen_vectors = eigen_vectors(:, index);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 特征脸(所有）</span></span><br><span class="line">all_eigen_faces = sorted_eigen_vectors;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<p>   <img src="https://pic4.zhimg.com/80/v2-f900daeddee23b2b36e859957f9e6cee_720w.png" alt="特征脸"></p>
+<p>   值得一提的是，这里也可以使用SVD的方式去求特征脸，详见上文。</p>
+<ol start="5">
+<li>取出第一张人脸，使用不同数量的特征向量进行重构。</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 取出第一个人的人脸，用于重建</span></span><br><span class="line">single_face = centered_face(:,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">20</span>:<span class="number">20</span>:<span class="number">160</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 取出相应数量特征脸</span></span><br><span class="line">    eigen_faces = all_eigen_faces(:,<span class="number">1</span>:<span class="built_in">i</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">% 重建人脸并显示</span></span><br><span class="line">    rebuild_faces = eigen_faces * (eigen_faces' * single_face) + mean_face;</span><br><span class="line">    subplot(<span class="number">2</span>, <span class="number">4</span>, index);</span><br><span class="line">    index = index + <span class="number">1</span>;</span><br><span class="line">    fig = show_face(rebuild_faces);</span><br><span class="line">    title(sprintf(<span class="string">"i=%d"</span>, <span class="built_in">i</span>));    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">160</span>)</span><br><span class="line">    	waitfor(fig);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>下图是分别在20，40，60，…，160数量的特征向量下重构的人脸。从直观上可以看出随着特征向量数量的增加，重构出的人脸越来越清晰。这是因为使用越多的特征向量进行人脸重构，丢失的信息越少，因此重构出的人脸更加清晰。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-48ed671d57d950ebe9684bc36bbd4b9f_720w.png" alt="使用不同的人脸进行重构"></p>
+<ol start="6">
+<li><p>计算不同数量特征向量下，人脸的识别准确度，思路是：将人脸投影到低维空间中，计算未知人脸与所有已知人脸的距离（欧几里得距离），然后使用最近邻分类器KNN进行识别。最终的准确率在 93%-97% 之间。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">index = <span class="number">1</span>;</span><br><span class="line">X = [];</span><br><span class="line">Y = [];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">10</span>:<span class="number">10</span>:<span class="number">160</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 取出相应数量特征脸</span></span><br><span class="line">    eigen_faces = all_eigen_faces(:,<span class="number">1</span>:<span class="built_in">i</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 测试、训练数据降维</span></span><br><span class="line">    projected_train_data = eigen_faces' * (train_data - mean_face);</span><br><span class="line">    projected_test_data = eigen_faces' * (test_data - mean_face);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 开始测试识别率</span></span><br><span class="line">    <span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% KNN的k值</span></span><br><span class="line">	<span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">6</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">% 用于保存最小的k个值的矩阵</span></span><br><span class="line">        <span class="comment">% 用于保存最小k个值对应的人标签的矩阵</span></span><br><span class="line">        minimun_k_values = <span class="built_in">zeros</span>(k,<span class="number">1</span>);</span><br><span class="line">        label_of_minimun_k_values = <span class="built_in">zeros</span>(k,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">% 测试脸的数量</span></span><br><span class="line">        test_face_number = <span class="built_in">size</span>(projected_test_data, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">% 识别正确数量</span></span><br><span class="line">        correct_predict_number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">% 遍历每一个待测试人脸</span></span><br><span class="line">        <span class="keyword">for</span> each_test_face_index = <span class="number">1</span>:test_face_number</span><br><span class="line"></span><br><span class="line">            each_test_face = projected_test_data(:,each_test_face_index);</span><br><span class="line"></span><br><span class="line">            <span class="comment">% 先把k个值填满，避免在迭代中反复判断</span></span><br><span class="line">            <span class="keyword">for</span> each_train_face_index = <span class="number">1</span>:k</span><br><span class="line">                minimun_k_values(each_train_face_index,<span class="number">1</span>) = norm(each_test_face - projected_train_data(:,each_train_face_index));</span><br><span class="line">                label_of_minimun_k_values(each_train_face_index,<span class="number">1</span>) = <span class="built_in">floor</span>((train_data_index(<span class="number">1</span>,each_train_face_index) - <span class="number">1</span>) / <span class="number">10</span>) + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">% 找出k个值中最大值及其下标</span></span><br><span class="line">            [max_value, index_of_max_value] = <span class="built_in">max</span>(minimun_k_values);</span><br><span class="line"></span><br><span class="line">            <span class="comment">% 计算与剩余每一个已知人脸的距离</span></span><br><span class="line">            <span class="keyword">for</span> each_train_face_index = k+<span class="number">1</span>:<span class="built_in">size</span>(projected_train_data,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment">% 计算距离</span></span><br><span class="line">                distance = norm(each_test_face - projected_train_data(:,each_train_face_index));</span><br><span class="line"></span><br><span class="line">                <span class="comment">% 遇到更小的距离就更新距离和标签</span></span><br><span class="line">                <span class="keyword">if</span> (distance &lt; max_value)</span><br><span class="line">                    minimun_k_values(index_of_max_value,<span class="number">1</span>) = distance;</span><br><span class="line">                    label_of_minimun_k_values(index_of_max_value,<span class="number">1</span>) = <span class="built_in">floor</span>((train_data_index(<span class="number">1</span>,each_train_face_index) - <span class="number">1</span>) / <span class="number">10</span>) + <span class="number">1</span>;</span><br><span class="line">                    [max_value, index_of_max_value] = <span class="built_in">max</span>(minimun_k_values);</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">% 最终得到距离最小的k个值以及对应的标签</span></span><br><span class="line">            <span class="comment">% 取出出现次数最多的值，为预测的人脸标签</span></span><br><span class="line">            predict_label = mode(label_of_minimun_k_values);</span><br><span class="line">            real_label = <span class="built_in">floor</span>((test_data_index(<span class="number">1</span>,each_test_face_index) - <span class="number">1</span>) / <span class="number">10</span>)+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (predict_label == real_label)</span><br><span class="line">                <span class="comment">%fprintf("预测值：%d，实际值:%d，正确\n",predict_label,real_label);</span></span><br><span class="line">                correct_predict_number = correct_predict_number + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="comment">%fprintf("预测值：%d，实际值:%d，错误\n",predict_label,real_label);</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        correct_rate = correct_predict_number/test_face_number;</span><br><span class="line"></span><br><span class="line">        X = [X k];</span><br><span class="line">        Y = [Y correct_rate];</span><br><span class="line">        </span><br><span class="line">        fprintf(<span class="string">"k=%d，i=%d，总测试样本：%d，正确数:%d，正确率：%1f\n"</span>, k, <span class="built_in">i</span>,test_face_number,correct_predict_number,correct_rate);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">waitfor(<span class="built_in">plot</span>(X,Y));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>人脸投影到低维空间的可视化：分别将人脸投影到二维空间与三维空间，并画图。</p>
+</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 二三维可视化</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=[<span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 取出相应数量特征脸</span></span><br><span class="line">    eigen_faces = all_eigen_faces(:,<span class="number">1</span>:<span class="built_in">i</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 投影</span></span><br><span class="line">    projected_test_data = eigen_faces' * (test_data - mean_face);</span><br><span class="line">    </span><br><span class="line">    color = [];</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">160</span></span><br><span class="line">        color = [color <span class="built_in">floor</span>((<span class="built_in">j</span><span class="number">-1</span>)/<span class="number">4</span>)*<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 显示</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">2</span>)</span><br><span class="line">        waitfor(<span class="built_in">scatter</span>(projected_test_data(<span class="number">1</span>, :), projected_test_data(<span class="number">2</span>, :), [], color));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        waitfor(<span class="built_in">scatter3</span>(projected_test_data(<span class="number">1</span>, :), projected_test_data(<span class="number">2</span>, :), projected_test_data(<span class="number">3</span>, :), [], color));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>效果：</p>
+<img src="https://pic4.zhimg.com/80/v2-42364c1fbd82c5bd49b3c2ebb35eb68d_720w.png" alt="二维投影" style="zoom:67%;" />
+
+<p>上图将人脸投影到二维空间下的可视化表示，每一个点代表一张人脸的图像，颜色相同的点代表同一个人的脸。</p>
+<p>下面两图分别是在不同的两个角度下观察人脸数据在三维空间下的投影。其中每个点代表一张人脸图片，颜色相同的点代表同一人脸。由于同一人的人脸相近，因此颜色相同的点总是聚集地更加紧凑一些。</p>
+<img src="https://pic1.zhimg.com/80/v2-b93a5323ebabf99fee4da23e34437af3_720w.png" alt="三维投影--角度一" style="zoom:67%;" />
+
+<img src="https://pic2.zhimg.com/80/v2-b28e7539b316ae71d17c8eb6aa85ecbc_720w.png" alt="三维空间--角度2" style="zoom:67%;" />
+
+<h2 id="所有代码"><a href="#所有代码" class="headerlink" title="所有代码"></a>所有代码</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line">clear all;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 400张图，一共40人，一人10张</span></span><br><span class="line">load(<span class="string">'ORL4646.mat'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 训练数据与测试数据的生成</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 重塑后400列，一列是一张脸</span></span><br><span class="line">reshaped_faces = <span class="built_in">reshape</span>(ORL4646, <span class="number">46</span>*<span class="number">46</span>,<span class="number">400</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取出前40%作为测试数据，剩下60%作为训练数据</span></span><br><span class="line">test_data_index = [];</span><br><span class="line">train_data_index = [];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">0</span>:<span class="number">39</span></span><br><span class="line">    test_data_index = [test_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">1</span>:<span class="number">10</span>*<span class="built_in">i</span>+<span class="number">4</span>];</span><br><span class="line">    train_data_index = [train_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">5</span>:<span class="number">10</span>*(<span class="built_in">i</span>+<span class="number">1</span>)];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test_data = reshaped_faces(:, test_data_index);</span><br><span class="line">train_data = reshaped_faces(:,train_data_index);</span><br><span class="line"></span><br><span class="line">waitfor(show_faces(train_data));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取得中心化数据</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 求平均脸，即每一列分别求均值</span></span><br><span class="line">mean_face = <span class="built_in">mean</span>(train_data, <span class="number">2</span>);</span><br><span class="line">waitfor(show_face(mean_face));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 中心化每一列是一个一张图</span></span><br><span class="line">centered_face = (train_data - mean_face);</span><br><span class="line">waitfor(show_faces(centered_face));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 求得协方差矩阵的特征值与特征向量</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% % 求内积矩阵，是协方差矩阵的替代</span></span><br><span class="line"><span class="comment">% % 内积矩阵的特征向量与对角矩阵</span></span><br><span class="line"><span class="comment">% inner_product_matrix = centered_face' * centered_face;</span></span><br><span class="line"><span class="comment">% [eigen_vectors, dianogol_matrix] = eig(inner_product_matrix);</span></span><br><span class="line"><span class="comment">% eigen_vectors = centered_face * eigen_vectors;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 协方差矩阵</span></span><br><span class="line">cov_matrix = centered_face * centered_face';</span><br><span class="line">[eigen_vectors, dianogol_matrix] = eig(cov_matrix);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 从对角矩阵获取特征值</span></span><br><span class="line">eigen_values = <span class="built_in">diag</span>(dianogol_matrix);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 对特征值进行排序，获得排列后的特征值和索引</span></span><br><span class="line">[sorted_eigen_values, index] = <span class="built_in">sort</span>(eigen_values, <span class="string">'descend'</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">% 获取排序后的征值对应的特征向量</span></span><br><span class="line">sorted_eigen_vectors = eigen_vectors(:, index);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 筛选出特征脸</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 特征脸(所有）</span></span><br><span class="line">all_eigen_faces = sorted_eigen_vectors;</span><br><span class="line">waitfor(show_faces(all_eigen_faces));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取出第一个人的人脸，用于重建</span></span><br><span class="line">single_face = centered_face(:,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">index = <span class="number">1</span>;</span><br><span class="line">X = [];</span><br><span class="line">Y = [];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">10</span>:<span class="number">10</span>:<span class="number">160</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 取出相应数量特征脸</span></span><br><span class="line">    eigen_faces = all_eigen_faces(:,<span class="number">1</span>:<span class="built_in">i</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">% 重建人脸并显示</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(<span class="built_in">i</span>,<span class="number">20</span>)==<span class="number">0</span>)</span><br><span class="line">        rebuild_faces = eigen_faces * (eigen_faces' * single_face) + mean_face;</span><br><span class="line">        subplot(<span class="number">2</span>, <span class="number">4</span>, index);</span><br><span class="line">        index = index + <span class="number">1</span>;</span><br><span class="line">        fig = show_face(rebuild_faces);</span><br><span class="line">        title(sprintf(<span class="string">"i=%d"</span>, <span class="built_in">i</span>));    </span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">160</span>)</span><br><span class="line">            waitfor(fig);</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 测试、训练数据降维</span></span><br><span class="line">    projected_train_data = eigen_faces' * (train_data - mean_face);</span><br><span class="line">    projected_test_data = eigen_faces' * (test_data - mean_face);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 开始测试识别率</span></span><br><span class="line">    <span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% KNN的k值</span></span><br><span class="line">	<span class="keyword">for</span> k=<span class="number">1</span>:<span class="number">6</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">% 用于保存最小的k个值的矩阵</span></span><br><span class="line">        <span class="comment">% 用于保存最小k个值对应的人标签的矩阵</span></span><br><span class="line">        minimun_k_values = <span class="built_in">zeros</span>(k,<span class="number">1</span>);</span><br><span class="line">        label_of_minimun_k_values = <span class="built_in">zeros</span>(k,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">% 测试脸的数量</span></span><br><span class="line">        test_face_number = <span class="built_in">size</span>(projected_test_data, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">% 识别正确数量</span></span><br><span class="line">        correct_predict_number = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">% 遍历每一个待测试人脸</span></span><br><span class="line">        <span class="keyword">for</span> each_test_face_index = <span class="number">1</span>:test_face_number</span><br><span class="line"></span><br><span class="line">            each_test_face = projected_test_data(:,each_test_face_index);</span><br><span class="line"></span><br><span class="line">            <span class="comment">% 先把k个值填满，避免在迭代中反复判断</span></span><br><span class="line">            <span class="keyword">for</span> each_train_face_index = <span class="number">1</span>:k</span><br><span class="line">                minimun_k_values(each_train_face_index,<span class="number">1</span>) = norm(each_test_face - projected_train_data(:,each_train_face_index));</span><br><span class="line">                label_of_minimun_k_values(each_train_face_index,<span class="number">1</span>) = <span class="built_in">floor</span>((train_data_index(<span class="number">1</span>,each_train_face_index) - <span class="number">1</span>) / <span class="number">10</span>) + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">% 找出k个值中最大值及其下标</span></span><br><span class="line">            [max_value, index_of_max_value] = <span class="built_in">max</span>(minimun_k_values);</span><br><span class="line"></span><br><span class="line">            <span class="comment">% 计算与剩余每一个已知人脸的距离</span></span><br><span class="line">            <span class="keyword">for</span> each_train_face_index = k+<span class="number">1</span>:<span class="built_in">size</span>(projected_train_data,<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">                <span class="comment">% 计算距离</span></span><br><span class="line">                distance = norm(each_test_face - projected_train_data(:,each_train_face_index));</span><br><span class="line"></span><br><span class="line">                <span class="comment">% 遇到更小的距离就更新距离和标签</span></span><br><span class="line">                <span class="keyword">if</span> (distance &lt; max_value)</span><br><span class="line">                    minimun_k_values(index_of_max_value,<span class="number">1</span>) = distance;</span><br><span class="line">                    label_of_minimun_k_values(index_of_max_value,<span class="number">1</span>) = <span class="built_in">floor</span>((train_data_index(<span class="number">1</span>,each_train_face_index) - <span class="number">1</span>) / <span class="number">10</span>) + <span class="number">1</span>;</span><br><span class="line">                    [max_value, index_of_max_value] = <span class="built_in">max</span>(minimun_k_values);</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">% 最终得到距离最小的k个值以及对应的标签</span></span><br><span class="line">            <span class="comment">% 取出出现次数最多的值，为预测的人脸标签</span></span><br><span class="line">            predict_label = mode(label_of_minimun_k_values);</span><br><span class="line">            real_label = <span class="built_in">floor</span>((test_data_index(<span class="number">1</span>,each_test_face_index) - <span class="number">1</span>) / <span class="number">10</span>)+<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (predict_label == real_label)</span><br><span class="line">                <span class="comment">%fprintf("预测值：%d，实际值:%d，正确\n",predict_label,real_label);</span></span><br><span class="line">                correct_predict_number = correct_predict_number + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="comment">%fprintf("预测值：%d，实际值:%d，错误\n",predict_label,real_label);</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        correct_rate = correct_predict_number/test_face_number;</span><br><span class="line"></span><br><span class="line">        X = [X k];</span><br><span class="line">        Y = [Y correct_rate];</span><br><span class="line">        </span><br><span class="line">        fprintf(<span class="string">"k=%d，i=%d，总测试样本：%d，正确数:%d，正确率：%1f\n"</span>, k, <span class="built_in">i</span>,test_face_number,correct_predict_number,correct_rate);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">waitfor(<span class="built_in">plot</span>(X,Y));</span><br><span class="line"></span><br><span class="line"><span class="comment">% 二三维可视化</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=[<span class="number">2</span> <span class="number">3</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 取出相应数量特征脸</span></span><br><span class="line">    eigen_faces = all_eigen_faces(:,<span class="number">1</span>:<span class="built_in">i</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 投影</span></span><br><span class="line">    projected_test_data = eigen_faces' * (test_data - mean_face);</span><br><span class="line">    </span><br><span class="line">    color = [];</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span>=<span class="number">1</span>:<span class="number">160</span></span><br><span class="line">        color = [color <span class="built_in">floor</span>((<span class="built_in">j</span><span class="number">-1</span>)/<span class="number">4</span>)*<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% 显示</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">i</span> == <span class="number">2</span>)</span><br><span class="line">        waitfor(<span class="built_in">scatter</span>(projected_test_data(<span class="number">1</span>, :), projected_test_data(<span class="number">2</span>, :), [], color));</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        waitfor(<span class="built_in">scatter3</span>(projected_test_data(<span class="number">1</span>, :), projected_test_data(<span class="number">2</span>, :), projected_test_data(<span class="number">3</span>, :), [], color));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">       </span><br><span class="line"></span><br><span class="line"><span class="comment">% 输入向量，显示脸</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fig</span> = <span class="title">show_face</span><span class="params">(vector)</span></span></span><br><span class="line">    fig = imshow(mat2gray(<span class="built_in">reshape</span>(vector, [<span class="number">46</span>, <span class="number">46</span>])));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 显示矩阵中某些脸</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fig</span> = <span class="title">show_faces</span><span class="params">(eigen_vectors)</span></span></span><br><span class="line">    count = <span class="number">1</span>;</span><br><span class="line">    index_of_image_to_show = [<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>,<span class="number">35</span>,<span class="number">40</span>,<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=index_of_image_to_show</span><br><span class="line">        subplot(<span class="number">2</span>,<span class="number">5</span>,count);</span><br><span class="line">        fig = show_face(eigen_vectors(:, <span class="built_in">i</span>));</span><br><span class="line">        title(sprintf(<span class="string">"i=%d"</span>, <span class="built_in">i</span>));</span><br><span class="line">        count = count + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>本文地址： <a href="https://www.chimaoshu.top/基于-PCA-的人脸识别方法-特征脸法-2/">https://www.chimaoshu.top/基于-PCA-的人脸识别方法-特征脸法-2/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+  <div class="followme">
+    <p>Welcome to my other publishing channels</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/PCA/" rel="tag"># PCA</a>
+              <a href="/tags/%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB/" rel="tag"># 人脸识别</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E5%9F%BA%E4%BA%8EPCA%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95%E2%80%94%E2%80%94%E7%89%B9%E5%BE%81%E8%84%B8%E6%B3%95/" rel="prev" title="基于PCA的人脸识别方法——特征脸法">
+      <i class="fa fa-chevron-left"></i> 基于PCA的人脸识别方法——特征脸法
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基于-PCA-的人脸识别方法——特征脸法-2"><span class="nav-number">1.</span> <span class="nav-text">基于 PCA 的人脸识别方法——特征脸法[2]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PCA"><span class="nav-number">1.2.</span> <span class="nav-text">PCA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#所有代码"><span class="nav-number">1.3.</span> <span class="nav-text">所有代码</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jch4n"
+      src="https://avatars.githubusercontent.com/u/56833537?s=460&u=05d28aa3df476ebbb047c59a6c9720e38f985be8&v=4">
+  <p class="site-author-name" itemprop="name">Jch4n</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/chimaoshu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;chimaoshu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/chi-mao-shu-53/" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;chi-mao-shu-53&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-edge"></i>Zhihu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:Jt10n@foxmail.com" title="E-Mail → mailto:Jt10n@foxmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jch4n</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":145,"height":315},"mobile":{"show":false,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
+</html>
