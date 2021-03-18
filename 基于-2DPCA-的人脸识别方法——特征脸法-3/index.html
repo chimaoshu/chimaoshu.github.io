@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-22b6d58019f32f412eb1d9ac1b32c6d8_720w.png">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-48ed671d57d950ebe9684bc36bbd4b9f_720w.png">
 <meta property="article:published_time" content="2021-03-18T15:49:57.000Z">
-<meta property="article:modified_time" content="2021-03-18T15:51:42.751Z">
+<meta property="article:modified_time" content="2021-03-18T15:52:39.790Z">
 <meta property="article:author" content="Jch4n">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="PCA">
@@ -202,7 +202,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-03-18 23:49:57 / Modified: 23:51:42" itemprop="dateCreated datePublished" datetime="2021-03-18T23:49:57+08:00">2021-03-18</time>
+              <time title="Created: 2021-03-18 23:49:57 / Modified: 23:52:39" itemprop="dateCreated datePublished" datetime="2021-03-18T23:49:57+08:00">2021-03-18</time>
             </span>
 
           
@@ -218,6 +218,8 @@
       
         <h1 id="基于-2DPCA-的人脸识别方法——特征脸法-3"><a href="#基于-2DPCA-的人脸识别方法——特征脸法-3" class="headerlink" title="基于 2DPCA 的人脸识别方法——特征脸法[3]"></a>基于 2DPCA 的人脸识别方法——特征脸法[3]</h1><h2 id="2DPCA"><a href="#2DPCA" class="headerlink" title="2DPCA"></a>2DPCA</h2><p>论文：<a href="https://ieeexplore.ieee.org/abstract/document/1261097" target="_blank" rel="noopener">Two-dimensional PCA: a new approach to appearance-based face representation and recognition | IEEE Journals &amp; Magazine | IEEE Xplore</a></p>
 <p>提出了 2DPCA 的方法，是对基于PCA的特征脸法的改进。该方案直接对图片本身（矩阵）进行操作，而不是像 PCA 一样，把一张图片拉成一条列向量再进行计算。这种方法显著减少了协方差矩阵的维度，减少了计算量。2DPCA 使用较少的特征向量就能够较好地对人脸进行重构。</p>
+<a id="more"></a>
+
 <h2 id="Matlab-复现"><a href="#Matlab-复现" class="headerlink" title="Matlab 复现"></a>Matlab 复现</h2><p>基本思路和 PCA 差不多，只不过一些地方有些区别。</p>
 <h3 id="1-原始数据处理与划分"><a href="#1-原始数据处理与划分" class="headerlink" title="1. 原始数据处理与划分"></a>1. 原始数据处理与划分</h3><p>这里用了ORL数据集，与 PCA 相比，2DPCA 不再需要把一张脸 reshape 成一个列向量了。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 400张图，一共40人，一人10张</span></span><br><span class="line">load(<span class="string">'ORL4646.mat'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% 取出前40%作为测试数据，剩下60%作为训练数据</span></span><br><span class="line">test_data_index = [];</span><br><span class="line">train_data_index = [];</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">0</span>:<span class="number">39</span></span><br><span class="line">    test_data_index = [test_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">1</span>:<span class="number">10</span>*<span class="built_in">i</span>+<span class="number">4</span>];</span><br><span class="line">    train_data_index = [train_data_index <span class="number">10</span>*<span class="built_in">i</span>+<span class="number">5</span>:<span class="number">10</span>*(<span class="built_in">i</span>+<span class="number">1</span>)];</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test_data = ORL4646(:, :, test_data_index);</span><br><span class="line">train_data = ORL4646(:, :,train_data_index);</span><br></pre></td></tr></table></figure>
