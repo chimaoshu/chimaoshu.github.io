@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>基于LDA的人脸识别方法--fisherface</title>
+    <title>基于LDA的人脸识别方法-fisherface</title>
     <url>/%E5%9F%BA%E4%BA%8ELDA%E7%9A%84%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E6%96%B9%E6%B3%95-fisherface/</url>
-    <content><![CDATA[<p>[toc]</p>
-<hr>
-<h1 id="基于LDA的人脸识别方法–fisherface"><a href="#基于LDA的人脸识别方法–fisherface" class="headerlink" title="基于LDA的人脸识别方法–fisherface"></a>基于LDA的人脸识别方法–fisherface</h1><h3 id="LDA几何意义"><a href="#LDA几何意义" class="headerlink" title="LDA几何意义"></a>LDA几何意义</h3><p>最小化类内散度Jw，最大化类间散度Jb。这样的目的是使得投影后同一类的数据尽可能聚集，不同类的数据尽可能分散，以达到更好的分类效果。</p>
+    <content><![CDATA[<h1 id="基于LDA的人脸识别方法–fisherface"><a href="#基于LDA的人脸识别方法–fisherface" class="headerlink" title="基于LDA的人脸识别方法–fisherface"></a>基于LDA的人脸识别方法–fisherface</h1><h3 id="LDA几何意义"><a href="#LDA几何意义" class="headerlink" title="LDA几何意义"></a>LDA几何意义</h3><p>最小化类内散度Jw，最大化类间散度Jb。这样的目的是使得投影后同一类的数据尽可能聚集，不同类的数据尽可能分散，以达到更好的分类效果。</p>
 <h3 id="LDA的数学推导过程"><a href="#LDA的数学推导过程" class="headerlink" title="LDA的数学推导过程"></a>LDA的数学推导过程</h3><p>Sw：类内散度，操作对象是<strong>类内数据</strong>，w表示within</p>
 <p>Sb：类间散度，操作对象是<strong>类的均值</strong>，b表示between</p>
 <p>St：总散度，操作对象是<strong>所有数据</strong>，t表示total</p>
@@ -64,14 +62,6 @@
 </ol>
 <p>本文地址： <a href="https://www.chimaoshu.top/基于LDA的人脸识别方法-fisherface/">https://www.chimaoshu.top/基于LDA的人脸识别方法-fisherface/</a> <br>版权声明：本博客所有文章除特别声明外，均采用 Apache License 2.0 许可协议，转载请注明出处。</p>
 ]]></content>
-      <categories>
-        <category>机器学习</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>人脸识别</tag>
-        <tag>LDA</tag>
-      </tags>
   </entry>
   <entry>
     <title>基于 2DPCA 的人脸识别方法——特征脸法[3]</title>
